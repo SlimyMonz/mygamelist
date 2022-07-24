@@ -6,8 +6,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 
-import GamePage from './pages/GamePage';
+import GamesPage from './pages/GamesPage';
 import MainPage from './pages/MainPage';
+import GamePage from './pages/GamePage';
 
 
 function App() {
@@ -16,9 +17,9 @@ function App() {
     <div style={{ backgroundImage:`url(${image})`,backgroundSize: 'contain' }}>
       <BrowserRouter>
         <Routes>
-          
           <Route path="/" index element={<MainPage />} />
-          <Route path="/games" index element={<GamePage />} />
+          <Route path="/games" index element={<GamesPage />} />
+          <Route path="/games/:gameName" element={<GamePage />}/>
         </Routes>
       </BrowserRouter>
       

@@ -1,40 +1,84 @@
-import React, { useState } from 'react';
-import Button from 'react-bootstrap/Button';
-import ModalComponent from './Modals/ModalComponent';
-import LoginModal from './Modals/LoginModal';
-import RegisterModal from './Modals/RegisterModal';
-import AllGameSearch from './AllGameSearch';
+import React, { useState, useEffect } from 'react';
+import {useLocation} from 'react-router-dom';
 
-function GameUI()
+
+
+function GameUI(props)
 {
 
-    let game = '';
-    let search = '';
-    let name = '';
-    let steamId = '';
+    //alert(props.gameName);
+    
+    const location = useLocation();
+    //let dynamicGame;
+    const [dynamicGame,setDynamicGame] = useState(<div></div>);
+    
 
-    const [message,setMessage] = useState('');
-    const [searchResults,setResults] = useState('');
-    const [gameList,setGameList] = useState('');
-    const [gamesList,setGamesList] = useState('');
-
-
-    let ud = localStorage.getItem('user');
-    let userId;
-    let firstName;
-    let lastName;
-
-    if(ud)
+    useEffect(() => 
     {
+        //todo: memory leak cleanup since we're calling an api and will probably use useState/states
+        if(location.state === null)
+        {
+            //run game search for name?
+            (async () => {
+                
+            console.log("we're calling the allgamessearch api");
+            let obj = {name: props.gameName};
 
-    }
-    else
-    {
+            let js = JSON.stringify(obj);
+            try
+            {
+                const response = await fetch(buildPath('api/games/searchAllGames'),
+                {method:'POST',body:js,headers:{'Content-Type': 'application/json'}});
+    
+                if (response.status === 404)
+                {
+                    alert('No game found');
+                    return;
+                }
 
-    }
+                let txt = await response.text();
+                let searchList = JSON.parse(txt); 
+                console.log(searchList[0].name);
 
+                //alert(searchList[0].cover);
+                setDynamicGame(<div>name: {searchList[0].name}<br/>
+                                platforms: {searchList[0].platforms.join(', ')}<br/>
+                                genre: {searchList[0].genre}<br/>
+                                img: <br/> <img src={searchList[0].cover} alt="game cover img"/><br/>
+                           </div>)
+                
+
+
+                
+
+            }
+            catch(e)
+            {
+                alert("error!");
+                alert(e.toString());
+                window.location.href = '/games';
+            }
+            })();
+            
+            
+        }      
+        else
+        {
+            //we have a game already
+            console.log(location.state.data.name);
+            setDynamicGame(<div>name: {location.state.data.name}<br/>
+                                platforms: {location.state.data.platforms}<br/>
+                                genre: {location.state.data.genre}<br/>
+                                img: <br/><img src={location.state.data.cover} alt="game cover img"/><br/>
+                           </div>)
+
+        }
+
+        
+    }, [location]);
 
     const app_name = 'my-game-list-front'
+
     function buildPath(route)
     {
         if (process.env.NODE_ENV === 'production')
@@ -47,133 +91,15 @@ function GameUI()
         }
     }
 
-
-    const getGamesList = async event =>
-    {
-        event.preventDefault();
-
-        let obj = {userId:userId,steamId:steamId.value};
-        let js = JSON.stringify(obj);
-
-        try
-        {
-            const response = await fetch(buildPath('api/Steam/getSteamGames'),
-                {method:'POST', mode: 'cors',body:js,headers:{'Content-Type': 'application/json'}});
-
-            let txt = await response.text();
-            let res = JSON.parse(txt);
-
-            let fullList = await getGameNames(res);
-
-            console.log(fullList);
-            alert('Steam games have been retrieved');
-        }
-        catch(e)
-        {
-            alert(e.toString());
-            setResults(e.toString());
-        }
-    };
-
-    const getGameNames = async (appIdList) => 
-    {
-        const response = await fetch(buildPath('api/Steam/getAllGames'),
-            {method:'GET', mode: 'cors'});
-
-        let txt = await response.text();
-        let gamesList = JSON.parse(txt);
-        let parsedGames = await parseGameNames(appIdList, gamesList)
-
-        return parsedGames;
-    }
-
-    
-    const parseGameNames = (appIdList, gamesList) =>
-    {
-        let parsedGames = [];
-
-        appIdList.response.games.filter(function(game1) {
-            let temp = gamesList.applist.apps.find((game2) => game1.appid === game2.appid);
-
-            if (typeof(temp) === 'object') 
-            {
-                parsedGames.push(temp.name);
-            }
-        });
-
-        return parsedGames;
-    }
-
-    const goToHome = async event =>
-    {
-        window.location.href = '/';
-    }
-   
-
-    let dynamic_game_search;
-
-
-    if(ud)
-    {
-        dynamic_game_search =
-
-            <div id="gameUIDiv">
-                <br />
-                <Button type="submit" variant="dark" class="buttons"
-                        onClick={goToHome}>Back to Home</Button><br/>
-                <AllGameSearch/>
-                <p id="gameList">{gameList}</p><br /><br />
-                
-                
-                <input type="text" id="requestSteamIDText" placeholder="Enter your Steam ID"
-                       ref={(c) => steamId = c} />
-                <button type="button" id="requestSteamIDBtn" class="buttons"
-                        onClick={getGamesList}> Get Games </button><br />
-                <span id="gamesListResult">{message}</span>
-                <p id="gamesList">{gamesList}</p>
-            </div>
-
-
-    }
-    else
-    {
-
-        dynamic_game_search =
-
-            <div id="gameUIDiv">
-                <br />
-                <Button type="submit" variant="dark" class="buttons"
-                        onClick={goToHome}>Back to Home</Button><br/><br/>
-                
-                {/* login */}
-
-                <ModalComponent
-                    buttonType ={"Login"}
-                    title={"Login"}
-                    body={""}
-                    componentType={LoginModal}
-                />
-
-                <br/>
-                {/* register */}
-
-                <ModalComponent
-                    buttonType ={"Register"}
-                    title={"Register"}
-                    body={""}
-                    componentType={RegisterModal}
-                />
-                <br/>
-                <AllGameSearch/>
-                <p id="gameList">{gameList}</p><br /><br />
-            </div>
-    }
+    //alert(location.state.data.id); //we check to see if state is null to determine if we got here from a modal or manually
 
     return(
         <div>
-            {dynamic_game_search}
+        {dynamicGame}
         </div>
     );
+
 }
 
-export default GameUI;
+export default GameUI
+

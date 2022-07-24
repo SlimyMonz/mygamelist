@@ -29,6 +29,7 @@ const MainPage = () =>
 
     useEffect(() => 
     {
+      const abortCont = new AbortController();
       const urlParams = new URLSearchParams(window.location.search);
       
       //Checks the url for the userId parameter. If it exists,
@@ -41,7 +42,8 @@ const MainPage = () =>
           try
           {
             fetch(buildPath('api/users/verify'),
-            {method:'POST',body:js,headers:{'Content-Type': 'application/json'}})
+                 {method:'POST',body:js,headers:{'Content-Type': 'application/json'}, signal: abortCont.signal}
+            )
             .then(response => response.json()
             .then(json => {
               alert(json.message);
@@ -50,6 +52,10 @@ const MainPage = () =>
           }
           catch(e)
           {
+            if(e.name === 'AbortError')
+            {
+              console.log("fetch aborted");
+            }
             alert(e.toString());
           }
       }
@@ -58,6 +64,8 @@ const MainPage = () =>
         console.log("renderrrrr nooooo");
       }
 
+      //clean up dem memory leaks
+      return () => {abortCont.abort();}
 
     }, [renderCheck]);
 
@@ -89,7 +97,6 @@ const MainPage = () =>
     return(
       <div>
            
-        <PageTitle />
         
         {/*alert("did we get here!")}*/}
         <MainLogin />

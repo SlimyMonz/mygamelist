@@ -21,6 +21,7 @@ class AllGameSearch extends Component
             gameListString: '',
             gameList: [],
             success: false,
+         
             
 
             //platforms
@@ -675,12 +676,19 @@ class AllGameSearch extends Component
 
                 //platform string conversion
                 //platformArray.join(', ');
-                console.log("joined" + searchList[i].platforms.join(', '));
+                //console.log(typeof(searchList[i].genre))
+                //console.log("joined " + searchList[i].genre.join(', '));
 
                 resultGames.push(searchList[i]);
                 console.log(resultGames[i].platforms);
                 resultGames[i].platforms = searchList[i].platforms.join(', ');
+
+                //this doesn't work because not all of our games have a genre array
+                //resultGames[i].genre = searchList[i].genre.join(', ');
+
+                console.log(resultGames[i].name);
                 console.log(resultGames[i].platforms);
+                console.log(resultGames[i].genre);
 
                 //console.log("our boi: " + resultGames[i].platforms[0]);
 
@@ -694,6 +702,7 @@ class AllGameSearch extends Component
             this.setMessage('Game(s) have been retrieved\n');
             this.setState({gameListString: resultText});
             this.setState({gameList: resultGames});
+            
             //setgameListString(resultText);
 
             //alert(this.state.gameList);
@@ -1096,8 +1105,6 @@ class AllGameSearch extends Component
                                                 checked={this.state.WrestlingCheck}
                                     />
                                     
-                                    
-
                                 </Form.Group>
                             </div>
                         </Col>
