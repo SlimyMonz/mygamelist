@@ -29,7 +29,6 @@ const MainPage = () =>
 
     useEffect(() => 
     {
-      const abortCont = new AbortController();
       const urlParams = new URLSearchParams(window.location.search);
       
       //Checks the url for the userId parameter. If it exists,
@@ -42,7 +41,7 @@ const MainPage = () =>
           try
           {
             fetch(buildPath('api/users/verify'),
-                 {method:'POST',body:js,headers:{'Content-Type': 'application/json'}, signal: abortCont.signal}
+                 {method:'POST',body:js,headers:{'Content-Type': 'application/json'}}
             )
             .then(response => response.json()
             .then(json => {
@@ -52,10 +51,6 @@ const MainPage = () =>
           }
           catch(e)
           {
-            if(e.name === 'AbortError')
-            {
-              console.log("fetch aborted");
-            }
             alert(e.toString());
           }
       }
@@ -64,9 +59,7 @@ const MainPage = () =>
         console.log("renderrrrr nooooo");
       }
 
-      //clean up dem memory leaks
-      return () => {abortCont.abort();}
-
+      
     }, [renderCheck]);
 
     const app_name = 'my-game-list-front'
@@ -85,7 +78,15 @@ const MainPage = () =>
 
     function buildPlatformPath(platform)
     {
-        return 'https://' + app_name +  '.herokuapp.com/games/?platform=' + platform;
+        if (process.env.NODE_ENV === 'production')
+          {
+            return 'https://' + app_name +  '.herokuapp.com/games/?platform=' + platform;
+          }
+          else
+          {
+              return 'http://localhost:3000/games/?platform=' + platform;
+          }
+        
     }
 
     function change()
@@ -131,7 +132,7 @@ const MainPage = () =>
               height:'350px'}}
               className="mb-2"
               >
-            <a href= {buildPlatformPath('Xbox')} target="_blank" rel="noreferrer">
+            <a href= {buildPlatformPath('XboxOne')} target="_blank" rel="noreferrer">
               <Card.Img className='consolepics' variant='top' src={xbox}/>
             </a>
               <Card.Body className='consoleText'>
@@ -149,7 +150,7 @@ const MainPage = () =>
               height:'350px'}}
               className="mb-2"
               >
-                <a href= {buildPlatformPath('Switch')} target="_blank" rel="noreferrer">
+                <a href= {buildPlatformPath('NintendoSwitch')} target="_blank" rel="noreferrer">
                   <Card.Img className='consolepics' variant='top' src={switchPic}/>
                 </a>
                   <Card.Body className='consoleText'>
