@@ -9,6 +9,7 @@ import Card from 'react-bootstrap/Card';
 import CSS from './MainPage.css';
 import {Button} from 'react-bootstrap';
 import Video from '../components/Video';
+import Footer from '../components/Footer';
 //import {withRouter} from 'react-router-dom';
 
 //this is the main page of the site
@@ -162,8 +163,10 @@ const MainPage = () =>
               </Col>
               
             </Row> 
-          </Container> 
-           
+          </Container>
+         
+          <Footer/>
+          
         {/* {stuff};
         <Button onClick={() => {change()}}>press</Button> */}
       </div>

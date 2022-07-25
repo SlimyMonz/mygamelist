@@ -11,6 +11,7 @@ import Container from 'react-bootstrap/Container';
 import gamelogo from '../newgamelogo.png';
 import {FaBars, FaTimes} from 'react-icons/fa'
 
+
 // from tutorial to link to other pages: 
 import {Link} from 'react-router-dom'
 
@@ -26,8 +27,10 @@ function MainLogin()
     //let userInfoMoar = JSON.parse(userInfo);
     let dynamicMain;
     
-    const[click, setClick] = useState(false);
-    const handleClick = () => setClick(!click);
+    const[click, setClick] = useState(false)
+    const handleClick = () => setClick(!click)
+
+    
     
 
     if(userInfo)
@@ -48,8 +51,10 @@ function MainLogin()
         
             <div className='header'>
                 {/* header/logo */}
-                <Link to='/'><img src={gamelogo} className='logo' alt="game logo"/></Link>
-
+                <div className='logo'>
+                    <Link to='/'><img src={gamelogo} className='logo' alt="game logo"/></Link>
+                </div>
+                
                 {/* menu items */}
                 <ul className={click ? 'nav-menu active' : 'nav-menu'}>
                     {/* Link to home */}
@@ -68,7 +73,7 @@ function MainLogin()
 
                     {/* Link to About Us/Mission Statement */}
                     <li className='btn btn-links'>
-                        <Link to='/contact'>Contact Us</Link>
+                        <Link to='/about'>About Us</Link>
                     </li>
 
                     {/* hamburger icon */}
@@ -76,11 +81,8 @@ function MainLogin()
                         {click ? (<FaTimes size={20} style={{color:'#fff'}}/>) : (<FaBars size={20} style={{color:'#fff'}}/>) }
                     
                     </div>
-                </ul>
 
-                
-                
-                <Navbar  expand="lg">
+                    <Navbar  expand="lg">
                     
                         {/* <Container className='imgWrapper'>
                             <a href="/" target="_blank" rel="noreferrer">
@@ -112,6 +114,43 @@ function MainLogin()
                             </Navbar.Collapse>
                     </Container>
                 </Navbar>
+                
+                </ul>
+
+                
+                
+                {/* <Navbar  expand="lg">
+                    
+                        {/* <Container className='imgWrapper'>
+                            <a href="/" target="_blank" rel="noreferrer">
+                            <img src={gamelogo} className='logo' alt="game logo"/>
+                            </a>
+                        </Container> */}
+                        {/* <Container className='loginWrapper'>
+                            <Navbar.Brand></Navbar.Brand>
+                            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                            <Navbar.Collapse id="basic-navbar-nav">
+                                <Nav className="loginButtons">
+                                
+                                        <ModalComponent
+                                            buttonType ={"Login"}
+                                            title={"Login"}
+                                            body={""}
+                                            componentType={LoginModal}
+                                        />
+                                
+                                    <Navbar.Text style={{marginLeft: '.5rem'}}>{''}</Navbar.Text>
+                                        <ModalComponent
+                                            buttonType ={"Register"}
+                                            title={"Register"}
+                                            body={""}
+                                            componentType={RegisterModal}
+                                        />
+                                
+                                </Nav>
+                            </Navbar.Collapse>
+                    </Container>
+                </Navbar> */} 
             </div>
         
         

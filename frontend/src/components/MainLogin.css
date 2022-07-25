@@ -107,7 +107,12 @@ a {
     background: #000;
 }
 
+.btn-links{
+    background: rgba(0,0,0, .8);
+}
 
-.btn-links:hover{
-    text-color:#000;
+.logo{
+    background: transparent;
+    border-radius: 20px;
+    
 }

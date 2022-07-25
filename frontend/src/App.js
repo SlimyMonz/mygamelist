@@ -8,6 +8,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import GamePage from './pages/GamePage';
 import MainPage from './pages/MainPage';
+import AboutPage from './pages/About';
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
           
           <Route path="/" index element={<MainPage />} />
           <Route path="/games" index element={<GamePage />} />
+          <Route path="/about" index element={<AboutPage/>} />
         </Routes>
       </BrowserRouter>
       

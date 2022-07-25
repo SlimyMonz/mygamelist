@@ -24,7 +24,7 @@ a{
 }
 
 /* this turns the text white if its a p tag or h1 tage */
-h1, p, a{
+h1, p, a, h4{
   color: #fff;
 }
 
@@ -32,19 +32,24 @@ h1, p, a{
   padding: 12px 32px;
   font-size: 1.2rem;
   text-transform: uppercase;
-  background: transparent;
+  /* background: transparent; */
+  background-color:#826AED;
   color: #fff;
-  border:1px solid #fff;
+  border:3px solid #fff;
   cursor: pointer;
 }
 
 .btn-light{
-  background: rgba(255,255,255, .2);
+  background: #826AED;
+  
 
 }
 
 .btn:hover{
-  background: rgba(255,255,255, .2); 
+  background: #FFB7FF; 
+}
+.btn-light:hover{
+  background: #FFB7FF; 
 }
 
 

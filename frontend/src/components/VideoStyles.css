@@ -20,12 +20,14 @@
     width: 100%;
     height: 100%;
     top: 40vh;
+    
 }
 
 .vid .content h1{
     font-size: 4rem;
     font-weight: 700;
     color: #fff;
+    
 }
 
 .vid p{
@@ -36,13 +38,30 @@
     color: #fff;
 }
 
-.vid .btn{
+.vid .btn-home{
     margin: 1rem .2rem;
+    background: #FFb7FF;
+    font-weight: 500;
+}
+
+.vid .btn-home:hover{
+ 
+    background: #CAFF8A;
 }
 
 .text-wrapper{
-    background: #000;
-    border-radius: 30px;
+    background: rgba(0,0,0,0.8);
+    border-radius: 40px;
+    width: 80%;
+    align-items: center;
+    margin: auto;
+    
+    
+    
+}
+
+.content{
+    margin: auto;
 }
 
 @media screen and (max-width:640px){
