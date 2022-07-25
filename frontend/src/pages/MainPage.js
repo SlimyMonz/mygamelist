@@ -43,7 +43,8 @@ const MainPage = () =>
           try
           {
             fetch(buildPath('api/users/verify'),
-            {method:'POST',body:js,headers:{'Content-Type': 'application/json'}})
+                 {method:'POST',body:js,headers:{'Content-Type': 'application/json'}}
+            )
             .then(response => response.json()
             .then(json => {
               alert(json.message);
@@ -60,7 +61,7 @@ const MainPage = () =>
         console.log("renderrrrr nooooo");
       }
 
-
+      
     }, [renderCheck]);
 
     const app_name = 'my-game-list-front'
@@ -80,13 +81,14 @@ const MainPage = () =>
     function buildPlatformPath(platform)
     {
         if (process.env.NODE_ENV === 'production')
-        {
-          return 'https://' + app_name +  '.herokuapp.com/games/?platform=' + platform;
-        }
-        else
-        {
-            return 'http://localhost:5000/' + platform;
-        }
+          {
+            return 'https://' + app_name +  '.herokuapp.com/games/?platform=' + platform;
+          }
+          else
+          {
+              return 'http://localhost:3000/games/?platform=' + platform;
+          }
+        
     }
 
     function change()
@@ -121,7 +123,6 @@ const MainPage = () =>
                     <Card.Title> PlayStation 4 Games</Card.Title>
                     <Card.Text>Check out some PlayStation 4 games!</Card.Text>
                   </Card.Body>
-                  
                 </Card>
               </Col>
 
@@ -132,17 +133,17 @@ const MainPage = () =>
                 height:'350px'}}
                 className="mb-2"
                 >
-              <a href= {buildPlatformPath('Xbox')} target="_blank" rel="noreferrer">
-                <Card.Img className='consolepics' variant='top' src={xbox}/>
-              </a>
-                <Card.Body className='consoleText'>
-                  <Card.Title>Xbox One Games</Card.Title>
-                  <Card.Text>Check out some Xbox One games!</Card.Text>
-                </Card.Body>
-              
-              </Card>
+                <a href= {buildPlatformPath('XboxOne')} target="_blank" rel="noreferrer">
+                  <Card.Img className='consolepics' variant='top' src={xbox}/>
+                </a>
+                  <Card.Body className='consoleText'>
+                    <Card.Title>Xbox One Games</Card.Title>
+                    <Card.Text>Check out some Xbox One games!</Card.Text>
+                  </Card.Body>
+                
+                </Card>
               </Col>  
-              
+            
               <Col className="columns">
                 <Card
                 border="secondary"
@@ -150,18 +151,15 @@ const MainPage = () =>
                 height:'350px'}}
                 className="mb-2"
                 >
-                  <a href= {buildPlatformPath('Switch')} target="_blank" rel="noreferrer">
+                  <a href= {buildPlatformPath('NintendoSwitch')} target="_blank" rel="noreferrer">
                     <Card.Img className='consolepics' variant='top' src={switchPic}/>
                   </a>
-                    <Card.Body className='consoleText'>
+                  <Card.Body className='consoleText'>
                       <Card.Title>Nintendo Switch Games</Card.Title>
                       <Card.Text>Check out some Nintendo Switch games!</Card.Text>
-                    </Card.Body>
-                    
-                  
+                  </Card.Body>
                 </Card>
               </Col>
-              
             </Row> 
           </Container>
          

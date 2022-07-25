@@ -117,6 +117,7 @@ class LoginModal extends Component
             //to do: change this to homepage, we have no way to get to games so leaving it for now
             //const currentPath = window.location.pathname;
             //window.location.href = currentPath; 
+            //alert(window.location.href);
             window.location.href = '/games';
         }
         else
