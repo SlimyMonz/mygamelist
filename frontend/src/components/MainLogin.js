@@ -9,6 +9,12 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import Nav from 'react-bootstrap/Nav';
 import Container from 'react-bootstrap/Container';
 import gamelogo from '../newgamelogo.png';
+import {FaBars, FaTimes} from 'react-icons/fa'
+
+
+// from tutorial to link to other pages: 
+import {Link} from 'react-router-dom'
+
 import '../components/MainLogin.css';
 
 
@@ -20,7 +26,11 @@ function MainLogin()
     //alert("userInfo is " + userInfo );
     //let userInfoMoar = JSON.parse(userInfo);
     let dynamicMain;
- 
+    
+    const[click, setClick] = useState(false)
+    const handleClick = () => setClick(!click)
+
+    
     
 
     if(userInfo)
@@ -38,41 +48,111 @@ function MainLogin()
     {
         
         dynamicMain = 
-        <div>
-            
-            <Navbar  expand="lg">
+        
+            <div className='header'>
+                {/* header/logo */}
+                <div className='logo'>
+                    <Link to='/'><img src={gamelogo} className='logo' alt="game logo"/></Link>
+                </div>
                 
-                    <Container className='imgWrapper'>
-                        <a href="https://google.com" target="_blank" rel="noreferrer">
-                        <img src={gamelogo} className='logo' alt="game logo"/>
-                        </a>
+                {/* menu items */}
+                <ul className={click ? 'nav-menu active' : 'nav-menu'}>
+                    {/* Link to home */}
+                    <li className='btn btn-links'>
+                        <Link to='/'>Home</Link>
+                    </li>
+                    {/* Link to Games Menu which will take you to a page with the different consoles*/}
+                    <li className='btn btn-links'>
+                        <Link to='/games'>Games</Link>
+                    </li>
+
+                    {/* link to My Games */}
+                    <li className='btn btn-links'>
+                        <Link to='/mylist'>My List</Link>
+                    </li>
+
+                    {/* Link to About Us/Mission Statement */}
+                    <li className='btn btn-links'>
+                        <Link to='/about'>About Us</Link>
+                    </li>
+
+                    {/* hamburger icon */}
+                    <div className='hamburger' onClick={handleClick}>
+                        {click ? (<FaTimes size={20} style={{color:'#fff'}}/>) : (<FaBars size={20} style={{color:'#fff'}}/>) }
+                    
+                    </div>
+
+                    <Navbar  expand="lg">
+                    
+                        {/* <Container className='imgWrapper'>
+                            <a href="/" target="_blank" rel="noreferrer">
+                            <img src={gamelogo} className='logo' alt="game logo"/>
+                            </a>
+                        </Container> */}
+                        <Container className='loginWrapper'>
+                            <Navbar.Brand></Navbar.Brand>
+                            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                            <Navbar.Collapse id="basic-navbar-nav">
+                                <Nav className="loginButtons">
+                                
+                                        <ModalComponent
+                                            buttonType ={"Login"}
+                                            title={"Login"}
+                                            body={""}
+                                            componentType={LoginModal}
+                                        />
+                                
+                                    <Navbar.Text style={{marginLeft: '.5rem'}}>{''}</Navbar.Text>
+                                        <ModalComponent
+                                            buttonType ={"Register"}
+                                            title={"Register"}
+                                            body={""}
+                                            componentType={RegisterModal}
+                                        />
+                                
+                                </Nav>
+                            </Navbar.Collapse>
                     </Container>
-                    <Container className='loginWrapper'>
-                        <Navbar.Brand></Navbar.Brand>
-                        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                        <Navbar.Collapse id="basic-navbar-nav">
-                            <Nav className="loginButtons">
-                            
-                                    <ModalComponent
-                                        buttonType ={"Login"}
-                                        title={"Login"}
-                                        body={""}
-                                        componentType={LoginModal}
-                                    />
-                            
-                                <Navbar.Text style={{marginLeft: '.5rem'}}>{''}</Navbar.Text>
-                                    <ModalComponent
-                                        buttonType ={"Register"}
-                                        title={"Register"}
-                                        body={""}
-                                        componentType={RegisterModal}
-                                    />
-                            
-                            </Nav>
-                        </Navbar.Collapse>
-                </Container>
-            </Navbar>
-        </div>
+                </Navbar>
+                
+                </ul>
+
+                
+                
+                {/* <Navbar  expand="lg">
+                    
+                        {/* <Container className='imgWrapper'>
+                            <a href="/" target="_blank" rel="noreferrer">
+                            <img src={gamelogo} className='logo' alt="game logo"/>
+                            </a>
+                        </Container> */}
+                        {/* <Container className='loginWrapper'>
+                            <Navbar.Brand></Navbar.Brand>
+                            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                            <Navbar.Collapse id="basic-navbar-nav">
+                                <Nav className="loginButtons">
+                                
+                                        <ModalComponent
+                                            buttonType ={"Login"}
+                                            title={"Login"}
+                                            body={""}
+                                            componentType={LoginModal}
+                                        />
+                                
+                                    <Navbar.Text style={{marginLeft: '.5rem'}}>{''}</Navbar.Text>
+                                        <ModalComponent
+                                            buttonType ={"Register"}
+                                            title={"Register"}
+                                            body={""}
+                                            componentType={RegisterModal}
+                                        />
+                                
+                                </Nav>
+                            </Navbar.Collapse>
+                    </Container>
+                </Navbar> */} 
+            </div>
+        
         
     }
 
