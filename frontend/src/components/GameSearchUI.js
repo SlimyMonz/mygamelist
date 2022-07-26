@@ -50,7 +50,7 @@ function GameSearchUI()
     const getGameNames = async (appIdList) => 
     {
         const response = await fetch(buildPath('api/Steam/getAllGames'),
-            {method:'GET', mode: 'cors'});
+            {method:'GET', mode: 'cors', headers:{'authorization': 'Bearer ' + ud}});
 
         let txt = await response.text();
         let gamesList = JSON.parse(txt);
@@ -84,7 +84,7 @@ function GameSearchUI()
             let js = JSON.stringify({gamesToAdd: gamesToAdd});
 
             const response = await fetch(buildPath('api/games/addGameData'),
-                {method:'POST',body:js,headers:{'Content-Type': 'application/json', 'Authorization': 'Bearer ' + ud}});
+                {method:'POST',body:js,headers:{'Content-Type': 'application/json', 'authorization': 'Bearer ' + ud}});
 
             if (response.status === 404)
             {
@@ -107,14 +107,14 @@ function GameSearchUI()
     {
         event.preventDefault();
 
-        let obj = {userId:userId,steamId:steamId.value};
+        let obj = {userId:userId,steamId:steamId.value,token:ud};
         let js = JSON.stringify(obj);
 
         try
         {
             console.log(ud);
             const response = await fetch(buildPath('api/steam/getSteamGames'),
-                {method:'POST', mode: 'cors',body:js,headers:{'Content-Type': 'application/json', 'Authorization': 'Bearer ' + ud}});
+                {method:'POST', mode: 'cors',body:js,headers:{'authorization': 'Bearer ' + ud, 'Content-Type': 'application/json'}});
 
             let txt = await response.text();
             let res = JSON.parse(txt);
@@ -176,7 +176,7 @@ function GameSearchUI()
 
         let js = JSON.stringify({_id: '62d72b04656ba59dc944a058', gameIds: newList});
         const response = await fetch(buildPath('api/games/addUserGames'),
-                {method:'POST',body:js,headers:{'Content-Type': 'application/json', 'Authorization': 'Bearer ' + ud}});
+                {method:'POST',body:js,headers:{'Content-Type': 'application/json', 'authorization': 'Bearer ' + ud}});
 
         return response;
     }
@@ -188,7 +188,7 @@ function GameSearchUI()
             let js = JSON.stringify({fullList: fullList});
 
             const response = await fetch(buildPath('api/games/checkForGames'),
-                {method:'POST',body:js,headers:{'Content-Type': 'application/json', 'Authorization': 'Bearer ' + ud}});
+                {method:'POST',body:js,headers:{'Content-Type': 'application/json', 'authorization': 'Bearer ' + ud}});
 
             let txt = await response.text();
             let res = JSON.parse(txt);
@@ -208,7 +208,7 @@ function GameSearchUI()
             let listAsString = gameNameList.join('", "');
             let js = JSON.stringify({gameNames: listAsString});
             const response = await fetch(buildPath('api/igdb/getGameInfo'),
-                {method:'POST', mode: 'cors',body:js,headers:{'Content-Type': 'application/json', 'Authorization': 'Bearer ' + ud}});
+                {method:'POST', mode: 'cors',body:js,headers:{'Content-Type': 'application/json', 'authorization': 'Bearer ' + ud}});
 
             let txt = await response.text();
             let res = JSON.parse(txt);
