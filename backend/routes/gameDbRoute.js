@@ -161,7 +161,7 @@ gameDbRoute_router.post('/searchAllGames', async (req, res) =>
       {
           temp = 
           {
-              id: game._id,
+              _id: game._id,
               name: game.name,
               description: game.description,
               rating: game.averageRating,
@@ -169,7 +169,7 @@ gameDbRoute_router.post('/searchAllGames', async (req, res) =>
               genres: game.genres,
               platforms: game.platforms,
               userCount: game.userCount,
-              cover: game.image
+              image: game.image
           }
           results.push(temp)
       }
