@@ -12,6 +12,9 @@ const URL = process.env.MONGODB_URI;
 const app = express();
 const STEAM_WEB_API_KEY = process.env.STEAM_WEB_API_KEY;
 const SENDGRID_API_KEY = process.env.SENDGRID_API_KEY;
+TWITCH_CLIENT_ID = process.env.TWITCH_CLIENT_ID;
+TWITCH_CLIENT_SECRET = process.env.TWITCH_CLIENT_SECRET;
+TWITCH_ACCESS_TOKEN = process.env.TWITCH_ACCESS_TOKEN;
 
 // database stuff
 const MongoClient = require('mongodb').MongoClient;
@@ -45,6 +48,9 @@ module.exports = {
     URL,
     STEAM_WEB_API_KEY,
     SENDGRID_API_KEY,
+    TWITCH_ACCESS_TOKEN,
+    TWITCH_CLIENT_SECRET,
+    TWITCH_CLIENT_ID,
     app,
     client,
     request

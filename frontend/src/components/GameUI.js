@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import {Navigate, useLocation, useNavigate} from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
-
+import ModalComponent from './Modals/ModalComponent';
+import LoginModal from './Modals/LoginModal';
+import RegisterModal from './Modals/RegisterModal';
+import AllGameSearch from './AllGameSearch';
+import { findLastIndex } from 'underscore';
 
 function GameUI(props)
 {
-
     //alert(props.gameName);
     
     const location = useLocation();
@@ -101,17 +104,12 @@ function GameUI(props)
             return 'http://localhost:5000/' + route;
         }
     }
+    
 
-    //alert(location.state.data.id); //we check to see if state is null to determine if we got here from a modal or manually
-
-    return(
-        <div>
-        {/* <Button variant="dark" class="buttons"
-                        onClick={()=> goBack()}>Back</Button> */}
-        {dynamicGame}
-        
-        </div>
-    );
+    const goToHome = async event =>
+    {
+        window.location.href = '/';
+    }
 
 }
 
