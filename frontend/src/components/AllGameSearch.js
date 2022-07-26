@@ -713,7 +713,8 @@ class AllGameSearch extends Component
 
                 resultGames.push(searchList[i]);
                 console.log(resultGames[i].platforms);
-                resultGames[i].platforms = searchList[i].platforms.join(', ');
+                //resultGames[i].platforms = searchList[i].platforms.join(', ');
+                //resultGames[i].genre = searchList[i].genre.join(', ');
 
                 //this doesn't work because not all of our games have a genre array
                 //resultGames[i].genre = searchList[i].genre.join(', ');

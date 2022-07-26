@@ -4,6 +4,9 @@ import { Table, Column, HeaderCell, Cell } from 'rsuite-table';
 import 'rsuite-table/lib/less/index.less';
 import Button from 'react-bootstrap/Button';
 import GameShowModal from '../Modals/GameShowModal';
+import { FaIcons, FaPlus } from "react-icons/fa";
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip';
 
 
 // const NameCell = ({ rowData, dataKey, ...props }) => {
@@ -17,6 +20,40 @@ import GameShowModal from '../Modals/GameShowModal';
 // };
 
 let showModal = false;
+
+const AddGameCell = React.memo(({rowData, dataKey, ...props}) => 
+{
+  console.log("rendering " + rowData.name);
+  function handleAction(){
+    alert(rowData.id);
+  }
+  return(
+    <Cell {...props} className="link-group">
+        <FaPlus onClick={handleAction}/> 
+        
+    </Cell>
+  )
+});
+
+// const ImageCell = React.useMemo(({ rowData, dataKey, ...props }) => (
+//   console.log("rendering " + rowData.name),
+//   <Cell {...props} style={{ padding: 0 }}>
+//     <div
+//       style={{
+//         width: 40,
+//         height: 40,
+//         background: '#f5f5f5',
+//         borderRadius: 20,
+//         marginTop: 2,
+//         overflow: 'hidden',
+//         display: 'inline-block'
+//       }}
+//     >
+//       <img src={rowData.cover} width="40" />
+//     </div>
+//   </Cell>
+// ));
+
 
 
 class AllGamesTable extends Component 
@@ -37,6 +74,27 @@ class AllGamesTable extends Component
 
 
     //dataList = this.props.payload;
+
+    ImageCell = React.memo(({ rowData, dataKey, ...props }) => (
+      //console.log("rendering " + rowData.name),
+      <Cell {...props} style={{ padding: 0 }}>
+        <div
+          style={{
+            width: 40,
+            height: 40,
+            background: '#f5f5f5',
+            borderRadius: 10,
+            marginTop: 10,
+            overflow: 'hidden',
+            display: 'inline-block'
+          }}
+        >
+          <img src={rowData.cover} width="40" />
+        </div>
+      </Cell>
+    ));
+   
+
     
     getData = () => 
     {
@@ -77,8 +135,6 @@ class AllGamesTable extends Component
     {
         //alert(rowData.name);
         //alert(e.detail);
-        
-        
         //when double clicking on a row
         if(e.detail === 2)
         {
@@ -88,18 +144,14 @@ class AllGamesTable extends Component
           //alert(this.state.showModal);
           showModal = true;
           this.setState(
-            {
-              
+            { 
               variable:  
                         <div><GameShowModal
                           show={showModal}
                           rowData={rowData}
                         /></div>
-            
             }
-            
           )
-         
         }
         else
         {
@@ -107,17 +159,19 @@ class AllGamesTable extends Component
           //alert(this.state.showModal);
           this.setState(
             {
-              
               variable:  
                         <div>
                            {/* <img src={rowData.cover} alt="game cover picture" /> */}
                         </div>
             
             }
-            
           )
         }
     };
+    handleAction = (rowData) => 
+    {
+      alert(rowData.id);
+    }
    
     render()
     {
@@ -139,12 +193,22 @@ class AllGamesTable extends Component
             onRowClick={(this.handleRowClick)}
             data={this.getData()}
             >
-                {/* <Column width={100} flexGrow= {2} align='center' verticalAlign='middle' sortable>
-                  <HeaderCell>Name</HeaderCell>
+                {/* <Column width={100} align='center' verticalAlign='middle'>
+                  <HeaderCell></HeaderCell>
                   <Cell >
-                    {rowData =>{return(<a onClick={(e) => this.handleAction(e, rowData)}>hello</a>)}}
+                    {rowData =>{return(console.log("rendering " + rowData.name), <FaPlus onClick={() => this.handleAction(rowData)}/>)}}
                   </Cell>                
                 </Column> */}
+
+                <Column width={80}>
+                  <HeaderCell></HeaderCell>
+                  <AddGameCell dataKey="id" />
+                </Column> 
+
+                <Column width={80} align="center" verticalAlign='middle'>
+                  <HeaderCell></HeaderCell>
+                  <this.ImageCell dataKey="cover" />
+                </Column> 
 
                 <Column width={100} height={50} flexGrow= {2} align='center' verticalAlign='middle' sortable>
                   <HeaderCell>Name</HeaderCell>
