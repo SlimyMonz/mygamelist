@@ -25,7 +25,7 @@ const AddGameCell = React.memo(({rowData, dataKey, ...props}) =>
 {
   console.log("rendering " + rowData.name);
   function handleAction(){
-    alert(rowData.id);
+    alert(rowData._id);
   }
   return(
     <Cell {...props} className="link-group">
@@ -89,7 +89,7 @@ class AllGamesTable extends Component
             display: 'inline-block'
           }}
         >
-          <img src={rowData.cover} width="40" />
+          <img src={rowData.image} width="40" />
         </div>
       </Cell>
     ));
@@ -170,7 +170,7 @@ class AllGamesTable extends Component
     };
     handleAction = (rowData) => 
     {
-      alert(rowData.id);
+      alert(rowData._id);
     }
    
     render()
@@ -202,12 +202,17 @@ class AllGamesTable extends Component
 
                 <Column width={80}>
                   <HeaderCell></HeaderCell>
-                  <AddGameCell dataKey="id" />
+                  <AddGameCell dataKey="_id" verticalAlign='middle'/>
                 </Column> 
+
+                {/* <Column width={80}>
+                  <HeaderCell>ID</HeaderCell>
+                  <Cell dataKey="_id" verticalAlign='middle'/>
+                </Column>  */}
 
                 <Column width={80} align="center" verticalAlign='middle'>
                   <HeaderCell></HeaderCell>
-                  <this.ImageCell dataKey="cover" />
+                  <this.ImageCell dataKey="image" />
                 </Column> 
 
                 <Column width={100} height={50} flexGrow= {2} align='center' verticalAlign='middle' sortable>

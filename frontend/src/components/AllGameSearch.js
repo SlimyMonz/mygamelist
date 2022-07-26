@@ -721,6 +721,7 @@ class AllGameSearch extends Component
                 console.log(resultGames[i].name);
                 console.log(resultGames[i].platforms);
                 console.log(resultGames[i].genres);
+                console.log(resultGames[i]._id);
 
                 //console.log("our boi: " + resultGames[i].platforms[0]);
 
