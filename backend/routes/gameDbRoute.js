@@ -144,9 +144,9 @@ gameDbRoute_router.post('/searchAllGames', async (req, res) =>
       ... (req.body.id !== undefined) && { _id : req.body.id},
       ... (req.body.averageRating !== undefined) && { averageRating : req.body.averageRating},
       ... (req.body.description !== undefined) && { description : req.body.description},
-      ... (req.body.genre !== undefined) && { genre : { $all: req.body.genre}},
+      ... (req.body.genre !== undefined) && { genres : { $all: req.body.genre}},
       ... (req.body.name !== undefined) && { name : {$regex: req.body.name, $options: 'i'}},
-      ... (req.body.platform !== undefined) && { platform : { $all: req.body.platform}},
+      ... (req.body.platform !== undefined) && { platforms : { $all: req.body.platform}},
       ... (req.body.userCount !== undefined) && { userCount : parseInt(req.body.userCount)},
       ... (req.body.year !== undefined) && { year : req.body.year}
     }
@@ -166,8 +166,8 @@ gameDbRoute_router.post('/searchAllGames', async (req, res) =>
               description: game.description,
               rating: game.averageRating,
               release: game.year,
-              genre: game.genre,
-              platforms: game.platform,
+              genres: game.genres,
+              platforms: game.platforms,
               userCount: game.userCount,
               cover: game.image
           }
