@@ -5,6 +5,7 @@ import LoginModal from './Modals/LoginModal';
 import RegisterModal from './Modals/RegisterModal';
 import AllGameSearch from './AllGameSearch';
 
+
 function GameSearchUI()
 {
 

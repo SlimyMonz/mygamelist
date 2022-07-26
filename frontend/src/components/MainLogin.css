@@ -24,9 +24,7 @@
     position: relative;
 }
 
-/* following is the styling for the tutorial */
 
-/*  */
 .header{
     position: fixed;
     width: 100%;
@@ -55,7 +53,9 @@ a {
     /* adds padding between links in navbar */
     padding: 0 1rem;
     margin: 1rem .2rem;
+   
 }
+
 
 .nav-menu a {
     font-size: 1.2rem;
@@ -109,6 +109,11 @@ a {
 
 .btn-links{
     background: rgba(0,0,0, .8);
+    
+}
+
+.btn .btn-links{
+    
 }
 
 .logo{
