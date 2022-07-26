@@ -4,6 +4,8 @@ import ModalComponent from './Modals/ModalComponent';
 import LoginModal from './Modals/LoginModal';
 import RegisterModal from './Modals/RegisterModal';
 import AllGameSearch from './AllGameSearch';
+import jwt_decode from "jwt-decode";
+
 
 function GameSearchUI()
 {
@@ -20,7 +22,8 @@ function GameSearchUI()
 
 
     let ud = localStorage.getItem('user');
-    let userId;
+    let decoded = jwt_decode(ud);
+    let userId = decoded.user[0]._id;
     let firstName;
     let lastName;
 
@@ -47,6 +50,7 @@ function GameSearchUI()
         }
     }
 
+    //Get names of imported Steam games based on array of appid's
     const getGameNames = async (appIdList) => 
     {
         const response = await fetch(buildPath('api/Steam/getAllGames'),
@@ -59,7 +63,7 @@ function GameSearchUI()
         return parsedGames;
     }
 
-    
+    //Match Steam appid's with names
     const parseGameNames = (appIdList, gamesList) =>
     {
         let parsedGames = [];
@@ -76,7 +80,7 @@ function GameSearchUI()
         return parsedGames;
     }
 
-    //Add games to 
+    //Add games to the "Games" collection
     const addGameToGamesTable  = async (gamesToAdd) =>
     {
         try
@@ -103,6 +107,7 @@ function GameSearchUI()
         }
     }
 
+    //Import the user's Steam games and populate datatables if needed
     const getGamesList = async event =>
     {
         event.preventDefault();
@@ -112,7 +117,6 @@ function GameSearchUI()
 
         try
         {
-            console.log(ud);
             const response = await fetch(buildPath('api/steam/getSteamGames'),
                 {method:'POST', mode: 'cors',body:js,headers:{'authorization': 'Bearer ' + ud, 'Content-Type': 'application/json'}});
 
@@ -164,23 +168,21 @@ function GameSearchUI()
         }
     };
 
+    //Add games to a user's games list
     const addUserGames = async (newIds, hadIds) =>
     {
-        console.log(newIds);
-        console.log(hadIds);
         let listOfIds = Object.values(newIds);
         let totalList = listOfIds.concat(hadIds);
-        console.log(totalList);
         let newList = await totalList.map(newIds => ({ id: newIds}));
-        console.log(newList);
 
-        let js = JSON.stringify({_id: '62d72b04656ba59dc944a058', gameIds: newList});
+        let js = JSON.stringify({_id: userId, gameIds: newList});
         const response = await fetch(buildPath('api/games/addUserGames'),
                 {method:'POST',body:js,headers:{'Content-Type': 'application/json', 'authorization': 'Bearer ' + ud}});
 
         return response;
     }
 
+    //Check the "Games" collection to see if we need to grab game data from IGDB
     const checkDbForGames = async (fullList) =>
     {
         try
@@ -200,11 +202,11 @@ function GameSearchUI()
         }
     }
 
+    //Get game data from IGDB
     const getGameInfo = async (gameNameList) =>
     {
         try
         {
-            //console.log(gameNameList);
             let listAsString = gameNameList.join('", "');
             let js = JSON.stringify({gameNames: listAsString});
             const response = await fetch(buildPath('api/igdb/getGameInfo'),
