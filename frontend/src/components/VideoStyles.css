@@ -1,0 +1,76 @@
+#video{
+   position: fixed;
+   width: 100%;
+   height: 100%;
+   object-fit: cover;
+   z-index: -1; 
+}
+
+/*this group of styling affects the video being displayed*/
+.vid{
+    height: 100vh;
+    width: 100%;
+    object-fit: contain;
+}
+
+.vid .content{
+    text-align: center;
+    position: absolute;
+    margin: auto;
+    width: 100%;
+    height: 100%;
+    top: 40vh;
+    
+}
+
+.vid .content h1{
+    font-size: 4rem;
+    font-weight: 700;
+    color: #fff;
+    
+}
+
+.vid p{
+    font-size: 1.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 1.6rem;
+    color: #fff;
+}
+
+.vid .btn-home{
+    margin: 1rem .2rem;
+    background: #FFb7FF;
+    font-weight: 500;
+}
+
+.vid .btn-home:hover{
+ 
+    background: #CAFF8A;
+}
+
+.text-wrapper{
+    background: rgba(0,0,0,0.8);
+    border-radius: 40px;
+    width: 80%;
+    align-items: center;
+    margin: auto;
+    
+    
+    
+}
+
+.content{
+    margin: auto;
+}
+
+@media screen and (max-width:640px){
+    .content h1{
+        font-size: 3rem;
+    }
+
+    .content p{
+        font-size:1.4rem;
+        margin-bottom: 1.6rem;
+    }
+}

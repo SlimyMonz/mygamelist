@@ -9,6 +9,7 @@ import AllGamesTable from './Tables/AllGamesTable';
 
 class AllGameSearch extends Component 
 {
+    _isMounted = false;
 
     constructor(props)
     {
@@ -21,6 +22,7 @@ class AllGameSearch extends Component
             gameListString: '',
             gameList: [],
             success: false,
+         
             
 
             //platforms
@@ -115,6 +117,37 @@ class AllGameSearch extends Component
 
 
         }
+    }
+
+    async componentDidMount()
+    {
+        this._isMounted = true;
+        let queryParams = new URLSearchParams(window.location.search);
+        let platformURL = queryParams.get('platform');
+        //alert(queryParams);
+        //alert(platformURL);
+        if(platformURL === null){
+            // do nothing
+            //alert("nothing");
+        }
+        else if(platformURL === 'PlayStation4'){
+            //alert("runn");
+            let platform = ['PlayStation 4'];
+            await this.searchGame(undefined, platform);
+            
+        }
+        else if(platformURL === 'XboxOne'){
+            let platform = ['Xbox One'];
+            await this.searchGame(undefined, platform);
+        }
+        else if(platformURL === 'NintendoSwitch'){
+            let platform = ['Nintendo Switch'];
+            await this.searchGame(undefined, platform);
+        }
+    }
+    componentWillUnmount()
+    {
+        this._isMounted = false;
     }
 
     app_name = 'my-game-list-front';
@@ -617,7 +650,7 @@ class AllGameSearch extends Component
         }
        
        
-
+        this._isMounted = true;
         await this.searchGame(genre, platform);
 
     
@@ -675,12 +708,19 @@ class AllGameSearch extends Component
 
                 //platform string conversion
                 //platformArray.join(', ');
-                console.log("joined" + searchList[i].platforms.join(', '));
+                //console.log(typeof(searchList[i].genre))
+                //console.log("joined " + searchList[i].genre.join(', '));
 
                 resultGames.push(searchList[i]);
                 console.log(resultGames[i].platforms);
                 resultGames[i].platforms = searchList[i].platforms.join(', ');
+
+                //this doesn't work because not all of our games have a genre array
+                //resultGames[i].genre = searchList[i].genre.join(', ');
+
+                console.log(resultGames[i].name);
                 console.log(resultGames[i].platforms);
+                console.log(resultGames[i].genre);
 
                 //console.log("our boi: " + resultGames[i].platforms[0]);
 
@@ -691,14 +731,19 @@ class AllGameSearch extends Component
 
             }
            
-            this.setMessage('Game(s) have been retrieved\n');
-            this.setState({gameListString: resultText});
-            this.setState({gameList: resultGames});
-            //setgameListString(resultText);
+            if(this._isMounted) //clean up memory leak?
+            {
+                this.setMessage('Game(s) have been retrieved\n');
+                this.setState({gameListString: resultText});
+                this.setState({gameList: resultGames});
+                
+                //setgameListString(resultText);
+                //alert(this.state.gameList);
+                //this is dangerous
+                this.state.success = true;
+            }
 
-            //alert(this.state.gameList);
-            //this is dangerous
-            this.state.success = true;
+            
 
             
         }
@@ -1096,8 +1141,6 @@ class AllGameSearch extends Component
                                                 checked={this.state.WrestlingCheck}
                                     />
                                     
-                                    
-
                                 </Form.Group>
                             </div>
                         </Col>

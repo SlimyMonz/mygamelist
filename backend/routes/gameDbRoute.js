@@ -164,8 +164,10 @@ gameDbRoute_router.post('/searchAllGames', async (req, res) =>
               release: game.year,
               genre: game.genre,
               platforms: game.platform,
-              userCount: game.userCount
+              userCount: game.userCount,
+              cover: game.image
           }
+          //console.log(genre);
           results.push(temp)
       }
     )}
