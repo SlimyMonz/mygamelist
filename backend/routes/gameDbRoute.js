@@ -109,7 +109,7 @@ gameDbRoute_router.post('/getUserGames', authenticate_token, async (req, res) =>
 
           for await (const game of dataRes)
           {
-            game.personalRating = (ratings[game._id] === undefined) ? 0 : ratings[game._id] ;
+            game.personalRating = (ratings[game._id] === undefined) ? '0' : ratings[game._id] ;
           };
 
           res.status(200).json(dataRes);
