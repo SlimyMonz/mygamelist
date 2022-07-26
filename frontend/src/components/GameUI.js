@@ -56,7 +56,7 @@ function GameUI(props)
                     setDynamicGame(<div>name: {searchList[0].name}<br/>
                                         platforms: {searchList[0].platforms.join(', ')}<br/>
                                         genre: {searchList[0].genre}<br/>
-                                        img: <br/> <img src={searchList[0].cover} alt="game cover img"/><br/>
+                                        img: <br/> <img src={searchList[0].image} alt="game cover img"/><br/>
                                     </div>)
                 }
             }
@@ -74,10 +74,13 @@ function GameUI(props)
             if(isActive)
                 {
                     console.log(location.state.data.name);
+                    console.log(location.state.data.platforms);
+                    console.log(location.state.data.genre);
+                    console.log(location.state.data.image);
                     setDynamicGame(<div>name: {location.state.data.name}<br/>
                                         platforms: {location.state.data.platforms}<br/>
                                         genre: {location.state.data.genre}<br/>
-                                        img: <br/><img src={location.state.data.cover} alt="game cover img"/><br/>
+                                        img: <br/><img src={location.state.data.image} alt="game cover img"/><br/>
                                     </div>)
                 }
             
@@ -110,6 +113,23 @@ function GameUI(props)
     {
         window.location.href = '/';
     }
+
+    //alert(location.state.data.id); //we check to see if state is null to determine if we got here from a modal or manually
+
+    return(
+        <div>
+        {/* <Button variant="dark" class="buttons"
+                        onClick={()=> goBack()}>Back</Button> */}
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        {dynamicGame}
+        
+        </div>
+    );
 
 }
 

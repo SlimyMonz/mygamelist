@@ -22,13 +22,15 @@ function GameSearchUI()
 
 
     let ud = localStorage.getItem('user');
-    let decoded = jwt_decode(ud);
-    let userId = decoded.user[0]._id;
+    
     let firstName;
     let lastName;
+    let userId;
 
     if(ud)
     {
+        let decoded = jwt_decode(ud);
+        userId = decoded.user[0]._id;
 
     }
     else
