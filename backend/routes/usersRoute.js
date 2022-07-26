@@ -75,8 +75,8 @@ users_router.post('/login', async (req, res) => {
     
     const user = {userName: req.body.userName}
     // 0 means false here, could be changed to "false" later maybe?
-    const RETURN_USER = await db.collection('Users').find(user).project({firstName: 0, lastName: 0 , email:0, games: 0}).toArray()
-   
+    const RETURN_USER = await db.collection('Users').find(user).project({games: 0}).toArray()
+
     if(RETURN_USER.length == 0){
       return res.status(400).send("cannot find user")
     }
@@ -90,6 +90,7 @@ users_router.post('/login', async (req, res) => {
     {
       const password = String(req.body.password)
       const hash = String(RETURN_USER[0].password)
+      delete RETURN_USER[0].password;
 
       try{
         const validPassword = await bcrypt.compare(req.body.password, hash);
