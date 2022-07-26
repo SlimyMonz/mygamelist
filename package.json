@@ -21,9 +21,11 @@
         "jsonwebtoken": "^8.5.1",
         "mongodb": "^4.7.0",
         "mongoose": "^6.4.4",
+        "rawger": "^1.3.2",
         "react-bootstrap": "^2.4.0",
         "react-icons": "^4.4.0",
         "request": "^2.88.2",
-        "styled-components": "^5.3.5"
+        "styled-components": "^5.3.5",
+        "underscore": "^1.13.4"
     }
 }

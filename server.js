@@ -2,6 +2,7 @@
 const usersModel = require('./backend/routes/usersRoute');
 const gameDbModel = require('./backend/routes/gameDbRoute')
 const steamModel = require('./backend/routes/steamRoute');
+const igdbModel = require('./backend/routes/igdbRoute');
 
 // config DB folder stuff
 const emailModel = require('./backend/routes/emailRoute')
@@ -14,6 +15,7 @@ app.use('/api/users', usersModel)
 app.use('/api/games', gameDbModel)
 app.use('/api/steam', steamModel)
 app.use('/api/email', emailModel)
+app.use('/api/igdb', igdbModel)
 
 //start Node + Express server listener
 app.listen(PORT, () => 

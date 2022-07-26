@@ -694,7 +694,6 @@ class AllGameSearch extends Component
             let resultText = '';      
             let resultGames = [];     
             //console.log("searchlist: " + searchList[0].platforms[0]);
-
             //The response is an array of objects, so you need to
             //iterate through them to get the desired data
             for( var i=0; i<searchList.length; i++ )
@@ -703,7 +702,7 @@ class AllGameSearch extends Component
                 //console.log(searchList[i].platforms[0]);
                 resultText += searchList[i].name;
                 resultText += " \n platforms: "+ searchList[i].platforms + "\n";
-                resultText += " genre: "+ searchList[i].genre + "\n";
+                resultText += " genre: "+ searchList[i].genres + "\n";
                 resultText += " release: "+ searchList[i].release + "\n";
 
                 //platform string conversion
@@ -717,11 +716,11 @@ class AllGameSearch extends Component
                 //resultGames[i].genre = searchList[i].genre.join(', ');
 
                 //this doesn't work because not all of our games have a genre array
-                //resultGames[i].genre = searchList[i].genre.join(', ');
+                resultGames[i].genre = searchList[i].genres.join(', ');
 
                 console.log(resultGames[i].name);
                 console.log(resultGames[i].platforms);
-                console.log(resultGames[i].genre);
+                console.log(resultGames[i].genres);
 
                 //console.log("our boi: " + resultGames[i].platforms[0]);
 
