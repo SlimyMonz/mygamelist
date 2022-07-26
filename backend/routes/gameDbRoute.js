@@ -5,8 +5,15 @@ const mongoose = require('mongoose')
 const db = client.db('MyGameListDB');
 const{authenticate_token, jwt, initial_key} = require('../authentication')
 
-//Add game to list of user games
-gameDbRoute_router.post('/addUserGame', authenticate_token, async (req, res) =>{
+//Very useful JS library
+const _ = require('underscore');
+
+//Increase size limit
+app.use(express.json({limit: '50mb'}));
+app.use(express.urlencoded({limit: '50mb'}));
+
+//Add game/games to list of user games
+gameDbRoute_router.post('/addUserGames', authenticate_token, async (req, res) =>{
   try
   {
     jwt.verify(req.token, initial_key, async (err, authData) =>{
@@ -14,13 +21,51 @@ gameDbRoute_router.post('/addUserGame', authenticate_token, async (req, res) =>{
         res.sendStatus(403)
       }else{
   
-        let {_id, id, rating} = req.body
+        let {_id, gameIds} = req.body
         userID = mongoose.Types.ObjectId(_id)
-  
+
         const db = client.db("MyGameListDB");
-        const result = await db.collection('Users').updateOne({_id:userID} , { $push: {"games": {id:id, rating:rating}}})
+
+        const result = await db.collection('Users').updateOne({_id:userID} , { $addToSet: { games: { $each: gameIds}}})
+        console.log(result)
+
+        if(result.matchedCount === 0)
+        {
+          res.status(404).send({message:'Found user, but games were already there'});
+        }
+        else if(result.matchedCount === 1 && result.modifiedCount === 0)
+        {
+          res.status(404).send({message:'No user found'});
+        }
+        else
+        {
+          res.status(200).json({message:'Steam games added to user list' , authData});
+        }
+      }
+    }) 
+  }
+  catch(e)
+  {
+    res.status(404).send(e);
+  }
+})
+
+//Add a game to the Games collection
+gameDbRoute_router.post('/addGameData', authenticate_token, async (req, res) =>{
+  try
+  {
+    jwt.verify(req.token, initial_key, async (err, authData) =>{
+      if(err){
+        res.sendStatus(403)
+      }else{
+  
+        let games = req.body.gamesToAdd;
+        //console.log(games);
+
+        const db = client.db("MyGameListDB");
+        const result = await db.collection('Games').insertMany(games)
         
-        res.status(200).json({result, authData});
+        res.status(200).send(result);
       }
     }) 
   }
@@ -78,7 +123,7 @@ gameDbRoute_router.post('/getUserGames', authenticate_token, async (req, res) =>
 
 });
 
-//
+//Search for game/games given search parameters
 gameDbRoute_router.post('/searchAllGames', async (req, res) =>
 {
   /* incoming: Any number of the following
@@ -135,9 +180,8 @@ gameDbRoute_router.post('/searchAllGames', async (req, res) =>
   
 });
 
-gameDbRoute_router.post('/updateGamesList', authenticate_token,async (req, res) =>{
-
-  
+//Updates a User's rating of a game
+gameDbRoute_router.post('/updateGamesList', authenticate_token, async (req, res) =>{
 
   jwt.verify(req.token, initial_key, async (err, authData) =>{
     if(err){
@@ -152,7 +196,8 @@ gameDbRoute_router.post('/updateGamesList', authenticate_token,async (req, res) 
   })
 })
 
-gameDbRoute_router.post('/deleteGame', authenticate_token,async (req, res)=>{
+//Delete a game from a User's list
+gameDbRoute_router.post('/deleteGame', authenticate_token, async (req, res)=>{
   
   try
   {
@@ -174,5 +219,29 @@ gameDbRoute_router.post('/deleteGame', authenticate_token,async (req, res)=>{
   }
 
 })
+
+//Check if game already exists in Games collection
+gameDbRoute_router.post('/checkForGames', async (req, res) =>
+{
+  try
+  {
+    let searchParams = req.body.fullList;
+
+    const response = await db.collection('Games').find({ name: { $in: searchParams}}, { projection: { name: 1}}).toArray();
+    console.log(response);
+    const haveIds = response.map(game => (game._id.toString()));
+    console.log(response);
+    const haveNames = response.map(game => (game.name));
+    const needData = _.difference(searchParams, haveNames);
+
+    res.status(200).send({needData: needData, haveIds: haveIds});
+  }
+  catch (e)
+  {
+    console.log(e);
+    res.status(404).send(e);
+  }
+  
+});
 
 module.exports = gameDbRoute_router;

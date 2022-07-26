@@ -69,7 +69,7 @@ class LoginModal extends Component
             else
             {
                 
-                // let user = {firstName:res.firstName,lastName:res.lastName,id:res.id, userName:res.userName}
+                //let user = {firstName:res.firstName,lastName:res.lastName,id:res.id, userName:res.userName}
                 // localStorage.setItem('user_data', JSON.stringify(user));
                 localStorage.setItem('user', res.token);
                 //alert("local storage is: " + localStorage.getItem('user'));
