@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import {Navigate, useLocation, useNavigate} from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import ModalComponent from './Modals/ModalComponent';
 import LoginModal from './Modals/LoginModal';
@@ -6,35 +7,92 @@ import RegisterModal from './Modals/RegisterModal';
 import AllGameSearch from './AllGameSearch';
 import { findLastIndex } from 'underscore';
 
-function GameUI()
+function GameUI(props)
 {
-    let game = '';
-    let search = '';
-    let name = '';
-    let steamId = '';
-
-    const [message,setMessage] = useState('');
-    const [searchResults,setResults] = useState('');
-    const [gameList,setGameList] = useState('');
-    const [gamesList,setGamesList] = useState('');
+    //alert(props.gameName);
+    
+    const location = useLocation();
+    let navigate = useNavigate();
+    //let dynamicGame;
+    const [dynamicGame,setDynamicGame] = useState(<div></div>);
 
 
-    let ud = localStorage.getItem('user');
-    let userId;
-    let firstName;
-    let lastName;
-
-    if(ud)
+    function goBack()
     {
-
-    }
-    else
-    {
-
+       navigate("/games");
     }
 
+    useEffect(() => 
+    {
+        let isActive = true;
+        //todo: memory leak cleanup since we're calling an api and will probably use useState/states
+        if(location.state === null)
+        {
+            //run game search for name?
+            (async () => {
+                
+            console.log("we're calling the allgamessearch api");
+            let obj = {name: props.gameName};
+
+            let js = JSON.stringify(obj);
+            //await new Promise(resolve => setTimeout(resolve, 1000));
+            try
+            {
+                const response = await fetch(buildPath('api/games/searchAllGames'),
+                {method:'POST',body:js,headers:{'Content-Type': 'application/json'}});
+    
+                if (response.status === 404)
+                {
+                    alert('No game found');
+                    return;
+                }
+                let txt = await response.text();
+                let searchList = JSON.parse(txt); 
+                console.log(searchList[0].name);
+
+                //alert(searchList[0].cover);
+                if(isActive)
+                {
+                    setDynamicGame(<div>name: {searchList[0].name}<br/>
+                                        platforms: {searchList[0].platforms.join(', ')}<br/>
+                                        genre: {searchList[0].genre}<br/>
+                                        img: <br/> <img src={searchList[0].cover} alt="game cover img"/><br/>
+                                    </div>)
+                }
+            }
+            catch(e)
+            {
+                alert("error!");
+                alert(e.toString());
+                window.location.href = '/games';
+            }
+            })();   
+        }      
+        else
+        {
+            //we have a game already
+            if(isActive)
+                {
+                    console.log(location.state.data.name);
+                    setDynamicGame(<div>name: {location.state.data.name}<br/>
+                                        platforms: {location.state.data.platforms}<br/>
+                                        genre: {location.state.data.genre}<br/>
+                                        img: <br/><img src={location.state.data.cover} alt="game cover img"/><br/>
+                                    </div>)
+                }
+            
+
+        }
+        //clean up dem memory leaks???
+        return () => 
+        {
+            isActive = false;
+        };
+
+    }, [location]);
 
     const app_name = 'my-game-list-front'
+
     function buildPath(route)
     {
         if (process.env.NODE_ENV === 'production')
@@ -46,297 +104,14 @@ function GameUI()
             return 'http://localhost:5000/' + route;
         }
     }
-
-    //Add games to 
-    const addGameToGamesTable  = async (gamesToAdd) =>
-    {
-        try
-        {
-            let js = JSON.stringify({gamesToAdd: gamesToAdd});
-
-            const response = await fetch(buildPath('api/games/addGameData'),
-                {method:'POST',body:js,headers:{'Content-Type': 'application/json', 'Authorization': 'Bearer ' + ud}});
-
-            if (response.status === 404)
-            {
-                alert('Games failed to add to Games database');
-                return;
-            }
-
-            let txt = await response.text();
-            let res = JSON.parse(txt);
-
-            return res;
-        }
-        catch (e)
-        {
-            alert(e.toString());
-        }
-    }
-
-    const getGamesList = async event =>
-    {
-        event.preventDefault();
-
-        let obj = {userId:userId,steamId:steamId.value};
-        let js = JSON.stringify(obj);
-
-        try
-        {
-            console.log(ud);
-            const response = await fetch(buildPath('api/steam/getSteamGames'),
-                {method:'POST', mode: 'cors',body:js,headers:{'Content-Type': 'application/json', 'Authorization': 'Bearer ' + ud}});
-
-            let txt = await response.text();
-            let res = JSON.parse(txt);
-
-            let fullList = await getGameNames(res);
-            let checkedList = await checkDbForGames(fullList);
-            let newGameData = await getGameInfo(checkedList.needData);
-            let gameinDb = checkedList.haveIds;
-
-            await (async() =>
-            {
-                //There are new games to add to the Games collection
-                //No games to be imported are in the collection
-                if(newGameData.length > 0 && gameinDb.length === 0)
-                {
-                    let gamesWereAdded = await addGameToGamesTable(newGameData);
-                    let final = await addUserGames(gamesWereAdded.insertedIds, []);
-                    alert('New games added to database and user list');
-                }
-                //No new games to add to the Games collection
-                //All games needed are already in the collection
-                else if (newGameData.length === 0 && gameinDb.length > 0)
-                {
-                    let final = await addUserGames([], gameinDb);
-                    alert('Games from database added to user list');
-                }
-                //There are new games to add to the Games collection
-                //There are also imported games already in the collection
-                else if (newGameData.length > 0 && gameinDb.length > 0)
-                {
-                    let gamesWereAdded = await addGameToGamesTable(newGameData);
-                    let final = await addUserGames(gamesWereAdded.insertedIds, gameinDb);
-                    alert('New games added to database and game from database added to user list');
-                }     
-                //No games to import or add to database
-                else if (newGameData.length === 0 && gameinDb.length === 0) 
-                {
-                    alert('No games to add');
-                }
-            })();
-              
-        }
-        catch(e)
-        {
-            alert(e.toString());
-            setResults(e.toString());
-        }
-    };
-
-    const addUserGames = async (newIds, hadIds) =>
-    {
-        console.log(newIds);
-        console.log(hadIds);
-        let listOfIds = Object.values(newIds);
-        let totalList = listOfIds.concat(hadIds);
-        console.log(totalList);
-        let newList = await totalList.map(newIds => ({ id: newIds}));
-        console.log(newList);
-
-        let js = JSON.stringify({_id: '62d72b04656ba59dc944a058', gameIds: newList});
-        const response = await fetch(buildPath('api/games/addUserGames'),
-                {method:'POST',body:js,headers:{'Content-Type': 'application/json', 'Authorization': 'Bearer ' + ud}});
-
-        return response;
-    }
-
-    const checkDbForGames = async (fullList) =>
-    {
-        try
-        {
-            let js = JSON.stringify({fullList: fullList});
-
-            const response = await fetch(buildPath('api/games/checkForGames'),
-                {method:'POST',body:js,headers:{'Content-Type': 'application/json', 'Authorization': 'Bearer ' + ud}});
-
-            let txt = await response.text();
-            let res = JSON.parse(txt);
-            return res;
-        }
-        catch (e)
-        {
-            alert(e.toString());
-        }
-    }
-
-    const getGameInfo = async (gameNameList) =>
-    {
-        try
-        {
-            //console.log(gameNameList);
-            let listAsString = gameNameList.join('", "');
-            let js = JSON.stringify({gameNames: listAsString});
-            const response = await fetch(buildPath('api/igdb/getGameInfo'),
-                {method:'POST', mode: 'cors',body:js,headers:{'Content-Type': 'application/json', 'Authorization': 'Bearer ' + ud}});
-
-            let txt = await response.text();
-            let res = JSON.parse(txt);
-            return res;
-        }
-        catch (e)
-        {
-            alert(e.toString());
-        }
-    }
-
-    /*  Will loop and call the Steam getGameInfo API. Has been replaced with the igdb
-        APIs and database, but we should leave here for now in case we want to use it.
-    const getGameInfo = async (gameIdList) =>
-    {
-        const gameInfoArray = [];
-        try
-        {
-            await (async () => 
-            {
-
-                //await gameIdList.forEach(async (game) =>
-                for(let i = 0; i < 150; i ++)
-                {
-                    try
-                    {
-                        
-                        let js = JSON.stringify(gameIdList.response.games[i]);
-                        const response = await fetch(buildPath('api/steam/getGameInfo'),
-                        {method:'POST', body:js, mode: 'cors', headers:{'Content-Type': 'application/json'}});
-
-                        if(response.status === 200)
-                        {
-                            let txt = await response.text();
-                            let res = JSON.parse(txt);
-                            gameInfoArray.push(res);
-                        }
-                        else if(response.status === 404)
-                        {
-                            let txt = await response.text()
-                            throw new Error('Unknown Game [' + i + '] = ' + txt);
-                        }
-                    }
-                    catch (e)
-                    {
-                        console.log(e.toString());
-                    }
-                };
-            })();
-            console.log(gameInfoArray)
-        }
-        catch (e)
-        {
-            alert(e.toString());
-        }
-    }
-    */
-    
-    const getGameNames = async (appIdList) => 
-    {
-        const response = await fetch(buildPath('api/Steam/getAllGames'),
-            {method:'GET', mode: 'cors', headers: {'Authorization': 'Bearer ' + ud}});
-
-        let txt = await response.text();
-        let gamesList = JSON.parse(txt);
-        let parsedGames = await parseGameNames(appIdList, gamesList)
-
-        return parsedGames;
-    }
-
-    const parseGameNames = (appIdList, gamesList) =>
-    {
-        let parsedGames = [];
-
-        appIdList.response.games.filter(function(game1) {
-            let temp = gamesList.applist.apps.find((game2) => game1.appid === game2.appid);
-
-            if (typeof(temp) === 'object') 
-            {
-                parsedGames.push(temp.name);
-            }
-        });
-
-        return parsedGames;
-    }
     
 
     const goToHome = async event =>
     {
         window.location.href = '/';
     }
-   
 
-    let dynamic_game_search;
-
-
-    if(ud)
-    {
-        dynamic_game_search =
-
-            <div id="gameUIDiv">
-                <br />
-                <Button type="submit" variant="dark" class="buttons"
-                        onClick={goToHome}>Back to Home</Button><br/>
-                <AllGameSearch/>
-                <p id="gameList">{gameList}</p><br /><br />
-                
-                
-                <input type="text" id="requestSteamIDText" placeholder="Enter your Steam ID"
-                       ref={(c) => steamId = c} />
-                <button type="button" id="requestSteamIDBtn" class="buttons"
-                        onClick={getGamesList}> Get Games </button><br />
-                <span id="gamesListResult">{message}</span>
-                <p id="gamesList">{gamesList}</p>
-            </div>
-
-
-    }
-    else
-    {
-
-        dynamic_game_search =
-
-            <div id="gameUIDiv">
-                <br />
-                <Button type="submit" variant="dark" class="buttons"
-                        onClick={goToHome}>Back to Home</Button><br/><br/>
-                
-                {/* login */}
-
-                <ModalComponent
-                    buttonType ={"Login"}
-                    title={"Login"}
-                    body={""}
-                    componentType={LoginModal}
-                />
-
-                <br/>
-                {/* register */}
-
-                <ModalComponent
-                    buttonType ={"Register"}
-                    title={"Register"}
-                    body={""}
-                    componentType={RegisterModal}
-                />
-                <br/>
-                <AllGameSearch/>
-                <p id="gameList">{gameList}</p><br /><br />
-            </div>
-    }
-
-    return(
-        <div>
-            {dynamic_game_search}
-        </div>
-    );
 }
 
-export default GameUI;
+export default GameUI
+

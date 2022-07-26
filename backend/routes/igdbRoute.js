@@ -9,6 +9,8 @@ const{app, TWITCH_ACCESS_TOKEN, TWITCH_CLIENT_ID, TWITCH_CLIENT_SECRET} = requir
 //Get details about games
 igdb_router.post('/getGameInfo', authenticate_token, async (req, res) => 
 {
+    //incoming: array of gameNames
+    //outgoing: array of objects
     try
     {    
         jwt.verify(req.token, initial_key, async (err, authData) =>{

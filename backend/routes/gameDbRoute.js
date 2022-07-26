@@ -14,6 +14,8 @@ app.use(express.urlencoded({limit: '50mb'}));
 
 //Add game/games to list of user games
 gameDbRoute_router.post('/addUserGames', authenticate_token, async (req, res) =>{
+  //incoming: The User's _id, an array of game _id's
+  //outgoing: Message
   try
   {
     jwt.verify(req.token, initial_key, async (err, authData) =>{
@@ -52,6 +54,8 @@ gameDbRoute_router.post('/addUserGames', authenticate_token, async (req, res) =>
 
 //Add a game to the Games collection
 gameDbRoute_router.post('/addGameData', authenticate_token, async (req, res) =>{
+  // 
+  //
   try
   {
     jwt.verify(req.token, initial_key, async (err, authData) =>{
