@@ -26,21 +26,22 @@ gameDbRoute_router.post('/addUserGames', authenticate_token, async (req, res) =>
         let {_id, gameIds} = req.body
         userID = mongoose.Types.ObjectId(_id)
 
+        console.log(gameIds);
         const db = client.db("MyGameListDB");
 
         const result = await db.collection('Users').updateOne({_id:userID} , { $addToSet: { games: { $each: gameIds}}})
 
         if(result.matchedCount === 0)
         {
-          res.status(304).send('Found user, but games were already there');
+          res.status(404).send('No user found');
         }
         else if(result.matchedCount === 1 && result.modifiedCount === 0)
         {
-          res.status(404).send('No user found');
+          res.status(403).send('Found user, but games were already there');
         }
         else
         {
-          res.status(200).json('Steam games added to user list' , authData);
+          res.status(200).send('Steam games added to user list');
         }
       }
     }) 
