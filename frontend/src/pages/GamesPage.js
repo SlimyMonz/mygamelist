@@ -10,7 +10,7 @@ const GamesPage = () =>
     return(
         <div>
             <MainLogin/>
-            <BackImage/>
+            <BackImage heading="Let's find some games!" text=''/>
             <GameSearchUI />
         </div>
     );
