@@ -4,6 +4,7 @@ import { Table, Column, HeaderCell, Cell } from 'rsuite-table';
 import 'rsuite-table/lib/less/index.less';
 import Button from 'react-bootstrap/Button';
 import GameShowModal from '../Modals/GameShowModal';
+import AddGameModal from '../Modals/AddGameModal';
 import { FaIcons, FaPlus } from "react-icons/fa";
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
@@ -21,20 +22,6 @@ import Tooltip from 'react-bootstrap/Tooltip';
 
 let showModal = false;
 
-const AddGameCell = React.memo(({rowData, dataKey, ...props}) => 
-{
-  console.log("rendering " + rowData.name);
-  function handleAction(){
-    alert(rowData._id);
-
-  }
-  return(
-    <Cell {...props} className="link-group">
-        <FaPlus onClick={handleAction}/> 
-        
-    </Cell>
-  )
-});
 
 // const ImageCell = React.useMemo(({ rowData, dataKey, ...props }) => (
 //   console.log("rendering " + rowData.name),
@@ -75,7 +62,15 @@ class AllGamesTable extends Component
     }
 
 
-    //dataList = this.props.payload;
+    AddGameCell = React.memo(({rowData, dataKey, ...props}) => 
+    {
+      console.log("rendering " + rowData.name);
+      return(
+        <Cell {...props} className="link-group">
+            <FaPlus onClick={() => this.handleActionAdd(rowData)}/> 
+        </Cell>
+      )
+    });
 
     ImageCell = React.memo(({ rowData, dataKey, ...props }) => (
       //console.log("rendering " + rowData.name),
@@ -91,7 +86,7 @@ class AllGamesTable extends Component
             display: 'inline-block'
           }}
         >
-          <img src={rowData.image} onClick={() => this.handleAction(rowData)} width="40" />
+          <img src={rowData.image} onClick={() => this.handleActionImage(rowData)} width="40" />
         </div>
       </Cell>
     ));
@@ -183,54 +178,71 @@ class AllGamesTable extends Component
           showModal: false,
       });
       
-  };
-    handleAction = (rowData) => 
+    };
+    handleActionImage = (rowData) => 
+    {
+      //console.log(this.state.showModal);
+      
+      if(!this.state.showModal)
+      {
+        this.setState({showModal: true})
+        this.setState(
+          { 
+            
+            variable2:  
+                      <div><GameShowModal
+                        show={true}
+                        rowData={rowData}
+                        handleBoolean={this.handleBoolean}
+                      /></div>
+          }
+        )
+      }
+      else
+      {
+
+      }
+          
+      //console.log("image");
+    }
+    handleActionAdd = (rowData) => 
     {
       console.log(this.state.showModal);
+      let ud = localStorage.getItem('user');
+      let loggedIn = false;
+      if(ud)
+      {
+        loggedIn = true;
+      }
+      else
+      {
+        loggedIn = false;
+      }
       
-      //console.log(showModal);
-      //console.log("runs this first" + showModal);
-      //console.log(typeof(rowData));
-          //this.state.showModal = false;
-          //alert(this.state.showModal);
-          // this.setState(() => {
-          //   // Important: read `state` instead of `this.state` when updating.
-          //   return {variable2:  
-          //     <div><GameShowModal
-          //       show={showModal}
-          //       rowData={rowData}
-          //     /></div>}
-          // });
-          if(!this.state.showModal)
-          {
-            this.setState({showModal: true})
-            this.setState(
-              { 
-                
-                variable2:  
-                          <div><GameShowModal
-                            show={true}
-                            rowData={rowData}
-                            handleBoolean={this.handleBoolean}
-                          /></div>
-              }
-            )
+      
+      if(!this.state.showModal)
+      {
+        this.setState({showModal: true})
+        this.setState(
+          { 
+            
+            variable2:  
+                      <div><AddGameModal
+                        show={true}
+                        rowData={rowData}
+                        handleBoolean={this.handleBoolean}
+                        loggedIn={loggedIn}
+                      /></div>
           }
-          else
-          {
-            // showModal = true;
-            // this.setState(
-            //   { 
-            //     variable2:  
-            //               <div></div>
-            //   }
-            // )
+        )
+      }
+      else
+      {
+        
+      }
           
-          }
-          
-      console.log("ayyyyy");
+      console.log("add");
     }
-   
     render()
     {
         return(
@@ -239,6 +251,7 @@ class AllGamesTable extends Component
             {this.state.showModal && this.state.variable2}
     
             <Table 
+            virtualized
             height={700}
             wordWrap="break-word"
             autoHeight= {false}
@@ -261,7 +274,7 @@ class AllGamesTable extends Component
 
                 <Column width={80}>
                   <HeaderCell></HeaderCell>
-                  <AddGameCell dataKey="_id" verticalAlign='middle'/>
+                  <this.AddGameCell dataKey="_id" verticalAlign='middle'/>
                 </Column> 
 
                 {/* <Column width={80}>
