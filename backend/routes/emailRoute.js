@@ -11,7 +11,7 @@ email_router.post('/sendVerification', (req, res) =>
     try
     {
         const msg = {
-            from: 'shafferj2019@knights.ucf.edu',
+            from: 'mygamelistapp@gmail.com',
             templateId: 'd-ca92eef5f9e643a684dd04bf78448148',
             personalizations: [{
                 dynamic_template_data: {
@@ -60,20 +60,18 @@ email_router.post('/passwordReset', async (req, res) =>
             return res.status(404).send('No user with this email has been found');
         }
 
-        console.log(getUserInfo);
-
         let id = getUserInfo[0]._id;
         let username = getUserInfo[0].userName;
 
         const msg = {
-            from: 'shafferj2019@knights.ucf.edu',
+            from: 'mygamelistapp@gmail.com',
             templateId: 'd-0a0cc042d79c4bd681cc098020e037bc',
             personalizations: [{
                 dynamic_template_data: {
                     userId: id,
                     username: username
                 },
-                to: 'shafferj2019@knights.ucf.edu'
+                to: email
             }]
         }
 
