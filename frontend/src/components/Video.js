@@ -24,7 +24,7 @@ const Video = () => {
                     <div>
                         <Link to='/games' className='btn btn-home'>Get Started</Link>
                         {/* Next link will link to another part of the home page that shows our mission statement */}
-                        <Link to='/' className=' btn btn-home'>About Us</Link>
+                        <Link to='/about' className=' btn btn-home'>About Us</Link>
                     </div>
                 </div>
             </div>
