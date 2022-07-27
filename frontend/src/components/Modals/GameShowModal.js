@@ -14,8 +14,14 @@ class GameShowModal extends Component
             show: this.props.show,
         };
     }
-    
-    
+    componentDidMount()
+    {
+        console.log("modal mounted");
+    }
+    componentWillUnmount()
+    {
+        console.log("modal unmounted");
+    }
 
     handleShow = () =>{
 
@@ -31,6 +37,14 @@ class GameShowModal extends Component
         this.setState({
             show: false
         });
+        // this.setState(() => {
+        //     // Important: read `state` instead of `this.state` when updating.
+        //     return {show: false}
+        //   });
+
+        console.log("from modal " + this.state.show);
+        this.props.handleBoolean();
+
     };
 
     handleGamePage = (data) => {
@@ -45,6 +59,7 @@ class GameShowModal extends Component
         
 
     };
+    
 
     render()
     {

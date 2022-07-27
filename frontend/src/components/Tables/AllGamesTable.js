@@ -26,6 +26,7 @@ const AddGameCell = React.memo(({rowData, dataKey, ...props}) =>
   console.log("rendering " + rowData.name);
   function handleAction(){
     alert(rowData._id);
+
   }
   return(
     <Cell {...props} className="link-group">
@@ -68,6 +69,7 @@ class AllGamesTable extends Component
             sortType: 'desc',
             sortColumn: '',
             variable: <div></div>,
+            variable2: <div></div>,
             showModal: false
         }
     }
@@ -89,7 +91,7 @@ class AllGamesTable extends Component
             display: 'inline-block'
           }}
         >
-          <img src={rowData.image} width="40" />
+          <img src={rowData.image} onClick={() => this.handleAction(rowData)} width="40" />
         </div>
       </Cell>
     ));
@@ -134,43 +136,99 @@ class AllGamesTable extends Component
     handleRowClick = (rowData, e) => 
     {
         //alert(rowData.name);
-        //alert(e.detail);
+        console.log("bayyyyy");
         //when double clicking on a row
         if(e.detail === 2)
         {
-          console.log("yayyyy");
+          
           //alert(typeof(rowData));
           //this.setState({showModal: true});
           //alert(this.state.showModal);
           showModal = true;
+          //alert(showModal);
+          console.log("then this runs" + showModal);
           this.setState(
             { 
               variable:  
                         <div><GameShowModal
                           show={showModal}
                           rowData={rowData}
+                          handleBoolean={this.handleBoolean}
+
                         /></div>
             }
-          )
+          );
         }
         else
         {
+          console.log("runs this first" + showModal);
           //this.state.showModal = false;
           //alert(this.state.showModal);
           this.setState(
             {
               variable:  
                         <div>
-                           {/* <img src={rowData.cover} alt="game cover picture" /> */}
+                          
                         </div>
             
             }
-          )
+          );
+          
         }
     };
+    handleBoolean = () =>{
+
+
+      this.setState({
+          showModal: false,
+      });
+      
+  };
     handleAction = (rowData) => 
     {
-      alert(rowData._id);
+      console.log(this.state.showModal);
+      
+      //console.log(showModal);
+      //console.log("runs this first" + showModal);
+      //console.log(typeof(rowData));
+          //this.state.showModal = false;
+          //alert(this.state.showModal);
+          // this.setState(() => {
+          //   // Important: read `state` instead of `this.state` when updating.
+          //   return {variable2:  
+          //     <div><GameShowModal
+          //       show={showModal}
+          //       rowData={rowData}
+          //     /></div>}
+          // });
+          if(!this.state.showModal)
+          {
+            this.setState({showModal: true})
+            this.setState(
+              { 
+                
+                variable2:  
+                          <div><GameShowModal
+                            show={true}
+                            rowData={rowData}
+                            handleBoolean={this.handleBoolean}
+                          /></div>
+              }
+            )
+          }
+          else
+          {
+            // showModal = true;
+            // this.setState(
+            //   { 
+            //     variable2:  
+            //               <div></div>
+            //   }
+            // )
+          
+          }
+          
+      console.log("ayyyyy");
     }
    
     render()
@@ -178,6 +236,7 @@ class AllGamesTable extends Component
         return(
             <div id='allGamesTable'>
             {this.state.variable}
+            {this.state.showModal && this.state.variable2}
     
             <Table 
             height={700}
@@ -210,8 +269,8 @@ class AllGamesTable extends Component
                   <Cell dataKey="_id" verticalAlign='middle'/>
                 </Column>  */}
 
-                <Column width={80} align="center" verticalAlign='middle'>
-                  <HeaderCell></HeaderCell>
+                <Column width={100} flexGrow= {1} align="center" verticalAlign='middle'>
+                  <HeaderCell>Game Page</HeaderCell>
                   <this.ImageCell dataKey="image" />
                 </Column> 
 
