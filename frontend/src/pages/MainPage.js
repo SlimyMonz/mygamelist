@@ -6,11 +6,15 @@ import ps4 from '../ps4Transparent.png';
 import xbox from '../xboxTransparent.png';
 import switchPic from '../switchTransparent.png';
 import Card from 'react-bootstrap/Card';
-import CSS from './MainPage.css';
+import './MainPage.css';
 import {Button} from 'react-bootstrap';
 import Video from '../components/Video';
 import Footer from '../components/Footer';
-import NavBar from '../components/Navbar';
+
+import xboxX from '../xboxXpic.png';
+import ps5 from '../ps5Pic.png';
+import pc from '../pcpic.png';
+
 //import {withRouter} from 'react-router-dom';
 
 //this is the main page of the site
@@ -167,6 +171,59 @@ const MainPage = () =>
                 </Card>
               </Col>
             </Row> 
+            <Row>
+            {/* PS5 */}
+            <Col className="columns">
+                <Card
+                border="secondary"
+                style={{width:'18rem',
+                height:'350px'}}
+                className="mb-2"
+                >
+                  <a href= {buildPlatformPath('PlayStation5')} target="_blank" rel="noreferrer">
+                    <Card.Img className='consolepics' variant='top' src={ps5}/>
+                  </a>
+                  <Card.Body className='consoleText'>
+                      <Card.Title>PlayStation 5 Games</Card.Title>
+                      <Card.Text></Card.Text>
+                  </Card.Body>
+                </Card>
+              </Col>
+            {/* Xbox X */}
+            <Col className="columns">
+                <Card
+                border="secondary"
+                style={{width:'18rem',
+                height:'350px'}}
+                className="mb-2"
+                >
+                  <a href= {buildPlatformPath('XboxX')} target="_blank" rel="noreferrer">
+                    <Card.Img className='consolepics' variant='top' src={xboxX}/>
+                  </a>
+                  <Card.Body className='consoleText'>
+                      <Card.Title>Xbox Series X Games</Card.Title>
+                      <Card.Text></Card.Text>
+                  </Card.Body>
+                </Card>
+              </Col>
+            {/* PC */}
+            <Col className="columns">
+                <Card
+                border="secondary"
+                style={{width:'18rem',
+                height:'350px'}}
+                className="mb-2"
+                >
+                  <a href= {buildPlatformPath('PC')} target="_blank" rel="noreferrer">
+                    <Card.Img className='consolepics' variant='top' src={pc}/>
+                  </a>
+                  <Card.Body className='consoleText'>
+                      <Card.Title>PC Games</Card.Title>
+                      <Card.Text></Card.Text>
+                  </Card.Body>
+                </Card>
+              </Col>
+            </Row>
           </Container>
          
           <Footer/>
