@@ -770,8 +770,6 @@ class AllGameSearch extends Component
 
             <Form>
                 <Container>
-
-            <div >
             <Form className='form-container'>
                 <Container className='search-bar'>
 
