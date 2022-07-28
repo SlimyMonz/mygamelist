@@ -8,10 +8,11 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Nav from 'react-bootstrap/Nav';
 import Container from 'react-bootstrap/Container';
-import gamelogo from '../newgamelogo.png';
+import gamelogo from '../controllerlogo.png';
 import {FaBars, FaTimes} from 'react-icons/fa'
 import {Link} from 'react-router-dom'
 import '../components/MainLogin.css';
+import './NavbarStyles.css';
 
 
 function MainLogin()
@@ -37,8 +38,6 @@ function MainLogin()
 
         window.addEventListener('scroll', changeColor)
 
-    
-    
 
     if(userInfo)
     {
@@ -46,8 +45,8 @@ function MainLogin()
         dynamicMain = 
         <div> 
         <span id="inner-title"></span><br />
-        <p>you ARE already logged in!</p>
-        <LoggedInName />
+        <p>Welcome, {<LoggedInName />}</p>
+        
         </div>
         
     }
@@ -55,41 +54,30 @@ function MainLogin()
     {
         
         dynamicMain = 
-        
-            <div className='header'>
-                {/* header/logo */}
+            
+        <div className={color ? 'header header-bg' : 'header'}>
+            <Link to='/'>
                 <div className='logo'>
-                    <Link to='/'><img src={gamelogo} className='logo' alt="game logo"/></Link>
+                    <img src={gamelogo} className='logo' alt="game logo"/>
                 </div>
-                
-                {/* menu items */}
-                <ul className={click ? 'nav-menu active' : 'nav-menu'}>
-                    {/* Link to home */}
-                    <li className='btn btn-links'>
-                        <Link to='/'>Home</Link>
-                    </li>
-                    {/* Link to Games Menu which will take you to a page with the different consoles*/}
-                    <li className='btn btn-links'>
-                        <Link to='/games'>Games</Link>
-                    </li>
+            </Link> 
+           <ul className={click ? 'nav-menu active' : 'nav-menu'}>
+               <li className='btn btn-links'>
+                   <Link to='/'>Home</Link>
+               </li>
+               <li className='btn btn-links'>
+                   <Link to='/games'>Games</Link>
+               </li>
+               <li className='btn btn-links'>
+                   <Link to='/mylist'>My List</Link>
+               </li>
+               <li className='btn btn-links'>
+                   <Link to='/about'>About Us</Link>
+               </li>
 
-                    {/* link to My Games */}
-                    <li className='btn btn-links'>
-                        <Link to='/mylist'>My List</Link>
-                    </li>
-
-                    {/* Link to About Us/Mission Statement */}
-                    <li className='btn btn-links'>
-                        <Link to='/about'>About Us</Link>
-                    </li>
-
-                    {/* hamburger icon */}
-                    <div className='hamburger' onClick={handleClick}>
-                        {click ? (<FaTimes size={20} style={{color:'#fff'}}/>) : (<FaBars size={20} style={{color:'#fff'}}/>) }
-                    
-                    </div>
-
-                    <Navbar  expand="lg">
+              
+           </ul>
+           <Navbar  expand="lg">
                     
                         {/* <Container className='imgWrapper'>
                             <a href="/" target="_blank" rel="noreferrer">
@@ -121,8 +109,18 @@ function MainLogin()
                             </Navbar.Collapse>
                     </Container>
                 </Navbar>
+           <div className='hamburger' onClick={handleClick}>
+            {click ? (<FaTimes size={20} style={{color: '#fff'}} />) : (<FaBars size={20} style={{color: '#fff'}} />)}
+               
+           </div>
+           
+        </div>
+        
+            
+
+                    
                 
-                </ul>
+               
 
                 
                 
@@ -158,7 +156,7 @@ function MainLogin()
                             </Navbar.Collapse>
                     </Container>
                 </Navbar> */} 
-            </div>
+           
         
         
     }
