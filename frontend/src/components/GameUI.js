@@ -15,6 +15,11 @@ function GameUI(props)
     let navigate = useNavigate();
     //let dynamicGame;
     const [dynamicGame,setDynamicGame] = useState(<div></div>);
+    
+    const [name, setName] = useState('');
+    const [platforms, setPlat] = useState('');
+    const [genres, setGenres] = useState('');
+    const [image, setImage] = useState('');
 
 
     function goBack()
@@ -25,7 +30,6 @@ function GameUI(props)
     useEffect(() => 
     {
         let isActive = true;
-        //todo: memory leak cleanup since we're calling an api and will probably use useState/states
         if(location.state === null)
         {
             //run game search for name?
@@ -49,15 +53,23 @@ function GameUI(props)
                 let txt = await response.text();
                 let searchList = JSON.parse(txt); 
                 console.log(searchList[0].name);
+                console.log(searchList[0].image);
+            
+                
 
                 //alert(searchList[0].cover);
                 if(isActive)
                 {
-                    setDynamicGame(<div>name: {searchList[0].name}<br/>
-                                        platforms: {searchList[0].platforms.join(', ')}<br/>
-                                        genre: {searchList[0].genre}<br/>
-                                        img: <br/> <img src={searchList[0].image} alt="game cover img"/><br/>
-                                    </div>)
+                    // setDynamicGame(<div>name: {searchList[0].name}<br/>
+                    //                     platforms: {searchList[0].platforms.join(', ')}<br/>
+                    //                     genre: {searchList[0].genres.join(', ')}<br/>
+                    //                     img: <br/> <img src={searchList[0].image} alt="game cover img"/><br/>
+                    //                 </div>)
+                    setName(searchList[0].name);
+                    setPlat(searchList[0].platforms.join(', '));
+                    setGenres(searchList[0].genres.join(', '));
+                    setImage(searchList[0].image);
+
                 }
             }
             catch(e)
@@ -77,11 +89,16 @@ function GameUI(props)
                     console.log(location.state.data.platforms);
                     console.log(location.state.data.genre);
                     console.log(location.state.data.image);
-                    setDynamicGame(<div>name: {location.state.data.name}<br/>
-                                        platforms: {location.state.data.platforms}<br/>
-                                        genre: {location.state.data.genre}<br/>
-                                        img: <br/><img src={location.state.data.image} alt="game cover img"/><br/>
-                                    </div>)
+                    // setDynamicGame(<div>name: {location.state.data.name}<br/>
+                    //                     platforms: {location.state.data.platforms}<br/>
+                    //                     genre: {location.state.data.genre}<br/>
+                    //                     img: <br/><img src={location.state.data.image} alt="game cover img"/><br/>
+                    //                 </div>)
+
+                    setName(location.state.data.name);
+                    setPlat(location.state.data.platforms);
+                    setGenres(location.state.data.genre);
+                    setImage(location.state.data.image);
                 }
             
 
@@ -126,8 +143,13 @@ function GameUI(props)
         <br/>
         <br/>
         <br/>
-        {dynamicGame}
+        {/* {dynamicGame} */}
         
+        Name: {name}<br/>
+        PLatforms: {platforms} <br/>
+        Genres: {genres} <br/>
+        Image: 
+        <br/> <img src={image} alt="game cover img"/><br/>
         </div>
     );
 

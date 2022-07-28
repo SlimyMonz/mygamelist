@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {Modal, Button, Form} from 'react-bootstrap';
 import withRouter from '../withRouter';
-import AddGame from '../AddGame';
 import jwt_decode from "jwt-decode";
 
 
