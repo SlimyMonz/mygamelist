@@ -11,7 +11,7 @@ const Footer = () => {
                         <FaRegEnvelope size={20} style={{color: '#ffffff', marginRight: '2rem' }}/>
                         <div>
                             <h4>Need Help? Email Us</h4>
-                            <p>mygamelistapp@gmail.com</p> 
+                            <p>mglcustomersupport@gmail.com</p> 
                         </div>
                     </div>
 
@@ -24,6 +24,7 @@ const Footer = () => {
                         <FaTwitter size={20} style={{color: '#ffffff', marginRight: '2rem' }}/>
                         <FaFacebookSquare size={20} style={{color: '#ffffff', marginRight: '2rem' }}/>
                         <FaInstagram size={20} style={{color: '#ffffff', marginRight: '2rem' }}/>
+                        <FaMailBulk size={20} style={{color: '#ffffff', marginRight: '2rem' }}/>
                     </div>
                 </div>
             </div>
