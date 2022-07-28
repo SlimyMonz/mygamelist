@@ -769,7 +769,7 @@ class AllGameSearch extends Component
                 </form>
 
             
-                <Container>
+                
             <Form className='form-container'>
                 <Container className='search-bar'>
 
