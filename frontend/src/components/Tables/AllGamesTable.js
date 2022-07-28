@@ -251,7 +251,7 @@ class AllGamesTable extends Component
             {this.state.showModal && this.state.variable2}
     
             <Table 
-            virtualized
+            virtualized = {true}
             height={700}
             wordWrap="break-word"
             autoHeight= {false}
@@ -274,7 +274,7 @@ class AllGamesTable extends Component
 
                 <Column width={80}>
                   <HeaderCell></HeaderCell>
-                  <this.AddGameCell dataKey="_id" verticalAlign='middle'/>
+                  <this.AddGameCell dataKey="_id" align="center" verticalAlign='middle'/>
                 </Column> 
 
                 {/* <Column width={80}>

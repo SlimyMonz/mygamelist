@@ -211,6 +211,7 @@ gameDbRoute_router.post('/searchAllGames', async (req, res) =>
 gameDbRoute_router.post('/updateGamesList', authenticate_token, async (req, res) =>
 {
   //incoming: 
+  //game id is NOT an array
   jwt.verify(req.token, initial_key, async (err, authData) =>{
     if(err){
       res.sendStatus(403)

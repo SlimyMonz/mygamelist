@@ -132,19 +132,34 @@ class AllGameSearch extends Component
             //alert("nothing");
         }
         else if(platformURL === 'PlayStation4'){
-            //alert("runn");
             let platform = ['PlayStation 4'];
             await this.searchGame(undefined, platform);
             
         }
+        else if(platformURL === 'PlayStation5'){
+            let platform = ['PlayStation 5'];
+            await this.searchGame(undefined, platform);
+        }
         else if(platformURL === 'XboxOne'){
             let platform = ['Xbox One'];
+            await this.searchGame(undefined, platform);
+        }
+        else if(platformURL === 'XboxX'){
+            let platform = ['Xbox Series X'];
             await this.searchGame(undefined, platform);
         }
         else if(platformURL === 'NintendoSwitch'){
             let platform = ['Nintendo Switch'];
             await this.searchGame(undefined, platform);
         }
+        else if(platformURL === 'PC'){
+            let platform = ['PC (Microsoft Windows)'];
+            await this.searchGame(undefined, platform);
+        }
+        
+
+        
+        
     }
     componentWillUnmount()
     {
