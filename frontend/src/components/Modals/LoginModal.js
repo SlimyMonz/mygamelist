@@ -73,7 +73,7 @@ class LoginModal extends Component
                 //let user = {firstName:res.firstName,lastName:res.lastName,id:res.id, userName:res.userName}
                 // localStorage.setItem('user_data', JSON.stringify(user));
                 localStorage.setItem('user', res.token);
-                //console.log("local storage is: " + localStorage.getItem('user'));
+                console.log("local storage is: " + localStorage.getItem('user'));
                 //let decoded = jwt_decode(localStorage.getItem('user'));
                 //alert("we can get: " + JSON.stringify(decoded, null, 4));
                 //alert("we can even get: " + JSON.stringify(decoded.user[0].userName, null, 4));
