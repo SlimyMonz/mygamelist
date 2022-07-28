@@ -8,12 +8,13 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Nav from 'react-bootstrap/Nav';
 import Container from 'react-bootstrap/Container';
+
 import {FaBars, FaTimes} from 'react-icons/fa';
 import './NavbarStyles.css';
 import gamelogo from '../controllerlogo.png';
 
-import {Link} from 'react-router-dom'
 
+import {Link} from 'react-router-dom'
 import '../components/MainLogin.css';
 
 
@@ -29,18 +30,20 @@ function MainLogin()
     const[click, setClick] = useState(false)
     const handleClick = () => setClick(!click)
 
+
     const [color, setColor] = useState(false)
         const changeColor =() => {
             if(window.scrollY >= 100) {
                 setColor(true)
             } else {
+
                 setColor(false)
             }
         }
 
         window.addEventListener('scroll', changeColor)
 
-    
+
 
     if(userInfo)
     {

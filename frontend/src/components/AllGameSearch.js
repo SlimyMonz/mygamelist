@@ -5,6 +5,7 @@ import Form from 'react-bootstrap/Form';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import InputGroup from 'react-bootstrap/InputGroup';
 import AllGamesTable from './Tables/AllGamesTable';
+import './AllGameSearchStyles.css'
 
 
 class AllGameSearch extends Component 
@@ -757,14 +758,14 @@ class AllGameSearch extends Component
     render()
     {
         return(
-            <div>
-            <Form>
-                <Container>
+            <div >
+            <Form className='form-container'>
+                <Container className='search-bar'>
                     <Row className="justify-content-md-center">   
                         <Col> 
                             <InputGroup className="">
                                 
-                                    <FloatingLabel label = "Name">
+                                    <FloatingLabel className ='label-text' label = "Name">
                                         <Form.Control type = "text" placeholder="Name" value ={this.state.gameName} autoFocus
                                                     onChange ={e => this.setState({ gameName: e.target.value})}
                                                     onKeyDown={this.onkeyPress}
