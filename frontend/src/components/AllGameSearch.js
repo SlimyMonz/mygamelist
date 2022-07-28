@@ -5,7 +5,7 @@ import Form from 'react-bootstrap/Form';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import InputGroup from 'react-bootstrap/InputGroup';
 import AllGamesTable from './Tables/AllGamesTable';
-import './AllGameSearchStyles.css'
+import './AllGameSearchStyles.css';
 
 
 class AllGameSearch extends Component 
@@ -32,6 +32,7 @@ class AllGameSearch extends Component
             XOneCheck: false,
             XSeriesCheck: false,
             PS5Check: false,
+            SwitchCheck: false,
 
            //genres
             RPGCheck: false,
@@ -176,7 +177,7 @@ class AllGameSearch extends Component
         }
         else
         {
-            return 'http://localhost:5000/' + route;
+            return 'http://localhost:4000/' + route;
         }
     }
 
@@ -628,7 +629,7 @@ class AllGameSearch extends Component
             genre = undefined;
         }
         //platforms check
-        if(this.state.PCCheck || this.state.PS4Check || this.state.PS5Check || this.state.XOneCheck || this.state.XSeriesCheck)
+        if(this.state.PCCheck || this.state.PS4Check || this.state.PS5Check || this.state.XOneCheck || this.state.XSeriesCheck || this.state.SwitchCheck)
         {
             let platformArray = [];
             if(this.state.PCCheck)
@@ -656,6 +657,10 @@ class AllGameSearch extends Component
             if(this.state.XSeriesCheck)
             {
                 platformArray.push("Xbox Series X");
+            }
+            if(this.state.SwitchCheck)
+            {
+                platformArray.push("Nintendo Switch");
             }
             platform = [...platformArray];
             //alert("this is platform, not platarray " + platform);
@@ -775,38 +780,15 @@ class AllGameSearch extends Component
     {
         return(
 
-            <div>
+            <div className="form-container">
                 <form>
                     <label for="Name">Name</label>
                     <input class="form-control" type="text" id="Name" placeholder="Name" value ={this.state.gameName} autoFocus
                                                         onChange ={e => this.setState({ gameName: e.target.value})}
                                                         onKeyDown={this.onkeyPress}/>
                     <Button variant="secondary" id="AllGamesSearch" onClick={() => this.onSubmit()}>Search</Button>
-                </form>
-        
-            <Form className='form-container'>
-                <Container className='search-bar'>
 
-
-                        <Row className="justify-content-md-center">   
-                            <Col> 
-                                <InputGroup className="">
-                                    
-                                        <FloatingLabel className ='label-text' label = "Name">
-                                            <Form.Control type = "text" placeholder="Name" value ={this.state.gameName} autoFocus
-                                                        onChange ={e => this.setState({ gameName: e.target.value})}
-                                                        onKeyDown={this.onkeyPress}
-                                            />
-                                        </FloatingLabel>
-                                        <Button variant="secondary" id="AllGamesSearch" onClick={() => this.onSubmit()}>
-                                            Search
-                                        </Button>
-                                </InputGroup>
-                            </Col>
-                        </Row>
-                    </Container>
-
-                    <Container>
+                    <Container className="checkBoxes">
                         <Row xxl={4}>
                             <Col>Platform</Col>
                             <Col>Genre</Col>
@@ -838,6 +820,10 @@ class AllGameSearch extends Component
                                         <Form.Check type="checkbox" id = "XSeriesCheck" label="Xbox Series X"
                                                     onChange ={e => {this.setState({XSeriesCheck: e.target.checked});}}
                                                     checked={this.state.XSeriesCheck}
+                                        />
+                                        <Form.Check type="checkbox" id = "SwitchCheck" label="Nintendo Switch"
+                                                    onChange ={e => {this.setState({SwitchCheck: e.target.checked});}}
+                                                    checked={this.state.SwitchCheck}
                                         />
                                     </Form.Group>
                                 </div>
@@ -1178,8 +1164,8 @@ class AllGameSearch extends Component
                                 <div id="gameFormat">{this.state.gameListString} </div>
                                 
                     </Container>
-                    
-                </Form>
+                </form>
+        
 
                 <AllGamesTable payload = {this.state.gameList}/>
             </div>

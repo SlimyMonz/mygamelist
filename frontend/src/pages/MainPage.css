@@ -8,8 +8,16 @@
     color: #000;
 }
 
-body{
+body{ 
     /* makes the background black */
-    background: rgb(209, 160, 160);
+     background: rgb(209, 160, 160); 
+ }  
+
+.columns{
+    padding-top: 30px;
+}
+
+.mb-2{
+    border-radius:15px;
 }
 
