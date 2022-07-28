@@ -32,15 +32,15 @@ gameDbRoute_router.post('/addUserGames', authenticate_token, async (req, res) =>
 
         if(result.matchedCount === 0)
         {
-          res.status(304).send('Found user, but games were already there');
+          res.status(404).send('No user found');
         }
         else if(result.matchedCount === 1 && result.modifiedCount === 0)
         {
-          res.status(404).send('No user found');
+          res.status(403).send('Found user, but games were already there');
         }
         else
         {
-          res.status(200).json('Steam games added to user list' , authData);
+          res.status(200).send('Steam games added to user list');
         }
       }
     }) 
@@ -81,7 +81,7 @@ gameDbRoute_router.post('/addGameData', authenticate_token, async (req, res) =>{
 //Gets a user's list of games and ratings
 gameDbRoute_router.post('/getUserGames', authenticate_token, async (req, res) =>
 {
-  // incoming: id of user
+  // incoming: id of user and/or id of game to be retrieved.
   // outgoing: An array of objects that contain all game data and personalRating
   try
   {
@@ -90,16 +90,37 @@ gameDbRoute_router.post('/getUserGames', authenticate_token, async (req, res) =>
         res.sendStatus(403)
       }else {
   
-        let _id = mongoose.Types.ObjectId(req.body._id);
-  
-        const listRes = await db.collection('Users').find({_id:_id}).toArray();
+        let gameId = req.body.gameId;
+
+        const listRes = await db.collection('Users').find({_id : mongoose.Types.ObjectId(req.body._id)}).toArray();
 
         let ids = [];
         let ratings = [];
-  
+        let gameList = [];
+
         if (listRes.length > 0)
         {
-          for await (const game of listRes[0].games)
+          await (async() =>
+          {
+            if (gameId !== undefined)
+            {
+              listRes[0].games.every((game) => {
+                if (game.id === gameId) { 
+                  gameList.push(game);
+                  return false;
+                }
+                else {
+                  return true;
+                }
+              })
+            }
+            else
+            {
+              gameList = listRes[0].games
+            }
+          })();
+
+          for await (const game of gameList)
           {
             ids.push(mongoose.Types.ObjectId(game.id));
             ratings[game.id] = game.rating;
@@ -115,7 +136,7 @@ gameDbRoute_router.post('/getUserGames', authenticate_token, async (req, res) =>
           res.status(200).json(dataRes);
   
         }else {
-          res.sendStatus(404)
+          res.sendStatus(404).send('An error occured in /getUserGames')
         }
       }
     })
