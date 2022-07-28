@@ -75,35 +75,25 @@ function MainLogin()
                     <li className='btn btn-links'>
                         <Link to='/about'>About Us</Link>
                     </li>
-                    
-                </ul>
-                <Navbar  expand="lg">
-                        
-                            <Container className='loginWrapper'>
-                                <Navbar.Brand></Navbar.Brand>
-                                <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                                <Navbar.Collapse id="basic-navbar-nav">
-                                    <Nav className="loginButtons">
-                                    
-                                            <ModalComponent
+                    <li >
+                        <ModalComponent
                                                 buttonType ={"Login"}
                                                 title={"Login"}
                                                 body={""}
                                                 componentType={LoginModal}
                                             />
-                                    
-                                        <Navbar.Text style={{marginLeft: '.5rem'}}>{''}</Navbar.Text>
-                                            <ModalComponent
+                        
+                    </li>
+                    <li >
+                        <ModalComponent
                                                 buttonType ={"Register"}
                                                 title={"Register"}
                                                 body={""}
                                                 componentType={RegisterModal}
                                             />
-                                    
-                                    </Nav>
-                                </Navbar.Collapse>
-                            </Container>
-                        </Navbar>
+                    </li>
+                </ul>
+                
                     
                 <div className='hamburger' onClick={handleClick}>
                     {click ? (<FaTimes size={20} style={{color: '#fff'}} />) : (<FaBars size={20} style={{color: '#fff'}} />)}
