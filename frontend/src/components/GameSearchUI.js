@@ -139,14 +139,12 @@ function GameSearchUI()
                 {
                     let gamesWereAdded = await addGameToGamesTable(newGameData);
                     let final = await addUserGames(gamesWereAdded.insertedIds, []);
-                    alert('New games added to database and user list');
                 }
                 //No new games to add to the Games collection
                 //All games needed are already in the collection
                 else if (newGameData.length === 0 && gameinDb.length > 0)
                 {
                     let final = await addUserGames([], gameinDb);
-                    alert('Games from database added to user list');
                 }
                 //There are new games to add to the Games collection
                 //There are also imported games already in the collection
@@ -154,15 +152,17 @@ function GameSearchUI()
                 {
                     let gamesWereAdded = await addGameToGamesTable(newGameData);
                     let final = await addUserGames(gamesWereAdded.insertedIds, gameinDb);
-                    alert('New games added to database and game from database added to user list');
                 }     
                 //No games to import or add to database
                 else if (newGameData.length === 0 && gameinDb.length === 0) 
                 {
                     alert('No games to add');
+                    return;
                 }
             })();
                 
+            alert('Steam games added to list');
+            return;
         }
         catch(e)
         {

@@ -52,7 +52,7 @@ class LoginModal extends Component
             const response = await fetch(this.buildPath('api/users/login'),
             {method:'POST',body:js,headers:{'Content-Type': 'application/json'}});
 
-            if (response.status === 401)
+            if (response.status !== 200 )
             {
                 alert(await response.text());
                 return;

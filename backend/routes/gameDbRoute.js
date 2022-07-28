@@ -41,7 +41,7 @@ gameDbRoute_router.post('/addUserGames', authenticate_token, async (req, res) =>
         }
         else
         {
-          res.status(200).send('Steam games added to user list');
+          res.status(200).send('Game added to list');
         }
       }
     }) 
