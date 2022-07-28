@@ -7,10 +7,11 @@ import jwt_decode from "jwt-decode";
 
 
 
-class AddGameModal extends Component
+class AddGameModalPage extends Component
 {
 
     _isMounted = false;
+    _isUpdated = false;
 
     constructor(props)
     {
@@ -21,7 +22,8 @@ class AddGameModal extends Component
             rating: 0,
             dynamicRating: 0,
             loggedIn: false,
-            button: ''
+            button: '',
+            counter: 0
         };
     }
     async componentDidMount()
@@ -38,13 +40,15 @@ class AddGameModal extends Component
             await this.calculateValue(this.props.rowData);
             
         }
-        console.log("waiiiiiiiiiiiit");
+        console.log(this.props.show);
+        this._isUpdated = true;
            
     }
     componentWillUnmount()
     {
         console.log("modal unmounted");
         this._isMounted = false;
+        //this._isUpdated = false; 
     }
 
     app_name = 'my-game-list-front'
@@ -197,13 +201,13 @@ class AddGameModal extends Component
 
     handleShow = () =>{
 
-        console.log(this.loggedIn);
+        
         this.setState({
             show: true,
         });
         
     };
-
+    
     handleClose = () => {
         
         this.setState({
@@ -218,6 +222,7 @@ class AddGameModal extends Component
         this.props.handleBoolean();
 
     };
+
     onkeyPress = (data, e) =>{
 
         if(e.keyCode === 13) 
@@ -434,4 +439,4 @@ class AddGameModal extends Component
     }
 }
 
-export default withRouter(AddGameModal);
+export default withRouter(AddGameModalPage);

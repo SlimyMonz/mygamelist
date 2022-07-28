@@ -7,7 +7,7 @@ import RegisterModal from './Modals/RegisterModal';
 import AllGameSearch from './AllGameSearch';
 import { findLastIndex } from 'underscore';
 import jwt_decode from "jwt-decode";
-import AddGameModal from './Modals/AddGameModal';
+import AddGameModalPage from './Modals/AddGameModalPage';
 
 function GameUI(props)
 {
@@ -25,6 +25,9 @@ function GameUI(props)
     const [description, setDes] = useState('');
     const [show, setShow] = useState(false);
     const [loggedIn, setLog] = useState(false);
+    const [data, setData] = useState({});
+    const [dynamicModal, setModal] = useState(<div></div>);
+    
     
 
 
@@ -76,7 +79,8 @@ function GameUI(props)
                     return;
                 }
                 let txt = await response.text();
-                let searchList = JSON.parse(txt); 
+                let searchList = JSON.parse(txt);
+                console.log(typeof(searchList[0])); 
                 console.log(searchList[0].name);
                 console.log(searchList[0].image);
                 console.log(searchList[0].description);
@@ -96,7 +100,8 @@ function GameUI(props)
                     setGenres(searchList[0].genres.join(', '));
                     setImage(searchList[0].image);
                     setDes(searchList[0].description);
-
+                    setData(searchList[0]);
+                    
                 }
             }
             catch(e)
@@ -117,6 +122,7 @@ function GameUI(props)
                     console.log(location.state.data.genre);
                     console.log(location.state.data.image);
                     console.log(location.state.data.description);
+                    console.log(typeof(location.state.data));
                     // setDynamicGame(<div>name: {location.state.data.name}<br/>
                     //                     platforms: {location.state.data.platforms}<br/>
                     //                     genre: {location.state.data.genre}<br/>
@@ -128,6 +134,8 @@ function GameUI(props)
                     setGenres(location.state.data.genre);
                     setImage(location.state.data.image);
                     setDes(location.state.data.description);
+                    setData(location.state.data);
+                    
                 }
             
 
@@ -138,7 +146,7 @@ function GameUI(props)
             isActive = false;
         };
 
-    }, [location]);
+    }, [location, props.gameName]);
 
     const app_name = 'my-game-list-front'
 
@@ -159,8 +167,29 @@ function GameUI(props)
     {
         window.location.href = '/';
     }
-    const handleBoolean = async () => 
+    const handleBoolean = () => 
     {
+        setShow(false);
+    }
+    const handleShow = async () => 
+    {
+        //alert("are ya winn");
+        if(!show)
+        {
+            setShow(true);
+        
+            setModal(<AddGameModalPage
+                show={true}
+                rowData={data}
+                handleBoolean={handleBoolean}
+                loggedIn={loggedIn}
+                handleClose={handleClose}
+            />);
+        }
+    }
+    const handleClose = () => 
+    {
+        
         setShow(false);
     }
 
@@ -177,19 +206,18 @@ function GameUI(props)
         <br/>
         <br/>
         {/* {dynamicGame} */}
-        <div><AddGameModal
-                        show={show}
-                        //rowData={rowData}
-                        handleBoolean={handleBoolean}
-                        loggedIn={loggedIn}
-                      /></div>
+        
         Name: {name}<br/>
         PLatforms: {platforms} <br/>
         Genres: {genres} <br/>
         Description: {description}<br/>
-        
+        <Button variant="primary" onClick={handleShow}>
+                                    Rate Game
+                            </Button>
+                {show && dynamicModal}
         Image: 
         <br/> <img src={image} alt="game cover img"/><br/>
+        
         </div>
     );
 
