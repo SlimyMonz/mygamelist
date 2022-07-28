@@ -30,7 +30,7 @@ function LoggedInName()
         dynamicLogged = 
 
         <div id="loggedInDiv">
-          <span id="userName">{decoded.user[0].userName}</span><br />
+          <span id="userName">Logged In As {decoded.user[0].userName}</span><br />
           <button type="button" id="logoutButton" class="buttons" 
             onClick={doLogout}> Log Out </button>
         </div>

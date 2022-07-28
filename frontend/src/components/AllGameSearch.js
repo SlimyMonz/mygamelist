@@ -715,7 +715,7 @@ class AllGameSearch extends Component
                 console.log(resultGames[i].platforms);
                 resultGames[i].platforms = searchList[i].platforms.join(', ');
 
-                // //this doesn't work because not all of our games have a genre array
+                //this doesn't work because not all of our games have a genre array
                 resultGames[i].genre = searchList[i].genres.join(', ');
 
                 console.log(resultGames[i].name);
@@ -767,10 +767,10 @@ class AllGameSearch extends Component
                                                         onKeyDown={this.onkeyPress}/>
                     <Button variant="secondary" id="AllGamesSearch" onClick={() => this.onSubmit()}>Search</Button>
                 </form>
+        
+            <Form className='form-container'>
+                <Container className='search-bar'>
 
-                <Form className='form-container'>
-
-                    <Container className='search-bar'>
 
                         <Row className="justify-content-md-center">   
                             <Col> 

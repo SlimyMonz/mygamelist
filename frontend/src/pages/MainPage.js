@@ -10,11 +10,9 @@ import './MainPage.css';
 import {Button} from 'react-bootstrap';
 import Video from '../components/Video';
 import Footer from '../components/Footer';
-
 import xboxX from '../xboxXpic.png';
 import ps5 from '../ps5Pic.png';
 import pc from '../pcpic.png';
-
 //import {withRouter} from 'react-router-dom';
 
 //this is the main page of the site
@@ -106,12 +104,7 @@ const MainPage = () =>
       
       <div>
         {/* MainLogin contains  the navbar (logo and login/register buttons)*/}
-        <div className='nav-login'>
-          {/* <NavBar/> */}
-          <MainLogin/>
-        </div>
-        
-        
+        <MainLogin />
         <Video />
         
           <Container className="gamePics">
