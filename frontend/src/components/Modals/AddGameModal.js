@@ -21,14 +21,14 @@ class GameAddModal extends Component
             dynamicRating: 0
         };
     }
-    componentDidMount()
+    async componentDidMount()
     {
         this._isMounted = true;
         console.log("modal mounted");
         console.log("our props say: " + this.props.loggedIn);
         if(this.props.loggedIn)
         {
-            this.calculateValue(this.props.rowData);
+            await this.calculateValue(this.props.rowData);
             
         }
            
@@ -90,6 +90,43 @@ class GameAddModal extends Component
         }    
        
     }
+    
+    getUserGame = async (userId, gameId, token) =>
+    {
+        let js = JSON.stringify({_id: userId, gameId: gameId});
+       
+        try
+        {    
+            //let build = this.buildPath('api/games/getUserGames');
+            //alert(build);
+            //alert(ud);
+            console.log("user id is: " + userId);
+            console.log("game id is: " + gameId);
+            console.log("the token is: " + token)
+            const response = await fetch(this.buildPath('api/games/addUserGames'),
+            {method:'POST',body:js,headers:{'Content-Type': 'application/json', 'authorization': 'Bearer ' + token}});
+            
+
+            if (response.status === 401)
+            {
+                //console.log("did it wait fail?");
+                alert(await response.text());
+                return;
+            }
+
+            console.log("did it wait?");
+            alert(await response.text());
+            console.log(response[0]);
+            return response;
+            //let res = JSON.parse(await response.text());
+
+        }
+        catch(e)
+        {
+            alert(e.toString());
+        }    
+       
+    }
 
 
     handleShow = () =>{
@@ -123,20 +160,37 @@ class GameAddModal extends Component
            this.handleGameAdd(data, e);
         }
     }
-    calculateValue = (data) => {
+    //calculates personal rating if game is already added, otherwise uses default of 10
+    calculateValue = async (data) => {
         
         
         console.log("Value-name: " + data.name + " value-rating: " + this.state.dynamicRating);
 
+        
         if (this._isMounted)
         {
+            let ud = localStorage.getItem('user');
+    
+       
+            let userId;
+    
+            if(ud)
+            {
+                let decoded = jwt_decode(ud);
+                userId = decoded.user[0]._id;
+        
+            }
+            else
+            {
+        
+            }
+            //await this.getUserGame(userId, data._id, ud);
 
             //if found game:
             //console.log("did this happen");
             //this.setState({dynamicRating: 5});
             //else:
             this.setState({dynamicRating: 10});
-            
         }
 
     };
