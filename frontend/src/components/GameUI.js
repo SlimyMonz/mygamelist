@@ -6,6 +6,8 @@ import LoginModal from './Modals/LoginModal';
 import RegisterModal from './Modals/RegisterModal';
 import AllGameSearch from './AllGameSearch';
 import { findLastIndex } from 'underscore';
+import jwt_decode from "jwt-decode";
+import AddGameModalPage from './Modals/AddGameModalPage';
 
 function GameUI(props)
 {
@@ -20,6 +22,13 @@ function GameUI(props)
     const [platforms, setPlat] = useState('');
     const [genres, setGenres] = useState('');
     const [image, setImage] = useState('');
+    const [description, setDes] = useState('');
+    const [show, setShow] = useState(false);
+    const [loggedIn, setLog] = useState(false);
+    const [data, setData] = useState({});
+    const [dynamicModal, setModal] = useState(<div></div>);
+    
+    
 
 
     function goBack()
@@ -30,6 +39,25 @@ function GameUI(props)
     useEffect(() => 
     {
         let isActive = true;
+        console.log("useeffect ran");
+        //are we logged in?
+        let ud = localStorage.getItem('user');
+        let userId;
+
+        if(ud)
+        {
+            //let decoded = jwt_decode(ud);
+            //userId = decoded.user[0]._id;
+            if(isActive)
+            {
+                setLog(true);
+            }
+    
+        }
+        else
+        {
+    
+        }
         if(location.state === null)
         {
             //run game search for name?
@@ -51,9 +79,11 @@ function GameUI(props)
                     return;
                 }
                 let txt = await response.text();
-                let searchList = JSON.parse(txt); 
+                let searchList = JSON.parse(txt);
+                console.log(typeof(searchList[0])); 
                 console.log(searchList[0].name);
                 console.log(searchList[0].image);
+                console.log(searchList[0].description);
             
                 
 
@@ -69,7 +99,9 @@ function GameUI(props)
                     setPlat(searchList[0].platforms.join(', '));
                     setGenres(searchList[0].genres.join(', '));
                     setImage(searchList[0].image);
-
+                    setDes(searchList[0].description);
+                    setData(searchList[0]);
+                    
                 }
             }
             catch(e)
@@ -89,6 +121,8 @@ function GameUI(props)
                     console.log(location.state.data.platforms);
                     console.log(location.state.data.genre);
                     console.log(location.state.data.image);
+                    console.log(location.state.data.description);
+                    console.log(typeof(location.state.data));
                     // setDynamicGame(<div>name: {location.state.data.name}<br/>
                     //                     platforms: {location.state.data.platforms}<br/>
                     //                     genre: {location.state.data.genre}<br/>
@@ -99,6 +133,9 @@ function GameUI(props)
                     setPlat(location.state.data.platforms);
                     setGenres(location.state.data.genre);
                     setImage(location.state.data.image);
+                    setDes(location.state.data.description);
+                    setData(location.state.data);
+                    
                 }
             
 
@@ -109,7 +146,7 @@ function GameUI(props)
             isActive = false;
         };
 
-    }, [location]);
+    }, [location, props.gameName]);
 
     const app_name = 'my-game-list-front'
 
@@ -130,6 +167,31 @@ function GameUI(props)
     {
         window.location.href = '/';
     }
+    const handleBoolean = () => 
+    {
+        setShow(false);
+    }
+    const handleShow = async () => 
+    {
+        //alert("are ya winn");
+        if(!show)
+        {
+            setShow(true);
+        
+            setModal(<AddGameModalPage
+                show={true}
+                rowData={data}
+                handleBoolean={handleBoolean}
+                loggedIn={loggedIn}
+                handleClose={handleClose}
+            />);
+        }
+    }
+    const handleClose = () => 
+    {
+        
+        setShow(false);
+    }
 
     //alert(location.state.data.id); //we check to see if state is null to determine if we got here from a modal or manually
 
@@ -148,8 +210,14 @@ function GameUI(props)
         Name: {name}<br/>
         PLatforms: {platforms} <br/>
         Genres: {genres} <br/>
+        Description: {description}<br/>
+        <Button variant="primary" onClick={handleShow}>
+                                    Rate Game
+                            </Button>
+                {show && dynamicModal}
         Image: 
         <br/> <img src={image} alt="game cover img"/><br/>
+        
         </div>
     );
 

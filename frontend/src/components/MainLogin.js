@@ -46,7 +46,7 @@ function MainLogin()
         dynamicMain = 
         <div> 
         <span id="inner-title"></span><br />
-        <p>Welcome,{<LoggedInName />}</p>
+        Welcome,{<LoggedInName />}  {/*putting a p here causes a console.log warning*/}
         
         </div>
         
