@@ -769,6 +769,7 @@ class AllGameSearch extends Component
                 </form>
 
                 <Form className='form-container'>
+
                     <Container className='search-bar'>
 
                         <Row className="justify-content-md-center">   
@@ -788,12 +789,14 @@ class AllGameSearch extends Component
                             </Col>
                         </Row>
                     </Container>
+
                     <Container>
                         <Row xxl={4}>
                             <Col>Platform</Col>
-                            <Col>genre</Col>
+                            <Col>Genre</Col>
                             
                         </Row>
+
                         <Row xxl={4}>
                             <Col xs lg="9"> 
                                 <div id="checkboxPlatforms">
@@ -1155,13 +1158,13 @@ class AllGameSearch extends Component
                                 </div>
                             </Col>
                         </Row>
-                                {/* {this.state.message}
-                                <div id="gameFormat">{this.state.gameListString} </div> */}
+                                 {this.state.message}
+                                <div id="gameFormat">{this.state.gameListString} </div>
                                 
                     </Container>
                     
                 </Form>
-                
+
                 <AllGamesTable payload = {this.state.gameList}/>
             </div>
         )
