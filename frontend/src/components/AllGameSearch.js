@@ -758,9 +758,23 @@ class AllGameSearch extends Component
     render()
     {
         return(
+
+            <div>
+                <form>
+                    <label for="Name">Name</label>
+                    <input class="form-control" type="text" id="Name" placeholder="Name" value ={this.state.gameName} autoFocus
+                                                        onChange ={e => this.setState({ gameName: e.target.value})}
+                                                        onKeyDown={this.onkeyPress}/>
+                    <Button variant="secondary" id="AllGamesSearch" onClick={() => this.onSubmit()}>Search</Button>
+                </form>
+
+            <Form>
+                <Container>
+
             <div >
             <Form className='form-container'>
                 <Container className='search-bar'>
+
                     <Row className="justify-content-md-center">   
                         <Col> 
                             <InputGroup className="">
