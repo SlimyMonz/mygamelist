@@ -768,7 +768,7 @@ class AllGameSearch extends Component
                     <Button variant="secondary" id="AllGamesSearch" onClick={() => this.onSubmit()}>Search</Button>
                 </form>
 
-            <Form>
+            
                 <Container>
             <Form className='form-container'>
                 <Container className='search-bar'>
