@@ -768,400 +768,401 @@ class AllGameSearch extends Component
                     <Button variant="secondary" id="AllGamesSearch" onClick={() => this.onSubmit()}>Search</Button>
                 </form>
 
-            <Form className='form-container'>
-                <Container className='search-bar'>
+                <Form className='form-container'>
+                    <Container className='search-bar'>
 
-                    <Row className="justify-content-md-center">   
-                        <Col> 
-                            <InputGroup className="">
-                                
-                                    <FloatingLabel className ='label-text' label = "Name">
-                                        <Form.Control type = "text" placeholder="Name" value ={this.state.gameName} autoFocus
-                                                    onChange ={e => this.setState({ gameName: e.target.value})}
-                                                    onKeyDown={this.onkeyPress}
-                                        />
-                                    </FloatingLabel>
-                                    <Button variant="secondary" id="AllGamesSearch" onClick={() => this.onSubmit()}>
-                                        Search
-                                    </Button>
-                            </InputGroup>
-                        </Col>
-                    </Row>
-                </Container>
-                <Container>
-                    <Row xxl={4}>
-                        <Col>Platform</Col>
-                        <Col>genre</Col>
-                        
-                    </Row>
-                    <Row xxl={4}>
-                        <Col xs lg="9"> 
-                            <div id="checkboxPlatforms">
-                                <Form.Group className="mb-3 w-50" controlId="formPlatformCheckbox">
-
-                                    <Form.Check type="checkbox" id="PCCheck" label="PC" 
-                                                onChange ={e => {this.setState({PCCheck: e.target.checked});}}
-                                                checked={this.state.PCCheck}
-                                    />
-                                    <Form.Check type="checkbox" id="PS4Check" label="PlayStation 4" 
-                                                onChange ={e => {this.setState({PS4Check: e.target.checked}); console.log(this.state.PS4Check);}}
-                                                checked={this.state.PS4Check}
-                                    />
-                                    <Form.Check type="checkbox" id="PS5Check" label="PlayStation 5"
-                                                onChange ={e => {this.setState({PS5Check: e.target.checked});}}
-                                                checked={this.state.PS5Check}
-                                                
-                                    />
-                                    <Form.Check type="checkbox" id = "XOneCheck" label="Xbox One"
-                                                onChange ={e => {this.setState({XOneCheck: e.target.checked});}}
-                                                checked={this.state.XOneCheck}
-                                    />
-                                    <Form.Check type="checkbox" id = "XSeriesCheck" label="Xbox Series X"
-                                                onChange ={e => {this.setState({XSeriesCheck: e.target.checked});}}
-                                                checked={this.state.XSeriesCheck}
-                                    />
-                                </Form.Group>
-                            </div>
-                        </Col>
-                        <Col xs lg="9"> 
-                            <div id="checkboxGenres">
-                                <Form.Group className="mb-3 w-50" controlId="formGenreCheckbox">
-                                    <Form.Check type="checkbox" id = "RPGCheck" label="RPG"
-                                                onChange ={e => {this.setState({RPGCheck: e.target.checked});}}
-                                                checked={this.state.RPGCheck}
-                                    />
-                                    <Form.Check type="checkbox" id = "FPSCheck" label="FPS"
-                                                onChange ={e => {this.setState({FPSCheck: e.target.checked});}}
-                                                checked={this.state.FPSCheck}
-                                    />
-                                    <Form.Check type="checkbox" id = "ActionCheck" label="Action"
-                                                onChange ={e => {this.setState({ActionCheck: e.target.checked});}}
-                                                checked={this.state.ActionCheck}
-                                    />
-
-                                    <Form.Check type="checkbox" id = "IndieCheck" label="Indie"
-                                                onChange ={e => {this.setState({IndieCheck: e.target.checked});}}
-                                                checked={this.state.IndieCheck}
-                                    />
-                                    <Form.Check type="checkbox" id = "AdventureCheck" label="Adventure"
-                                                onChange ={e => {this.setState({AdventureCheck: e.target.checked});}}
-                                                checked={this.state.AdventureCheck}
-                                    />
-                                    <Form.Check type="checkbox" id = "CasualCheck" label="Casual"
-                                                onChange ={e => {this.setState({CasualCheck: e.target.checked});}}
-                                                checked={this.state.CasualCheck}
-                                    />
-                                    <Form.Check type="checkbox" id = "ExperimentalCheck" label="Experimental"
-                                                onChange ={e => {this.setState({ExperimentalCheck: e.target.checked});}}
-                                                checked={this.state.ExperimentalCheck}
-                                    />
-                                    <Form.Check type="checkbox" id = "PuzzleCheck" label="Puzzle"
-                                                onChange ={e => {this.setState({PuzzleCheck: e.target.checked});}}
-                                                checked={this.state.PuzzleCheck}
-                                    />
-                                    <Form.Check type="checkbox" id = "RacingCheck" label="Racing"
-                                                onChange ={e => {this.setState({RacingCheck: e.target.checked});}}
-                                                checked={this.state.RacingCheck}
-                                    />
-                                    <Form.Check type="checkbox" id = "SimulationCheck" label="Simulation"
-                                                onChange ={e => {this.setState({SimulationCheck: e.target.checked});}}
-                                                checked={this.state.SimulationCheck}
-                                    />
-                                    <Form.Check type="checkbox" id = "SportsCheck" label="Sports"
-                                                onChange ={e => {this.setState({SportsCheck: e.target.checked});}}
-                                                checked={this.state.SportsCheck}
-                                    />
-                                    <Form.Check type="checkbox" id = "StrategyCheck" label="Strategy"
-                                                onChange ={e => {this.setState({StrategyCheck: e.target.checked});}}
-                                                checked={this.state.StrategyCheck}
-                                    />
-                                    <Form.Check type="checkbox" id = "TableTopCheck" label="Table Top"
-                                                onChange ={e => {this.setState({TableTopCheck: e.target.checked});}}
-                                                checked={this.state.TableTopCheck}
-                                    />
-                                    <Form.Check type="checkbox" id = "ActionRPGCheck" label="Action Role Playing Game"
-                                                onChange ={e => {this.setState({ActionRPGCheck: e.target.checked});}}
-                                                checked={this.state.ActionRPGCheck}
-                                    />
-                                    <Form.Check type="checkbox" id = "ActionAdventureCheck" label="Action Adventure"
-                                                onChange ={e => {this.setState({ActionAdventureCheck: e.target.checked});}}
-                                                checked={this.state.ActionAdventureCheck}
-                                    />
-                                    <Form.Check type="checkbox" id = "ArcadeCheck" label="Arcade"
-                                                onChange ={e => {this.setState({ArcadeCheck: e.target.checked});}}
-                                                checked={this.state.ArcadeCheck}
-                                    />
-                                    <Form.Check type="checkbox" id = "AutoBattlerCheck" label="Auto Battler"
-                                                onChange ={e => {this.setState({AutoBattlerCheck: e.target.checked});}}
-                                                checked={this.state.AutoBattlerCheck}
-                                    />
-                                    <Form.Check type="checkbox" id = "AutomobileSimCheck" label="Automobile Sim"
-                                                onChange ={e => {this.setState({AutomobileSimCheck: e.target.checked});}}
-                                                checked={this.state.AutomobileSimCheck}
-                                    />
-                                    <Form.Check type="checkbox" id = "BaseBuildingCheck" label="Base Building"
-                                                onChange ={e => {this.setState({BaseBuildingCheck: e.target.checked});}}
-                                                checked={this.state.BaseBuildingCheck}
-                                    />
-                                    <Form.Check type="checkbox" id = "BaseballCheck" label="Baseball"
-                                                onChange ={e => {this.setState({BaseballCheck: e.target.checked});}}
-                                                checked={this.state.BaseballCheck}
-                                    />
-                                    <Form.Check type="checkbox" id = "BasketballCheck" label="Basketball"
-                                                onChange ={e => {this.setState({BasketballCheck: e.target.checked});}}
-                                                checked={this.state.BasketballCheck}
-                                    />
-                                    <Form.Check type="checkbox" id = "BattleRoyaleCheck" label="Battle Royale"
-                                                onChange ={e => {this.setState({BattleRoyaleCheck: e.target.checked});}}
-                                                checked={this.state.BattleRoyaleCheck}
-                                    />
-                                    <Form.Check type="checkbox" id = "BMXCheck" label="BMX"
-                                                onChange ={e => {this.setState({BMXCheck: e.target.checked});}}
-                                                checked={this.state.BMXCheck}
-                                    /><Form.Check type="checkbox" id = "BoardGameCheck" label="Board Game"
-                                                onChange ={e => {this.setState({BoardGameCheck: e.target.checked});}}
-                                                checked={this.state.BoardGameCheck}
-                                    />
-                                    <Form.Check type="checkbox" id = "BowlingCheck" label="Bowling"
-                                                onChange ={e => {this.setState({BowlingCheck: e.target.checked});}}
-                                                checked={this.state.BowlingCheck}
-                                    />
-                                    <Form.Check type="checkbox" id = "BuildingCheck" label="Building"
-                                                onChange ={e => {this.setState({BuildingCheck: e.target.checked});}}
-                                                checked={this.state.BuildingCheck}
-                                    />
-                                    <Form.Check type="checkbox" id = "CardGameCheck" label="Card Game"
-                                                onChange ={e => {this.setState({CardGameCheck: e.target.checked});}}
-                                                checked={this.state.CardGameCheck}
-                                    />
-                                    <Form.Check type="checkbox" id = "CharacterActionGameCheck" label="Character Action Game"
-                                                onChange ={e => {this.setState({CharacterActionGameCheck: e.target.checked});}}
-                                                checked={this.state.CharacterActionGameCheck}
-                                    />
-                                    <Form.Check type="checkbox" id = "ChessCheck" label="Chess"
-                                                onChange ={e => {this.setState({ChessCheck: e.target.checked});}}
-                                                checked={this.state.ChessCheck}
-                                    />
-                                    <Form.Check type="checkbox" id = "ClickerCheck" label="Clicker"
-                                                onChange ={e => {this.setState({ClickerCheck: e.target.checked});}}
-                                                checked={this.state.ClickerCheck}
-                                    />
-                                    <Form.Check type="checkbox" id = "CyclingCheck" label="Cycling"
-                                                onChange ={e => {this.setState({CyclingCheck: e.target.checked});}}
-                                                checked={this.state.CyclingCheck}
-                                    />
-                                    <Form.Check type="checkbox" id = "DiplomacyCheck" label="Diplomacy"
-                                                onChange ={e => {this.setState({DiplomacyCheck: e.target.checked});}}
-                                                checked={this.state.DiplomacyCheck}
-                                    />
-                                    <Form.Check type="checkbox" id = "eSportsCheck" label="eSports"
-                                                onChange ={e => {this.setState({eSportsCheck: e.target.checked});}}
-                                                checked={this.state.eSportsCheck}
-                                    />
-                                    <Form.Check type="checkbox" id = "ExperimentalCheck" label="Experimental"
-                                                onChange ={e => {this.setState({ExperimentalCheck: e.target.checked});}}
-                                                checked={this.state.ExperimentalCheck}
-                                    />
-                                    <Form.Check type="checkbox" id = "ExplorationCheck" label="Exploration"
-                                                onChange ={e => {this.setState({ExplorationCheck: e.target.checked});}}
-                                                checked={this.state.ExplorationCheck}
-                                    />
-                                    <Form.Check type="checkbox" id = "FarmingSimCheck" label="Farming Sim"
-                                                onChange ={e => {this.setState({FarmingSimCheck: e.target.checked});}}
-                                                checked={this.state.FarmingSimCheck}
-                                    />
-                                    <Form.Check type="checkbox" id = "CharacterActionGameCheck" label="Character Action Game"
-                                                onChange ={e => {this.setState({CharacterActionGameCheck: e.target.checked});}}
-                                                checked={this.state.CharacterActionGameCheck}
-                                    />
-                                    <Form.Check type="checkbox" id = "FightingCheck" label="Fighting"
-                                                onChange ={e => {this.setState({FightingCheck: e.target.checked});}}
-                                                checked={this.state.FightingCheck}
-                                    />
-                                    <Form.Check type="checkbox" id = "FootballCheck" label="Football"
-                                                onChange ={e => {this.setState({FootballCheck: e.target.checked});}}
-                                                checked={this.state.FootballCheck}
-                                    />
-                                    <Form.Check type="checkbox" id = "GodGameCheck" label="God Game"
-                                                onChange ={e => {this.setState({GodGameCheck: e.target.checked});}}
-                                                checked={this.state.GodGameCheck}
-                                    />
-                                    <Form.Check type="checkbox" id = "GolfCheck" label="Golf"
-                                                onChange ={e => {this.setState({GolfCheck: e.target.checked});}}
-                                                checked={this.state.GolfCheck}
-                                    />
-                                    <Form.Check type="checkbox" id = "HackingCheck" label="Hacking"
-                                                onChange ={e => {this.setState({HackingCheck: e.target.checked});}}
-                                                checked={this.state.HackingCheck}
-                                    />
-                                    <Form.Check type="checkbox" id = "HiddenObjectCheck" label="Hidden Object"
-                                                onChange ={e => {this.setState({HiddenObjectCheck: e.target.checked});}}
-                                                checked={this.state.HiddenObjectCheck}
-                                    />
-                                    <Form.Check type="checkbox" id = "HockeyCheck" label="Hockey"
-                                                onChange ={e => {this.setState({HockeyCheck: e.target.checked});}}
-                                                checked={this.state.HockeyCheck}
-                                    />
-                                    <Form.Check type="checkbox" id = "IdlerCheck" label="Idler"
-                                                onChange ={e => {this.setState({IdlerCheck: e.target.checked});}}
-                                                checked={this.state.IdlerCheck}
-                                    />
-                                    <Form.Check type="checkbox" id = "InteractiveFictionCheck" label="Interactive Fiction"
-                                                onChange ={e => {this.setState({InteractiveFictionCheck: e.target.checked});}}
-                                                checked={this.state.InteractiveFictionCheck}
-                                    />
-                                    <Form.Check type="checkbox" id = "ManagementCheck" label="Management"
-                                                onChange ={e => {this.setState({ManagementCheck: e.target.checked});}}
-                                                checked={this.state.ManagementCheck}
-                                    />
-                                    <Form.Check type="checkbox" id = "Match3Check" label="Match 3"
-                                                onChange ={e => {this.setState({Match3Check: e.target.checked});}}
-                                                checked={this.state.Match3Check}
-                                    />
-                                    <Form.Check type="checkbox" id = "MedicalSimCheck" label="Medical Sim"
-                                                onChange ={e => {this.setState({MedicalSimCheck: e.target.checked});}}
-                                                checked={this.state.MedicalSimCheck}
-                                    />
-                                    <Form.Check type="checkbox" id = "MiniGolfCheck" label="Mini Golf"
-                                                onChange ={e => {this.setState({MiniGolfCheck: e.target.checked});}}
-                                                checked={this.state.MiniGolfCheck}
-                                    />
-                                    <Form.Check type="checkbox" id = "MiningCheck" label="Mining"
-                                                onChange ={e => {this.setState({MiningCheck: e.target.checked});}}
-                                                checked={this.state.MiningCheck}
-                                    />
-                                    <Form.Check type="checkbox" id = "MMORPGCheck" label="MMORPG"
-                                                onChange ={e => {this.setState({MMORPGCheck: e.target.checked});}}
-                                                checked={this.state.MMORPGCheck}
-                                    />
-                                    <Form.Check type="checkbox" id = "MotocrossCheck" label="Motocross"
-                                                onChange ={e => {this.setState({MotocrossCheck: e.target.checked});}}
-                                                checked={this.state.MotocrossCheck}
-                                    />
-                                    <Form.Check type="checkbox" id = "OpenWorldCheck" label="Open World"
-                                                onChange ={e => {this.setState({OpenWorldCheck: e.target.checked});}}
-                                                checked={this.state.OpenWorldCheck}
-                                    />
-                                    <Form.Check type="checkbox" id = "OutbreakSimCheck" label="Outbreak Sim"
-                                                onChange ={e => {this.setState({OutbreakSimCheck: e.target.checked});}}
-                                                checked={this.state.OutbreakSimCheck}
-                                    />
-                                    <Form.Check type="checkbox" id = "PartyBasedRPGCheck" label="Party Based RPG"
-                                                onChange ={e => {this.setState({PartyBasedRPGCheck: e.target.checked});}}
-                                                checked={this.state.PartyBasedRPGCheck}
-                                    />
-                                    <Form.Check type="checkbox" id = "PinballCheck" label="Pinball"
-                                                onChange ={e => {this.setState({PinballCheck: e.target.checked});}}
-                                                checked={this.state.PinballCheck}
-                                    />
-                                    <Form.Check type="checkbox" id = "PlatformerCheck" label="Platformer"
-                                                onChange ={e => {this.setState({PlatformerCheck: e.target.checked});}}
-                                                checked={this.state.PlatformerCheck}
-                                    />
-                                    <Form.Check type="checkbox" id = "PointClickCheck" label="Point and Click"
-                                                onChange ={e => {this.setState({PointClickCheck: e.target.checked});}}
-                                                checked={this.state.PointClickCheck}
-                                    />
-                                    <Form.Check type="checkbox" id = "RhythmCheck" label="Rhythm"
-                                                onChange ={e => {this.setState({RhythmCheck: e.target.checked});}}
-                                                checked={this.state.RhythmCheck}
-                                    />
-                                    <Form.Check type="checkbox" id = "RoguelikeCheck" label="Roguelike"
-                                                onChange ={e => {this.setState({RoguelikeCheck: e.target.checked});}}
-                                                checked={this.state.RoguelikeCheck}
-                                    />
-                                    <Form.Check type="checkbox" id = "RTSCheck" label="RTS"
-                                                onChange ={e => {this.setState({RTSCheck: e.target.checked});}}
-                                                checked={this.state.RTSCheck}
-                                    />
-                                    <Form.Check type="checkbox" id = "SandboxCheck" label="Sandbox"
-                                                onChange ={e => {this.setState({SandboxCheck: e.target.checked});}}
-                                                checked={this.state.SandboxCheck}
-                                    />
-                                    <Form.Check type="checkbox" id = "ShooterCheck" label="Shooter"
-                                                onChange ={e => {this.setState({ShooterCheck: e.target.checked});}}
-                                                checked={this.state.ShooterCheck}
-                                    />
-                                    <Form.Check type="checkbox" id = "SkateboardingCheck" label="Skateboarding"
-                                                onChange ={e => {this.setState({SkateboardingCheck: e.target.checked});}}
-                                                checked={this.state.SkateboardingCheck}
-                                    />
-                                    <Form.Check type="checkbox" id = "SkatingCheck" label="Skating"
-                                                onChange ={e => {this.setState({SkatingCheck: e.target.checked});}}
-                                                checked={this.state.SkatingCheck}
-                                    />
-                                     <Form.Check type="checkbox" id = "SkiingCheck" label="Skiing"
-                                                onChange ={e => {this.setState({SkiingCheck: e.target.checked});}}
-                                                checked={this.state.SkiingCheck}
-                                    />
-                                     <Form.Check type="checkbox" id = "SnowboardingCheck" label="Snowboarding"
-                                                onChange ={e => {this.setState({SnowboardingCheck: e.target.checked});}}
-                                                checked={this.state.SnowboardingCheck}
-                                    />
-                                     <Form.Check type="checkbox" id = "SoccerCheck" label="Soccer"
-                                                onChange ={e => {this.setState({SoccergCheck: e.target.checked});}}
-                                                checked={this.state.SoccerCheck}
-                                    />
-                                     <Form.Check type="checkbox" id = "SpaceSimCheck" label="Space Sim"
-                                                onChange ={e => {this.setState({SpaceSimCheck: e.target.checked});}}
-                                                checked={this.state.SpaceSimCheck}
-                                    />
-                                     <Form.Check type="checkbox" id = "StealthCheck" label="Stealth"
-                                                onChange ={e => {this.setState({StealthCheck: e.target.checked});}}
-                                                checked={this.state.StealthCheck}
-                                    />
-                                     <Form.Check type="checkbox" id = "StrategyRPGCheck" label="Strategy RPG"
-                                                onChange ={e => {this.setState({StrategyRPGCheck: e.target.checked});}}
-                                                checked={this.state.StrategyRPGCheck}
-                                    />
-                                     <Form.Check type="checkbox" id = "SurvivalCheck" label="Survival"
-                                                onChange ={e => {this.setState({SurvivalCheck: e.target.checked});}}
-                                                checked={this.state.SurvivalCheck}
-                                    />
-                                     <Form.Check type="checkbox" id = "TennisCheck" label="Tennis"
-                                                onChange ={e => {this.setState({TennisCheck: e.target.checked});}}
-                                                checked={this.state.TennisCheck}
-                                    />
-                                     <Form.Check type="checkbox" id = "TowerDefenseCheck" label="Tower Defense"
-                                                onChange ={e => {this.setState({TowerDefenseCheck: e.target.checked});}}
-                                                checked={this.state.TowerDefenseCheck}
-                                    />
-                                     <Form.Check type="checkbox" id = "TriviaCheck" label="Trivia"
-                                                onChange ={e => {this.setState({TriviaCheck: e.target.checked});}}
-                                                checked={this.state.TriviaCheck}
-                                    />
-                                     <Form.Check type="checkbox" id = "TurnBasedStrategyCheck" label="Turn Based Strategy"
-                                                onChange ={e => {this.setState({TurnBasedStrategyCheck: e.target.checked});}}
-                                                checked={this.state.TurnBasedStrategyCheck}
-                                    />
-                                     <Form.Check type="checkbox" id = "VisualNovelCheck" label="Visual Novel"
-                                                onChange ={e => {this.setState({VisualNovelCheck: e.target.checked});}}
-                                                checked={this.state.VisualNovelCheck}
-                                    />
-                                     <Form.Check type="checkbox" id = "WalkingSimulatorCheck" label="Walking Simulator"
-                                                onChange ={e => {this.setState({WalkingSimulatorCheck: e.target.checked});}}
-                                                checked={this.state.WalkingSimulatorCheck}
-                                    />
-                                     <Form.Check type="checkbox" id = "WordGameCheck" label="Word Game"
-                                                onChange ={e => {this.setState({WordGameCheck: e.target.checked});}}
-                                                checked={this.state.WordGameCheck}
-                                    />
-                                     <Form.Check type="checkbox" id = "WrestlingCheck" label="Wrestling"
-                                                onChange ={e => {this.setState({WrestlingCheck: e.target.checked});}}
-                                                checked={this.state.WrestlingCheck}
-                                    />
+                        <Row className="justify-content-md-center">   
+                            <Col> 
+                                <InputGroup className="">
                                     
-                                </Form.Group>
-                            </div>
-                        </Col>
-                    </Row>
-                            {/* {this.state.message}
-                            <div id="gameFormat">{this.state.gameListString} </div> */}
+                                        <FloatingLabel className ='label-text' label = "Name">
+                                            <Form.Control type = "text" placeholder="Name" value ={this.state.gameName} autoFocus
+                                                        onChange ={e => this.setState({ gameName: e.target.value})}
+                                                        onKeyDown={this.onkeyPress}
+                                            />
+                                        </FloatingLabel>
+                                        <Button variant="secondary" id="AllGamesSearch" onClick={() => this.onSubmit()}>
+                                            Search
+                                        </Button>
+                                </InputGroup>
+                            </Col>
+                        </Row>
+                    </Container>
+                    <Container>
+                        <Row xxl={4}>
+                            <Col>Platform</Col>
+                            <Col>genre</Col>
                             
-                </Container>
+                        </Row>
+                        <Row xxl={4}>
+                            <Col xs lg="9"> 
+                                <div id="checkboxPlatforms">
+                                    <Form.Group className="mb-3 w-50" controlId="formPlatformCheckbox">
+
+                                        <Form.Check type="checkbox" id="PCCheck" label="PC" 
+                                                    onChange ={e => {this.setState({PCCheck: e.target.checked});}}
+                                                    checked={this.state.PCCheck}
+                                        />
+                                        <Form.Check type="checkbox" id="PS4Check" label="PlayStation 4" 
+                                                    onChange ={e => {this.setState({PS4Check: e.target.checked}); console.log(this.state.PS4Check);}}
+                                                    checked={this.state.PS4Check}
+                                        />
+                                        <Form.Check type="checkbox" id="PS5Check" label="PlayStation 5"
+                                                    onChange ={e => {this.setState({PS5Check: e.target.checked});}}
+                                                    checked={this.state.PS5Check}
+                                                    
+                                        />
+                                        <Form.Check type="checkbox" id = "XOneCheck" label="Xbox One"
+                                                    onChange ={e => {this.setState({XOneCheck: e.target.checked});}}
+                                                    checked={this.state.XOneCheck}
+                                        />
+                                        <Form.Check type="checkbox" id = "XSeriesCheck" label="Xbox Series X"
+                                                    onChange ={e => {this.setState({XSeriesCheck: e.target.checked});}}
+                                                    checked={this.state.XSeriesCheck}
+                                        />
+                                    </Form.Group>
+                                </div>
+                            </Col>
+                            <Col xs lg="9"> 
+                                <div id="checkboxGenres">
+                                    <Form.Group className="mb-3 w-50" controlId="formGenreCheckbox">
+                                        <Form.Check type="checkbox" id = "RPGCheck" label="RPG"
+                                                    onChange ={e => {this.setState({RPGCheck: e.target.checked});}}
+                                                    checked={this.state.RPGCheck}
+                                        />
+                                        <Form.Check type="checkbox" id = "FPSCheck" label="FPS"
+                                                    onChange ={e => {this.setState({FPSCheck: e.target.checked});}}
+                                                    checked={this.state.FPSCheck}
+                                        />
+                                        <Form.Check type="checkbox" id = "ActionCheck" label="Action"
+                                                    onChange ={e => {this.setState({ActionCheck: e.target.checked});}}
+                                                    checked={this.state.ActionCheck}
+                                        />
+
+                                        <Form.Check type="checkbox" id = "IndieCheck" label="Indie"
+                                                    onChange ={e => {this.setState({IndieCheck: e.target.checked});}}
+                                                    checked={this.state.IndieCheck}
+                                        />
+                                        <Form.Check type="checkbox" id = "AdventureCheck" label="Adventure"
+                                                    onChange ={e => {this.setState({AdventureCheck: e.target.checked});}}
+                                                    checked={this.state.AdventureCheck}
+                                        />
+                                        <Form.Check type="checkbox" id = "CasualCheck" label="Casual"
+                                                    onChange ={e => {this.setState({CasualCheck: e.target.checked});}}
+                                                    checked={this.state.CasualCheck}
+                                        />
+                                        <Form.Check type="checkbox" id = "ExperimentalCheck" label="Experimental"
+                                                    onChange ={e => {this.setState({ExperimentalCheck: e.target.checked});}}
+                                                    checked={this.state.ExperimentalCheck}
+                                        />
+                                        <Form.Check type="checkbox" id = "PuzzleCheck" label="Puzzle"
+                                                    onChange ={e => {this.setState({PuzzleCheck: e.target.checked});}}
+                                                    checked={this.state.PuzzleCheck}
+                                        />
+                                        <Form.Check type="checkbox" id = "RacingCheck" label="Racing"
+                                                    onChange ={e => {this.setState({RacingCheck: e.target.checked});}}
+                                                    checked={this.state.RacingCheck}
+                                        />
+                                        <Form.Check type="checkbox" id = "SimulationCheck" label="Simulation"
+                                                    onChange ={e => {this.setState({SimulationCheck: e.target.checked});}}
+                                                    checked={this.state.SimulationCheck}
+                                        />
+                                        <Form.Check type="checkbox" id = "SportsCheck" label="Sports"
+                                                    onChange ={e => {this.setState({SportsCheck: e.target.checked});}}
+                                                    checked={this.state.SportsCheck}
+                                        />
+                                        <Form.Check type="checkbox" id = "StrategyCheck" label="Strategy"
+                                                    onChange ={e => {this.setState({StrategyCheck: e.target.checked});}}
+                                                    checked={this.state.StrategyCheck}
+                                        />
+                                        <Form.Check type="checkbox" id = "TableTopCheck" label="Table Top"
+                                                    onChange ={e => {this.setState({TableTopCheck: e.target.checked});}}
+                                                    checked={this.state.TableTopCheck}
+                                        />
+                                        <Form.Check type="checkbox" id = "ActionRPGCheck" label="Action Role Playing Game"
+                                                    onChange ={e => {this.setState({ActionRPGCheck: e.target.checked});}}
+                                                    checked={this.state.ActionRPGCheck}
+                                        />
+                                        <Form.Check type="checkbox" id = "ActionAdventureCheck" label="Action Adventure"
+                                                    onChange ={e => {this.setState({ActionAdventureCheck: e.target.checked});}}
+                                                    checked={this.state.ActionAdventureCheck}
+                                        />
+                                        <Form.Check type="checkbox" id = "ArcadeCheck" label="Arcade"
+                                                    onChange ={e => {this.setState({ArcadeCheck: e.target.checked});}}
+                                                    checked={this.state.ArcadeCheck}
+                                        />
+                                        <Form.Check type="checkbox" id = "AutoBattlerCheck" label="Auto Battler"
+                                                    onChange ={e => {this.setState({AutoBattlerCheck: e.target.checked});}}
+                                                    checked={this.state.AutoBattlerCheck}
+                                        />
+                                        <Form.Check type="checkbox" id = "AutomobileSimCheck" label="Automobile Sim"
+                                                    onChange ={e => {this.setState({AutomobileSimCheck: e.target.checked});}}
+                                                    checked={this.state.AutomobileSimCheck}
+                                        />
+                                        <Form.Check type="checkbox" id = "BaseBuildingCheck" label="Base Building"
+                                                    onChange ={e => {this.setState({BaseBuildingCheck: e.target.checked});}}
+                                                    checked={this.state.BaseBuildingCheck}
+                                        />
+                                        <Form.Check type="checkbox" id = "BaseballCheck" label="Baseball"
+                                                    onChange ={e => {this.setState({BaseballCheck: e.target.checked});}}
+                                                    checked={this.state.BaseballCheck}
+                                        />
+                                        <Form.Check type="checkbox" id = "BasketballCheck" label="Basketball"
+                                                    onChange ={e => {this.setState({BasketballCheck: e.target.checked});}}
+                                                    checked={this.state.BasketballCheck}
+                                        />
+                                        <Form.Check type="checkbox" id = "BattleRoyaleCheck" label="Battle Royale"
+                                                    onChange ={e => {this.setState({BattleRoyaleCheck: e.target.checked});}}
+                                                    checked={this.state.BattleRoyaleCheck}
+                                        />
+                                        <Form.Check type="checkbox" id = "BMXCheck" label="BMX"
+                                                    onChange ={e => {this.setState({BMXCheck: e.target.checked});}}
+                                                    checked={this.state.BMXCheck}
+                                        /><Form.Check type="checkbox" id = "BoardGameCheck" label="Board Game"
+                                                    onChange ={e => {this.setState({BoardGameCheck: e.target.checked});}}
+                                                    checked={this.state.BoardGameCheck}
+                                        />
+                                        <Form.Check type="checkbox" id = "BowlingCheck" label="Bowling"
+                                                    onChange ={e => {this.setState({BowlingCheck: e.target.checked});}}
+                                                    checked={this.state.BowlingCheck}
+                                        />
+                                        <Form.Check type="checkbox" id = "BuildingCheck" label="Building"
+                                                    onChange ={e => {this.setState({BuildingCheck: e.target.checked});}}
+                                                    checked={this.state.BuildingCheck}
+                                        />
+                                        <Form.Check type="checkbox" id = "CardGameCheck" label="Card Game"
+                                                    onChange ={e => {this.setState({CardGameCheck: e.target.checked});}}
+                                                    checked={this.state.CardGameCheck}
+                                        />
+                                        <Form.Check type="checkbox" id = "CharacterActionGameCheck" label="Character Action Game"
+                                                    onChange ={e => {this.setState({CharacterActionGameCheck: e.target.checked});}}
+                                                    checked={this.state.CharacterActionGameCheck}
+                                        />
+                                        <Form.Check type="checkbox" id = "ChessCheck" label="Chess"
+                                                    onChange ={e => {this.setState({ChessCheck: e.target.checked});}}
+                                                    checked={this.state.ChessCheck}
+                                        />
+                                        <Form.Check type="checkbox" id = "ClickerCheck" label="Clicker"
+                                                    onChange ={e => {this.setState({ClickerCheck: e.target.checked});}}
+                                                    checked={this.state.ClickerCheck}
+                                        />
+                                        <Form.Check type="checkbox" id = "CyclingCheck" label="Cycling"
+                                                    onChange ={e => {this.setState({CyclingCheck: e.target.checked});}}
+                                                    checked={this.state.CyclingCheck}
+                                        />
+                                        <Form.Check type="checkbox" id = "DiplomacyCheck" label="Diplomacy"
+                                                    onChange ={e => {this.setState({DiplomacyCheck: e.target.checked});}}
+                                                    checked={this.state.DiplomacyCheck}
+                                        />
+                                        <Form.Check type="checkbox" id = "eSportsCheck" label="eSports"
+                                                    onChange ={e => {this.setState({eSportsCheck: e.target.checked});}}
+                                                    checked={this.state.eSportsCheck}
+                                        />
+                                        <Form.Check type="checkbox" id = "ExperimentalCheck" label="Experimental"
+                                                    onChange ={e => {this.setState({ExperimentalCheck: e.target.checked});}}
+                                                    checked={this.state.ExperimentalCheck}
+                                        />
+                                        <Form.Check type="checkbox" id = "ExplorationCheck" label="Exploration"
+                                                    onChange ={e => {this.setState({ExplorationCheck: e.target.checked});}}
+                                                    checked={this.state.ExplorationCheck}
+                                        />
+                                        <Form.Check type="checkbox" id = "FarmingSimCheck" label="Farming Sim"
+                                                    onChange ={e => {this.setState({FarmingSimCheck: e.target.checked});}}
+                                                    checked={this.state.FarmingSimCheck}
+                                        />
+                                        <Form.Check type="checkbox" id = "CharacterActionGameCheck" label="Character Action Game"
+                                                    onChange ={e => {this.setState({CharacterActionGameCheck: e.target.checked});}}
+                                                    checked={this.state.CharacterActionGameCheck}
+                                        />
+                                        <Form.Check type="checkbox" id = "FightingCheck" label="Fighting"
+                                                    onChange ={e => {this.setState({FightingCheck: e.target.checked});}}
+                                                    checked={this.state.FightingCheck}
+                                        />
+                                        <Form.Check type="checkbox" id = "FootballCheck" label="Football"
+                                                    onChange ={e => {this.setState({FootballCheck: e.target.checked});}}
+                                                    checked={this.state.FootballCheck}
+                                        />
+                                        <Form.Check type="checkbox" id = "GodGameCheck" label="God Game"
+                                                    onChange ={e => {this.setState({GodGameCheck: e.target.checked});}}
+                                                    checked={this.state.GodGameCheck}
+                                        />
+                                        <Form.Check type="checkbox" id = "GolfCheck" label="Golf"
+                                                    onChange ={e => {this.setState({GolfCheck: e.target.checked});}}
+                                                    checked={this.state.GolfCheck}
+                                        />
+                                        <Form.Check type="checkbox" id = "HackingCheck" label="Hacking"
+                                                    onChange ={e => {this.setState({HackingCheck: e.target.checked});}}
+                                                    checked={this.state.HackingCheck}
+                                        />
+                                        <Form.Check type="checkbox" id = "HiddenObjectCheck" label="Hidden Object"
+                                                    onChange ={e => {this.setState({HiddenObjectCheck: e.target.checked});}}
+                                                    checked={this.state.HiddenObjectCheck}
+                                        />
+                                        <Form.Check type="checkbox" id = "HockeyCheck" label="Hockey"
+                                                    onChange ={e => {this.setState({HockeyCheck: e.target.checked});}}
+                                                    checked={this.state.HockeyCheck}
+                                        />
+                                        <Form.Check type="checkbox" id = "IdlerCheck" label="Idler"
+                                                    onChange ={e => {this.setState({IdlerCheck: e.target.checked});}}
+                                                    checked={this.state.IdlerCheck}
+                                        />
+                                        <Form.Check type="checkbox" id = "InteractiveFictionCheck" label="Interactive Fiction"
+                                                    onChange ={e => {this.setState({InteractiveFictionCheck: e.target.checked});}}
+                                                    checked={this.state.InteractiveFictionCheck}
+                                        />
+                                        <Form.Check type="checkbox" id = "ManagementCheck" label="Management"
+                                                    onChange ={e => {this.setState({ManagementCheck: e.target.checked});}}
+                                                    checked={this.state.ManagementCheck}
+                                        />
+                                        <Form.Check type="checkbox" id = "Match3Check" label="Match 3"
+                                                    onChange ={e => {this.setState({Match3Check: e.target.checked});}}
+                                                    checked={this.state.Match3Check}
+                                        />
+                                        <Form.Check type="checkbox" id = "MedicalSimCheck" label="Medical Sim"
+                                                    onChange ={e => {this.setState({MedicalSimCheck: e.target.checked});}}
+                                                    checked={this.state.MedicalSimCheck}
+                                        />
+                                        <Form.Check type="checkbox" id = "MiniGolfCheck" label="Mini Golf"
+                                                    onChange ={e => {this.setState({MiniGolfCheck: e.target.checked});}}
+                                                    checked={this.state.MiniGolfCheck}
+                                        />
+                                        <Form.Check type="checkbox" id = "MiningCheck" label="Mining"
+                                                    onChange ={e => {this.setState({MiningCheck: e.target.checked});}}
+                                                    checked={this.state.MiningCheck}
+                                        />
+                                        <Form.Check type="checkbox" id = "MMORPGCheck" label="MMORPG"
+                                                    onChange ={e => {this.setState({MMORPGCheck: e.target.checked});}}
+                                                    checked={this.state.MMORPGCheck}
+                                        />
+                                        <Form.Check type="checkbox" id = "MotocrossCheck" label="Motocross"
+                                                    onChange ={e => {this.setState({MotocrossCheck: e.target.checked});}}
+                                                    checked={this.state.MotocrossCheck}
+                                        />
+                                        <Form.Check type="checkbox" id = "OpenWorldCheck" label="Open World"
+                                                    onChange ={e => {this.setState({OpenWorldCheck: e.target.checked});}}
+                                                    checked={this.state.OpenWorldCheck}
+                                        />
+                                        <Form.Check type="checkbox" id = "OutbreakSimCheck" label="Outbreak Sim"
+                                                    onChange ={e => {this.setState({OutbreakSimCheck: e.target.checked});}}
+                                                    checked={this.state.OutbreakSimCheck}
+                                        />
+                                        <Form.Check type="checkbox" id = "PartyBasedRPGCheck" label="Party Based RPG"
+                                                    onChange ={e => {this.setState({PartyBasedRPGCheck: e.target.checked});}}
+                                                    checked={this.state.PartyBasedRPGCheck}
+                                        />
+                                        <Form.Check type="checkbox" id = "PinballCheck" label="Pinball"
+                                                    onChange ={e => {this.setState({PinballCheck: e.target.checked});}}
+                                                    checked={this.state.PinballCheck}
+                                        />
+                                        <Form.Check type="checkbox" id = "PlatformerCheck" label="Platformer"
+                                                    onChange ={e => {this.setState({PlatformerCheck: e.target.checked});}}
+                                                    checked={this.state.PlatformerCheck}
+                                        />
+                                        <Form.Check type="checkbox" id = "PointClickCheck" label="Point and Click"
+                                                    onChange ={e => {this.setState({PointClickCheck: e.target.checked});}}
+                                                    checked={this.state.PointClickCheck}
+                                        />
+                                        <Form.Check type="checkbox" id = "RhythmCheck" label="Rhythm"
+                                                    onChange ={e => {this.setState({RhythmCheck: e.target.checked});}}
+                                                    checked={this.state.RhythmCheck}
+                                        />
+                                        <Form.Check type="checkbox" id = "RoguelikeCheck" label="Roguelike"
+                                                    onChange ={e => {this.setState({RoguelikeCheck: e.target.checked});}}
+                                                    checked={this.state.RoguelikeCheck}
+                                        />
+                                        <Form.Check type="checkbox" id = "RTSCheck" label="RTS"
+                                                    onChange ={e => {this.setState({RTSCheck: e.target.checked});}}
+                                                    checked={this.state.RTSCheck}
+                                        />
+                                        <Form.Check type="checkbox" id = "SandboxCheck" label="Sandbox"
+                                                    onChange ={e => {this.setState({SandboxCheck: e.target.checked});}}
+                                                    checked={this.state.SandboxCheck}
+                                        />
+                                        <Form.Check type="checkbox" id = "ShooterCheck" label="Shooter"
+                                                    onChange ={e => {this.setState({ShooterCheck: e.target.checked});}}
+                                                    checked={this.state.ShooterCheck}
+                                        />
+                                        <Form.Check type="checkbox" id = "SkateboardingCheck" label="Skateboarding"
+                                                    onChange ={e => {this.setState({SkateboardingCheck: e.target.checked});}}
+                                                    checked={this.state.SkateboardingCheck}
+                                        />
+                                        <Form.Check type="checkbox" id = "SkatingCheck" label="Skating"
+                                                    onChange ={e => {this.setState({SkatingCheck: e.target.checked});}}
+                                                    checked={this.state.SkatingCheck}
+                                        />
+                                        <Form.Check type="checkbox" id = "SkiingCheck" label="Skiing"
+                                                    onChange ={e => {this.setState({SkiingCheck: e.target.checked});}}
+                                                    checked={this.state.SkiingCheck}
+                                        />
+                                        <Form.Check type="checkbox" id = "SnowboardingCheck" label="Snowboarding"
+                                                    onChange ={e => {this.setState({SnowboardingCheck: e.target.checked});}}
+                                                    checked={this.state.SnowboardingCheck}
+                                        />
+                                        <Form.Check type="checkbox" id = "SoccerCheck" label="Soccer"
+                                                    onChange ={e => {this.setState({SoccergCheck: e.target.checked});}}
+                                                    checked={this.state.SoccerCheck}
+                                        />
+                                        <Form.Check type="checkbox" id = "SpaceSimCheck" label="Space Sim"
+                                                    onChange ={e => {this.setState({SpaceSimCheck: e.target.checked});}}
+                                                    checked={this.state.SpaceSimCheck}
+                                        />
+                                        <Form.Check type="checkbox" id = "StealthCheck" label="Stealth"
+                                                    onChange ={e => {this.setState({StealthCheck: e.target.checked});}}
+                                                    checked={this.state.StealthCheck}
+                                        />
+                                        <Form.Check type="checkbox" id = "StrategyRPGCheck" label="Strategy RPG"
+                                                    onChange ={e => {this.setState({StrategyRPGCheck: e.target.checked});}}
+                                                    checked={this.state.StrategyRPGCheck}
+                                        />
+                                        <Form.Check type="checkbox" id = "SurvivalCheck" label="Survival"
+                                                    onChange ={e => {this.setState({SurvivalCheck: e.target.checked});}}
+                                                    checked={this.state.SurvivalCheck}
+                                        />
+                                        <Form.Check type="checkbox" id = "TennisCheck" label="Tennis"
+                                                    onChange ={e => {this.setState({TennisCheck: e.target.checked});}}
+                                                    checked={this.state.TennisCheck}
+                                        />
+                                        <Form.Check type="checkbox" id = "TowerDefenseCheck" label="Tower Defense"
+                                                    onChange ={e => {this.setState({TowerDefenseCheck: e.target.checked});}}
+                                                    checked={this.state.TowerDefenseCheck}
+                                        />
+                                        <Form.Check type="checkbox" id = "TriviaCheck" label="Trivia"
+                                                    onChange ={e => {this.setState({TriviaCheck: e.target.checked});}}
+                                                    checked={this.state.TriviaCheck}
+                                        />
+                                        <Form.Check type="checkbox" id = "TurnBasedStrategyCheck" label="Turn Based Strategy"
+                                                    onChange ={e => {this.setState({TurnBasedStrategyCheck: e.target.checked});}}
+                                                    checked={this.state.TurnBasedStrategyCheck}
+                                        />
+                                        <Form.Check type="checkbox" id = "VisualNovelCheck" label="Visual Novel"
+                                                    onChange ={e => {this.setState({VisualNovelCheck: e.target.checked});}}
+                                                    checked={this.state.VisualNovelCheck}
+                                        />
+                                        <Form.Check type="checkbox" id = "WalkingSimulatorCheck" label="Walking Simulator"
+                                                    onChange ={e => {this.setState({WalkingSimulatorCheck: e.target.checked});}}
+                                                    checked={this.state.WalkingSimulatorCheck}
+                                        />
+                                        <Form.Check type="checkbox" id = "WordGameCheck" label="Word Game"
+                                                    onChange ={e => {this.setState({WordGameCheck: e.target.checked});}}
+                                                    checked={this.state.WordGameCheck}
+                                        />
+                                        <Form.Check type="checkbox" id = "WrestlingCheck" label="Wrestling"
+                                                    onChange ={e => {this.setState({WrestlingCheck: e.target.checked});}}
+                                                    checked={this.state.WrestlingCheck}
+                                        />
+                                        
+                                    </Form.Group>
+                                </div>
+                            </Col>
+                        </Row>
+                                {/* {this.state.message}
+                                <div id="gameFormat">{this.state.gameListString} </div> */}
+                                
+                    </Container>
+                    
+                </Form>
                 
-            </Form>
-            <AllGamesTable payload = {this.state.gameList}/>
+                <AllGamesTable payload = {this.state.gameList}/>
             </div>
         )
     };
