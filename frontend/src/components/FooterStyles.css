@@ -3,21 +3,23 @@
     padding: 6rem 0;
     background: rgba(0,0,0, .8);
     height: 5rem;
-    top: -15px;
+    margin-bottom: 0px;
+    
+
 }
 
 .footer-container{
-    /* height: 25%; */
+    height: 25%;
     max-width: 1140px;
     margin: auto;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 40px;
-    
+    margin-bottom: 0px;
 }
 
 .footer .left{
-    /* height: 50%; */
+    height: 50%;
     max-width: 100%;
     display: flex;
     flex-direction: column;
@@ -26,7 +28,7 @@
 }
 
 .footer .right{
-    /* height: 100%; */
+    height: 100%;
     max-width: 100%;
     display: flex;
     flex-direction: column;
@@ -42,7 +44,6 @@
 .footer .email {
    display: flex;
    align-items: center;
-   top: -15px;
 }
 
 @media screen and (max-width:640px) {
