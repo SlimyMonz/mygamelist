@@ -735,7 +735,7 @@ class AllGameSearch extends Component
             if(this._isMounted) //clean up memory leak?
             {
                 this.setMessage('Game(s) have been retrieved\n');
-                this.setState({gameListString: resultText});
+                //this.setState({gameListString: resultText});
                 this.setState({gameList: resultGames});
                 
                 //setgameListString(resultText);
