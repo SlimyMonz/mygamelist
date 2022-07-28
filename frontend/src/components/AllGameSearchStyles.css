@@ -1,0 +1,15 @@
+.form-container{
+    border-radius: 45px;
+    background-color: rgb(243, 141, 8);
+}
+
+.search-bar{
+    
+    display: block;
+    background-color: aqua;
+
+}
+
+.label-text{
+    color: #fff;
+}
