@@ -7,6 +7,7 @@ import AllGameSearch from './AllGameSearch';
 import jwt_decode from "jwt-decode";
 
 
+
 function GameSearchUI()
 {
 
@@ -286,8 +287,8 @@ function GameSearchUI()
 
             <div id="gameUIDiv">
                 <br />
-                <Button type="submit" variant="dark" class="buttons"
-                        onClick={goToHome}>Back to Home</Button><br/>
+                {/* <Button type="submit" variant="dark" class="buttons"
+                        onClick={goToHome}>Back to Home</Button><br/> */}
                 <AllGameSearch/>
                 <p id="gameList">{gameList}</p><br /><br />
                 
@@ -309,12 +310,12 @@ function GameSearchUI()
 
             <div id="gameUIDiv">
                 <br />
-                <Button type="submit" variant="dark" class="buttons"
+                {/* <Button type="submit" variant="dark" class="buttons"
                         onClick={goToHome}>Back to Home</Button><br/><br/>
-                
+                 */}
                 {/* login */}
 
-                <ModalComponent
+                {/* <ModalComponent
                     buttonType ={"Login"}
                     title={"Login"}
                     body={""}
@@ -324,12 +325,12 @@ function GameSearchUI()
                 <br/>
                 {/* register */}
 
-                <ModalComponent
+                {/* <ModalComponent
                     buttonType ={"Register"}
                     title={"Register"}
                     body={""}
                     componentType={RegisterModal}
-                />
+                /> */} 
                 <br/>
                 <AllGameSearch/>
                 <p id="gameList">{gameList}</p><br /><br />

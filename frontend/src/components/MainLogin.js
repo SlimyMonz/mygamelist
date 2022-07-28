@@ -10,11 +10,7 @@ import Nav from 'react-bootstrap/Nav';
 import Container from 'react-bootstrap/Container';
 import gamelogo from '../newgamelogo.png';
 import {FaBars, FaTimes} from 'react-icons/fa'
-
-
-// from tutorial to link to other pages: 
 import {Link} from 'react-router-dom'
-
 import '../components/MainLogin.css';
 
 
@@ -29,6 +25,17 @@ function MainLogin()
     
     const[click, setClick] = useState(false)
     const handleClick = () => setClick(!click)
+
+    const[color, setColor] = useState(false)
+        const changeColor =() => {
+            if(window.scrollY>= 100){
+                setColor(true)
+            } else{
+                setColor(false)
+            }
+        }
+
+        window.addEventListener('scroll', changeColor)
 
     
     

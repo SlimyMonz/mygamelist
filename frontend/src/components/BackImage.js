@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import './BackImageStyles.css'
 
+// use this component on every page to make the site look consistent throughout
+
 class BackImage extends Component {
 
     render() {
