@@ -63,11 +63,11 @@ class GameAddModal extends Component
         try
         {    
             let build = this.buildPath('api/games/addUserGames');
-            alert(build);
+            //alert(build);
             //alert(ud);
-            alert("user id is: " + userId);
-            alert("game id is: " + gameIds);
-            alert("the token is: " + token)
+            console.log("user id is: " + userId);
+            console.log("game id is: " + gameIds);
+            console.log("the token is: " + token)
             const response = await fetch(this.buildPath('api/games/addUserGames'),
             {method:'POST',body:js,headers:{'Content-Type': 'application/json', 'authorization': 'Bearer ' + token}});
             
@@ -80,6 +80,7 @@ class GameAddModal extends Component
             }
 
             console.log("did it wait?");
+            alert(await response.text());
             return response;
             //let res = JSON.parse(await response.text());
 
@@ -160,7 +161,7 @@ class GameAddModal extends Component
         
         let rating = 0;
         //console.log("name: " + data.name + " dynamicrating: " + this.state.dynamicRating + "rating: " + this.state.rating + "id: " + data._id);
-        if(this.state.rating != 0)
+        if(this.state.rating !== 0)
         {
             //use state rating
             console.log(this.state.rating);
@@ -178,7 +179,7 @@ class GameAddModal extends Component
         let firstName;
         let lastName;
         let userId;
-        let gameIdArray = [data._id];
+        let gameIdArray = [{id: data._id, rating: rating}];
     
         
     
@@ -192,9 +193,9 @@ class GameAddModal extends Component
         {
     
         }
-        alert(ud);
-        alert(userId);
-        alert(gameIdArray[0])
+        //alert(ud);
+        console.log(userId);
+        console.log(gameIdArray[0].id + " " + gameIdArray[0].rating);
         await this.addUserGames(userId, gameIdArray, ud);
 
 
@@ -216,7 +217,7 @@ class GameAddModal extends Component
         
         return(
             <div>
-                {this.state.dynamicRating != 0 ? //we are logged in
+                {this.state.dynamicRating !== 0 ? //we are logged in
                     <div><Modal show={this.state.show} onHide={() => {this.handleClose()}}>
                         <Modal.Header closeButton>
                             <Modal.Title>

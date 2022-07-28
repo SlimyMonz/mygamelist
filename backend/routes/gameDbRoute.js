@@ -37,7 +37,7 @@ gameDbRoute_router.post('/addUserGames', authenticate_token, async (req, res) =>
         }
         else if(result.matchedCount === 1 && result.modifiedCount === 0)
         {
-          res.status(403).send('Found user, but games were already there');
+          res.status(200).send('Found user, but games were already there');
         }
         else
         {
