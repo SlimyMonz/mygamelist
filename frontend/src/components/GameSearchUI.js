@@ -5,6 +5,7 @@ import LoginModal from './Modals/LoginModal';
 import RegisterModal from './Modals/RegisterModal';
 import AllGameSearch from './AllGameSearch';
 import jwt_decode from "jwt-decode";
+import './GameSearchUIStyles.css'
 
 
 
@@ -41,6 +42,7 @@ function GameSearchUI()
 
 
     const app_name = 'my-game-list-front'
+    
     function buildPath(route)
     {
         if (process.env.NODE_ENV === 'production')
@@ -286,22 +288,20 @@ function GameSearchUI()
     {
         dynamic_game_search =
 
-            <div id="gameUIDiv">
-                <br />
-                {/* <Button type="submit" variant="dark" class="buttons"
-                        onClick={goToHome}>Back to Home</Button><br/> */}
+       
+            <div className ='form-container' id="gameUIDiv" >
                 
-                <p id="gameList">{gameList}</p><br /><br />
-                
-                
-                <input type="text" id="requestSteamIDText" placeholder="Enter your Steam ID"
-                       ref={(c) => steamId = c} />
-                <button type="button" id="requestSteamIDBtn" class="buttons"
-                        onClick={getGamesList}> Get Games </button><br />
-                <span id="gamesListResult">{message}</span>
-                <p id="gamesList">{gamesList}</p>
-                <AllGameSearch/>
-            </div>;
+                <form>   
+                    <div className='steamSearch'>          
+                        <input className="form-control" type="text" id="requestSteamIDText" placeholder="Enter your Steam ID"
+                            ref={(c) => steamId = c} />
+                        <Button variant="primary" id="requestSteamIDBtn" onClick={getGamesList}>Get Games</Button>
+                    </div>
+                    {/* <span id="gamesListResult">{message}</span> */}
+                    {/* nats comment */}
+                    <AllGameSearch/>
+                </form>
+            </div>
 
 
     }
@@ -310,32 +310,9 @@ function GameSearchUI()
 
         dynamic_game_search =
 
-            <div id="gameUIDiv">
-                <br />
-                {/* <Button type="submit" variant="dark" class="buttons"
-                        onClick={goToHome}>Back to Home</Button><br/><br/>
-                 */}
-                {/* login */}
-
-                {/* <ModalComponent
-                    buttonType ={"Login"}
-                    title={"Login"}
-                    body={""}
-                    componentType={LoginModal}
-                />
-
-                <br/>
-                {/* register */}
-
-                {/* <ModalComponent
-                    buttonType ={"Register"}
-                    title={"Register"}
-                    body={""}
-                    componentType={RegisterModal}
-                /> */} 
-                <br/>
-                <AllGameSearch/>
-                <p id="gameList">{gameList}</p><br /><br />
+            <div className='reg-div'id="gameUIDiv">
+               
+                {/*nats comment <p id="gameList">{gameList}</p> */}
 
                 <AllGameSearch/>
             </div>;

@@ -8,6 +8,7 @@ import AddGameModal from '../Modals/AddGameModal';
 import { FaIcons, FaPlus } from "react-icons/fa";
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
+import './AllGamesTableStyles.css';
 
 
 // const NameCell = ({ rowData, dataKey, ...props }) => {

@@ -74,11 +74,15 @@ class GameShowModal extends Component
                     </Modal.Header>
                     <Modal.Body>
                         <Form>
+                            {/* Trying to display game image */}
+                            {/* <Form.Group className ="mb-3" controlid="formImage">
+                                 {this.props.rowData.image}
+                            </Form.Group> */}
                             <Form.Group className ="mb-3" controlid="formPlatforms">
-                                platforms: {this.props.rowData.platforms}
+                                Platforms: {this.props.rowData.platforms}
                             </Form.Group>
                             <Form.Group className ="mb-3" controlid="formGenres">
-                                genres: {this.props.rowData.genre}
+                                Genres: {this.props.rowData.genre}
                             </Form.Group>
                       </Form>
                     </Modal.Body>
