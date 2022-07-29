@@ -63,7 +63,7 @@ function GameSearchUI()
 
         let txt = await response.text();
         let gamesList = JSON.parse(txt);
-        // console.log(appIdList);
+
         let parsedGames = await parseGameNames(appIdList, gamesList)
 
         return parsedGames;
@@ -179,7 +179,7 @@ function GameSearchUI()
     {
         let listOfIds = Object.values(newIds);
         let totalList = listOfIds.concat(hadIds);
-        let newList = await totalList.map(newIds => ({ id: newIds}));
+        let newList = await totalList.map(newIds => ({ id: newIds, rating: '5'}));
 
         let js = JSON.stringify({_id: userId, gameIds: newList});
         const response = await fetch(buildPath('api/games/addUserGames'),
