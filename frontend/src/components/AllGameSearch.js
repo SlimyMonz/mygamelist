@@ -146,7 +146,7 @@ class AllGameSearch extends Component
             await this.searchGame(undefined, platform);
         }
         else if(platformURL === 'XboxX'){
-            let platform = ['Xbox Series X'];
+            let platform = ['Xbox Series X|S'];
             await this.searchGame(undefined, platform);
         }
         else if(platformURL === 'NintendoSwitch'){
