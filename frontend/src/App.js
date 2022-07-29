@@ -10,6 +10,7 @@ import GamesPage from './pages/GamesPage';
 import MainPage from './pages/MainPage';
 import AboutPage from './pages/About';
 import GamePage from './pages/GamePage';
+import MyListPage from './pages/MyListPage';
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
           <Route path="/" index element={<MainPage />} />
           <Route path="/about" index element={<AboutPage/>} />
           <Route path="/games" index element={<GamesPage />} />
+          <Route path="/mylist" index element={<MyListPage />} />
           <Route path="/games/:gameName" element={<GamePage />}/>
         </Routes>
       </BrowserRouter>

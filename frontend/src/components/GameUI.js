@@ -106,8 +106,9 @@ function GameUI(props)
             }
             catch(e)
             {
-                alert("error!");
-                alert(e.toString());
+                //alert("error!");
+                //alert(e.toString());
+                
                 window.location.href = '/games';
             }
             })();   

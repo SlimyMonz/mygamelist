@@ -54,7 +54,9 @@ class LoginModal extends Component
 
             if (response.status !== 200 )
             {
-                alert(await response.text());
+                
+                //alert(await response.text());
+                this.setMessage('User/Password combination incorrect');
                 return;
             }
 
