@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import LoggedInName from '../components/LoggedInName';
 import ModalComponent from './Modals/ModalComponent';
@@ -12,6 +12,8 @@ import gamelogo from '../controllerlogo.png';
 import {FaBars, FaTimes} from 'react-icons/fa'
 import {Link} from 'react-router-dom'
 import '../components/MainLogin.css';
+import {useLocation, useNavigate} from 'react-router-dom';
+import Toast from 'react-bootstrap/Toast';
 
 
 function MainLogin()
@@ -22,11 +24,18 @@ function MainLogin()
     //alert("userInfo is " + userInfo );
     //let userInfoMoar = JSON.parse(userInfo);
     let dynamicMain;
+    let location = useLocation();
+    let toast;
+    let rendered = false;
+   
+    
+    
     
     const[click, setClick] = useState(false)
+    const[showToast, setToast] = useState(false)
     const handleClick = () => setClick(!click)
-
     const[color, setColor] = useState(false)
+
         const changeColor =() => {
             if(window.scrollY>= 100){
                 setColor(true)
@@ -37,8 +46,25 @@ function MainLogin()
 
         window.addEventListener('scroll', changeColor)
 
+    useEffect(() => 
+    {
+       
+        if(location.state === null)
+        {
+            console.log('HFBEFEFE');
+        }
+        else
+        {
+
+            //alert(location.state.email);
+            setToast(true);
+        }
+
+    }, [rendered]);
+
     
-    
+        
+
 
     if(userInfo)
     {
@@ -56,6 +82,7 @@ function MainLogin()
         
         dynamicMain = 
         
+            
             <div className={color ? 'header header-bg' : 'header'}>
                 <Link to='/'>
                     <div className='logo'>
@@ -99,6 +126,13 @@ function MainLogin()
                     {click ? (<FaTimes size={20} style={{color: '#fff'}} />) : (<FaBars size={20} style={{color: '#fff'}} />)}
                     
                 </div>
+                <Toast onClose={() => setToast(false)} show={showToast} delay={4000} autohide>
+                    <Toast.Header>
+                    <strong className="me-auto">Bootstrap</strong>
+                    <small>11 mins ago</small>
+                    </Toast.Header>
+                    <Toast.Body>Log in to go to your personal list!</Toast.Body>
+                </Toast>
             </div>
 
                     
@@ -147,6 +181,7 @@ function MainLogin()
     return(
 
         <div>
+          
             {dynamicMain}
         </div>
     );
