@@ -7,18 +7,20 @@ import RegisterModal from './Modals/RegisterModal';
 import AllGameSearch from './AllGameSearch';
 import { findLastIndex } from 'underscore';
 import jwt_decode from "jwt-decode";
-import AddGameModalPage from './Modals/AddGameModalPage';
+import UserListTable from './Tables/UserListTable';
+
 
 function MyListUi(props)
 {
-    console.log(props.loggedIn);
+    //console.log(props.loggedIn);
     
-    // const location = useLocation();
+    const rendered = false;
     // let navigate = useNavigate();
     // //let dynamicGame;
     // const [dynamicGame,setDynamicGame] = useState(<div></div>);
     
-    // const [name, setName] = useState('');
+    const [gameData, setData] = useState([]);
+    const [dataLoaded, setLoad] = useState(false);
     // const [platforms, setPlat] = useState('');
     // const [genres, setGenres] = useState('');
     // const [image, setImage] = useState('');
@@ -36,131 +38,117 @@ function MyListUi(props)
     //    navigate("/games");
     // }
 
-    // useEffect(() => 
-    // {
-    //     let isActive = true;
-    //     console.log("useeffect ran");
-    //     //are we logged in?
-    //     let ud = localStorage.getItem('user');
-    //     let userId;
+    useEffect(() => 
+    {
+        let isActive = true;
+        console.log("useeffect ran");
+        //are we logged in?
+        //let ud = localStorage.getItem('user');
+        //let userId;
 
-    //     if(ud)
-    //     {
-    //         //let decoded = jwt_decode(ud);
-    //         //userId = decoded.user[0]._id;
-    //         if(isActive)
-    //         {
-    //             setLog(true);
-    //         }
-    
-    //     }
-    //     else
-    //     {
-    
-    //     }
-    //     if(location.state === null)
-    //     {
-    //         //run game search for name?
-    //         (async () => {
-                
-    //         console.log("we're calling the allgamessearch api");
-    //         let obj = {name: props.gameName};
-
-    //         let js = JSON.stringify(obj);
-    //         //await new Promise(resolve => setTimeout(resolve, 1000));
-    //         try
-    //         {
-    //             const response = await fetch(buildPath('api/games/searchAllGames'),
-    //             {method:'POST',body:js,headers:{'Content-Type': 'application/json'}});
-    
-    //             if (response.status === 404)
-    //             {
-    //                 alert('No game found');
-    //                 return;
-    //             }
-    //             let txt = await response.text();
-    //             let searchList = JSON.parse(txt);
-    //             console.log(typeof(searchList[0])); 
-    //             console.log(searchList[0].name);
-    //             console.log(searchList[0].image);
-    //             console.log(searchList[0].description);
+        if(props.loggedIn)
+        {
+            let decoded = jwt_decode(props.loggedIn);
+            let userId = decoded.user[0]._id;
             
-                
-
-    //             //alert(searchList[0].cover);
-    //             if(isActive)
-    //             {
-    //                 // setDynamicGame(<div>name: {searchList[0].name}<br/>
-    //                 //                     platforms: {searchList[0].platforms.join(', ')}<br/>
-    //                 //                     genre: {searchList[0].genres.join(', ')}<br/>
-    //                 //                     img: <br/> <img src={searchList[0].image} alt="game cover img"/><br/>
-    //                 //                 </div>)
-    //                 setName(searchList[0].name);
-    //                 setPlat(searchList[0].platforms.join(', '));
-    //                 setGenres(searchList[0].genres.join(', '));
-    //                 setImage(searchList[0].image);
-    //                 setDes(searchList[0].description);
-    //                 setData(searchList[0]);
+            if(isActive)
+            {
+                 //get user list
+                (async () => {
+                    console.log(props.loggedIn);
                     
-    //             }
-    //         }
-    //         catch(e)
-    //         {
-    //             alert("error!");
-    //             alert(e.toString());
-    //             window.location.href = '/games';
-    //         }
-    //         })();   
-    //     }      
-    //     else
-    //     {
-    //         //we have a game already
-    //         if(isActive)
-    //             {
-    //                 console.log(location.state.data.name);
-    //                 console.log(location.state.data.platforms);
-    //                 console.log(location.state.data.genre);
-    //                 console.log(location.state.data.image);
-    //                 console.log(location.state.data.description);
-    //                 console.log(typeof(location.state.data));
-    //                 // setDynamicGame(<div>name: {location.state.data.name}<br/>
-    //                 //                     platforms: {location.state.data.platforms}<br/>
-    //                 //                     genre: {location.state.data.genre}<br/>
-    //                 //                     img: <br/><img src={location.state.data.image} alt="game cover img"/><br/>
-    //                 //                 </div>)
-
-    //                 setName(location.state.data.name);
-    //                 setPlat(location.state.data.platforms);
-    //                 setGenres(location.state.data.genre);
-    //                 setImage(location.state.data.image);
-    //                 setDes(location.state.data.description);
-    //                 setData(location.state.data);
+                    console.log(decoded);
                     
-    //             }
+                    console.log(userId);
+                    console.log("we're calling the usergamesearch api");
+                    let obj = {_id: userId};
+        
+                    let js = JSON.stringify(obj);
+                    //await new Promise(resolve => setTimeout(resolve, 1000));
+                    try
+                    {
+                        let build = buildPath('api/games/getUserGames');
+                        //alert(build);
+                        const response = await fetch(buildPath('api/games/getUserGames'),
+                        {method:'POST',body:js,headers:{'Content-Type': 'application/json', 'authorization': 'Bearer ' + props.loggedIn}});
             
+                        if (response.status === 404)
+                        {
+                            alert('No game found');
+                            return;
+                        }
+                        let txt = await response.text();
+                        //console.log(txt);
+                        let games = JSON.parse(txt);
+                        
+                        let allGames = []
+                        console.log(games);
+                        console.log(games[0]);
+                        console.log(games[0]._id);
+                        console.log(games[0].name);
+                        console.log(games[0].releaseDate);
+                        console.log(games[0].image);
+                        console.log(games[0].description);
+                        console.log(games[0].personalRating);
+                        console.log(games[0].platforms);
+                        console.log(games[0].genres);
+        
+                        if(isActive)
+                        {
+                            // for( var i=0; i< games.length; i++ )
+                            // {
+                            //     allGames.push(games[i]);
+                            //     console.log(allGames[i].platforms);
 
-    //     }
-    //     //clean up dem memory leaks???
-    //     return () => 
-    //     {
-    //         isActive = false;
-    //     };
+                            //     //this doesn't work if not all of our games have a platform/genre array
+                            //     allGames[i].platforms = games[i].platforms.join(', ');
+                            //     allGames[i].genre = games[i].genres.join(', ');
 
-    // }, [location, props.gameName]);
+                            //     console.log(allGames[i].name);
+                            //     console.log(allGames[i].platforms);
+                            //     console.log(allGames[i].genres);
+                            //     console.log(allGames[i]._id);
+                            // }
+                            setData(games);
+                            setLoad(true);
+            
+                        }
+                    }
+                    catch(e)
+                    {
+                        alert("error!");
+                        alert(e.toString());
+                        window.location.href = '/games';
+                    }
+                })();   
+            }
+    
+        }
+        else
+        {
+    
+        }
+        //clean up dem memory leaks???
+        return () => 
+        {
+            isActive = false;
+        };
 
-    // const app_name = 'my-game-list-front'
+    }, [rendered]);
 
-    // function buildPath(route)
-    // {
-    //     if (process.env.NODE_ENV === 'production')
-    //     {
-    //         return 'https://' + app_name +  '.herokuapp.com/' + route;
-    //     }
-    //     else
-    //     {
-    //         return 'http://localhost:5000/' + route;
-    //     }
-    // }
+    const app_name = 'my-game-list-front'
+
+    function buildPath(route)
+    {
+        if (process.env.NODE_ENV === 'production')
+        {
+            return 'https://' + app_name +  '.herokuapp.com/' + route;
+        }
+        else
+        {
+            return 'http://localhost:5000/' + route;
+        }
+    }
     
 
     // const goToHome = async event =>
@@ -193,7 +181,6 @@ function MyListUi(props)
     //     setShow(false);
     // }
 
-    //alert(location.state.data.id); //we check to see if state is null to determine if we got here from a modal or manually
 
     return(
         <div>
@@ -205,7 +192,7 @@ function MyListUi(props)
         <br/>
         <br/>
         <br/>
-        {/* {dynamicGame} */}
+        <UserListTable data={gameData} load={dataLoaded}/>
         
        </div>
     );
