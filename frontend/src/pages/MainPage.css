@@ -10,7 +10,7 @@
 
 body{ 
     /* makes the background black */
-     background: rgb(209, 160, 160); 
+     background-color: rgba(0,0,0,0.8);
  }  
 
 .columns{

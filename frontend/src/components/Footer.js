@@ -19,7 +19,7 @@ const Footer = () => {
 
                 <div className='right'>
                     <h4>Social</h4>
-                    <p>Give us a follow and stay updated!</p>
+                    <p>Give us a follow and stay updated! @mglsocial</p>
                     <div className='socials'>
                         <FaTwitter size={20} style={{color: '#ffffff', marginRight: '2rem' }}/>
                         <FaFacebookSquare size={20} style={{color: '#ffffff', marginRight: '2rem' }}/>

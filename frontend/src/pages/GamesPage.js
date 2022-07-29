@@ -4,6 +4,7 @@ import LoggedInName from '../components/LoggedInName';
 import GameSearchUI from '../components/GameSearchUI';
 import MainLogin from '../components/MainLogin';
 import BackImage from '../components/BackImage';
+import AllGameSearch from '../components/AllGameSearch';
 
 const GamesPage = () =>
 {
@@ -11,7 +12,8 @@ const GamesPage = () =>
         <div>
             <MainLogin/>
             <BackImage heading="Let's find some games!" text=''/>
-            <GameSearchUI />
+            <GameSearchUI /> 
+            
         </div>
     );
 }

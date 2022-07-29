@@ -1,7 +1,13 @@
+
+
+*{
+    color:#000;
+}
+
 .form-container{
-    border-radius: 45px;
-    background-color: rgb(243, 141, 8);
-    color:black;
+    border-radius: 35px;
+    background-color: rgba(255,255,255,0.8);
+    
 }
 
 .search-bar{
@@ -15,4 +21,18 @@
 
     color: #fff;
 
+}
+
+.gameSearchBox{
+    margin: auto;
+    
+    width: 50%;
+}
+.checkboxPlat{
+    padding-right: 15px;
+    margin:auto;
+}
+
+.checkboxGen{
+    margin: auto;
 }
