@@ -103,70 +103,17 @@ const MainPage = () =>
     return(
       
       <div>
+       
         {/* MainLogin contains  the navbar (logo and login/register buttons)*/}
         <MainLogin />
         <Video />
         
-          <Container className="gamePics">
-            <Row className="rows">
-              <Col className="columns">
-                <Card 
-                bg="light"
-                border="secondary"
-                key="Primary"
-                style={{width:'18rem',
-                height:'350px'}}
-                className="mb-2"
-                
-                >
-                  <a href={buildPlatformPath('PlayStation4')}target="_blank" rel="noreferrer">
-                  <Card.Img className='consolepics' variant="top" src={ps4}/>
-                  </a>
-                  <Card.Body className='consoleText'>
-                    <Card.Title> PlayStation 4 Games</Card.Title>
-                    <Card.Text>Check out some PlayStation 4 games!</Card.Text>
-                  </Card.Body>
-                </Card>
-              </Col>
-
-              <Col className="columns">
-                <Card
-                border="secondary"
-                style={{width:'18rem',
-                height:'350px'}}
-                className="mb-2"
-                >
-                <a href= {buildPlatformPath('XboxOne')} target="_blank" rel="noreferrer">
-                  <Card.Img className='consolepics' variant='top' src={xbox}/>
-                </a>
-                  <Card.Body className='consoleText'>
-                    <Card.Title>Xbox One Games</Card.Title>
-                    <Card.Text>Check out some Xbox One games!</Card.Text>
-                  </Card.Body>
-                
-                </Card>
-              </Col>  
-            
-              <Col className="columns">
-                <Card
-                border="secondary"
-                style={{width:'18rem',
-                height:'350px'}}
-                className="mb-2"
-                >
-                  <a href= {buildPlatformPath('NintendoSwitch')} target="_blank" rel="noreferrer">
-                    <Card.Img className='consolepics' variant='top' src={switchPic}/>
-                  </a>
-                  <Card.Body className='consoleText'>
-                      <Card.Title>Nintendo Switch Games</Card.Title>
-                      <Card.Text>Check out some Nintendo Switch games!</Card.Text>
-                  </Card.Body>
-                </Card>
-              </Col>
-            </Row> 
-            <Row>
-            {/* PS5 */}
-            <Col className="columns">
+          {/* <Container className="gamePics"> */}
+          <div class="container">
+            {/* <Row className="rows"> */}
+            <div class="row">
+            {/* <Col className="columns"> */}
+            <div class="col">
                 <Card
                 border="secondary"
                 style={{width:'18rem',
@@ -181,9 +128,52 @@ const MainPage = () =>
                       <Card.Text></Card.Text>
                   </Card.Body>
                 </Card>
-              </Col>
-            {/* Xbox X */}
-            <Col className="columns">
+              </div>
+            {/* </Col> */}
+            {/* <Col className="columns"> */}
+            <div class="col">
+                <Card 
+                bg="light"
+                border="secondary"
+                key="Primary"
+                style={{width:'18rem',
+                height:'350px'}}
+                className="mb-2"
+                
+                >
+                  <a href={buildPlatformPath('PlayStation4')}target="_blank" rel="noreferrer">
+                  <Card.Img className='consolepics' variant="top" src={ps4}/>
+                  </a>
+                  <Card.Body className='consoleText'>
+                    <Card.Title> PlayStation 4 Games</Card.Title>
+                   
+                  </Card.Body>
+                </Card>
+              </div>
+            {/* </Col> */}
+            {/* <Col className="columns"> */}
+            <div class="col">
+                <Card
+                border="secondary"
+                style={{width:'18rem',
+                height:'350px'}}
+                className="mb-2"
+                >
+                  <a href= {buildPlatformPath('NintendoSwitch')} target="_blank" rel="noreferrer">
+                    <Card.Img className='consolepics' variant='top' src={switchPic}/>
+                  </a>
+                  <Card.Body className='consoleText'>
+                      <Card.Title>Nintendo Switch Games</Card.Title>
+                     
+                  </Card.Body>
+                </Card>
+              </div>
+            {/* </Col> */}
+            {/* </Row>
+            <Row> */}
+            <div class="w-100"></div>
+              {/* <Col className="columns"> */}
+              <div class="col">
                 <Card
                 border="secondary"
                 style={{width:'18rem',
@@ -198,9 +188,32 @@ const MainPage = () =>
                       <Card.Text></Card.Text>
                   </Card.Body>
                 </Card>
-              </Col>
-            {/* PC */}
-            <Col className="columns">
+                </div>
+                {/* </Col> */}
+
+                {/* <Col className="columns"> */}
+                <div class="col">
+                <Card
+                border="secondary"
+                style={{width:'18rem',
+                height:'350px'}}
+                className="mb-2"
+                >
+                <a href= {buildPlatformPath('XboxOne')} target="_blank" rel="noreferrer">
+                  <Card.Img className='consolepics' variant='top' src={xbox}/>
+                </a>
+                  <Card.Body className='consoleText'>
+                    <Card.Title>Xbox One Games</Card.Title>
+                   
+                  </Card.Body>
+                
+                </Card>
+                {/* </Col> */}
+                </div>
+               
+            
+              {/* <Col className="columns"> */}
+              <div class="col">
                 <Card
                 border="secondary"
                 style={{width:'18rem',
@@ -215,9 +228,15 @@ const MainPage = () =>
                       <Card.Text></Card.Text>
                   </Card.Body>
                 </Card>
-              </Col>
-            </Row>
-          </Container>
+                </div>
+              {/* </Col> */}
+            
+            
+              </div>
+            
+            {/* </Row> */}
+            </div>
+          {/* </Container> */}
          
           <Footer/>
           
