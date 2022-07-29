@@ -91,7 +91,8 @@ igdb_router.post('/getGameInfo', authenticate_token, async (req, res) =>
                                 }
                                 else if (k === 'cover')
                                 {
-                                    tempInfo['image'] = game[k].url;
+                                    let tempImg = game[k].url.replace('t_thumb', 't_cover_big');
+                                    tempInfo['image'] = tempImg;
                                 }
                                 else
                                 {

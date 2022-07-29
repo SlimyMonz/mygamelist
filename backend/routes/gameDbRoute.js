@@ -26,7 +26,6 @@ gameDbRoute_router.post('/addUserGames', authenticate_token, async (req, res) =>
         let {_id, gameIds} = req.body
         userID = mongoose.Types.ObjectId(_id)
 
-        console.log(gameIds);
         const db = client.db("MyGameListDB");
 
         const result = await db.collection('Users').updateOne({_id:userID} , { $addToSet: { games: { $each: gameIds}}})
