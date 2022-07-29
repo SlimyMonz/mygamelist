@@ -323,9 +323,8 @@ class AddGameModal extends Component
         let firstName;
         let lastName;
         let userId;
-        let gameIdArray = [{id: data._id, rating: rating}];
-    
-        
+        let stringRating = rating.toString();
+        let gameIdArray = [{id: data._id, rating: stringRating}];
     
         if(ud)
         {
@@ -343,8 +342,8 @@ class AddGameModal extends Component
         
         if(this.state.button === 'Edit Game Score')
         {
-            console.log("edit: " + data._id + " " + rating);
-            await this.updateGame(userId, data._id, rating, ud);
+            console.log("edit: " + data._id + " " + stringRating);
+            await this.updateGame(userId, data._id, stringRating, ud);
         }
         else
         {
