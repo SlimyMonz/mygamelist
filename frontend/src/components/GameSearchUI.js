@@ -292,7 +292,8 @@ function GameSearchUI()
             <div className ='form-container' id="gameUIDiv" >
                 
                 <form>   
-                    <div className='steamSearch'>          
+                    <div className='steamSearch'>     
+                        <label> Connect to your Steam Library</label>     
                         <input className="form-control" type="text" id="requestSteamIDText" placeholder="Enter your Steam ID"
                             ref={(c) => steamId = c} />
                         <Button variant="primary" id="requestSteamIDBtn" onClick={getGamesList}>Get Games</Button>

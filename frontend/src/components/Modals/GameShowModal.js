@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Modal, Button, Form} from 'react-bootstrap';
 import withRouter from '../withRouter';
+import './GameShowModalStyles.css';
 
 
 class GameShowModal extends Component
@@ -66,27 +67,30 @@ class GameShowModal extends Component
         
         return(
             <div>
-                 <Modal show={this.state.show} onHide={() => {this.handleClose()}}>
+                 <Modal show={this.state.show} onHide={() => {this.handleClose()}} className='gameModal-outer'>
                     <Modal.Header closeButton>
-                        <Modal.Title>
+                        <Modal.Title >
                             {this.props.rowData.name}
                         </Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <Form>
+                        <Form className='gameModal-inner'>
                             {/* Trying to display game image */}
-                            {/* <Form.Group className ="mb-3" controlid="formImage">
-                                 {this.props.rowData.image}
-                            </Form.Group> */}
-                            <Form.Group className ="mb-3" controlid="formPlatforms">
-                                Platforms: {this.props.rowData.platforms}
-                            </Form.Group>
-                            <Form.Group className ="mb-3" controlid="formGenres">
-                                Genres: {this.props.rowData.genre}
-                            </Form.Group>
+                            <div className='gamepic'>
+                            <img src={this.props.rowData.image} alt='game cover' /><br/><br/>
+                            </div>
+                            <div className='gameinfo'>
+                                <Form.Group className ="mb-3" controlid="formPlatforms" >
+                                    Platforms: {this.props.rowData.platforms}
+                                </Form.Group>
+                                <Form.Group className ="mb-3" controlid="formGenres" >
+                                    Genres: {this.props.rowData.genre}
+                                </Form.Group>
+                            </div>
                       </Form>
                     </Modal.Body>
-                    <Modal.Footer>
+                    <Modal.Footer > 
+                        {/* add className='modal-footer' to the Modal Footer to center the buttons */}
                         <Button variant="secondary" onClick={() => {this.handleClose()}}>Close</Button>
                         <Button variant="primary" onClick={() => {this.handleGamePage(this.props.rowData)}}>Game Page</Button>
                     </Modal.Footer>
