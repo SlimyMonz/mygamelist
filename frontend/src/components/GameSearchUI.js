@@ -290,7 +290,7 @@ function GameSearchUI()
                 <br />
                 {/* <Button type="submit" variant="dark" class="buttons"
                         onClick={goToHome}>Back to Home</Button><br/> */}
-                <AllGameSearch/>
+                
                 <p id="gameList">{gameList}</p><br /><br />
                 
                 
@@ -300,6 +300,7 @@ function GameSearchUI()
                         onClick={getGamesList}> Get Games </button><br />
                 <span id="gamesListResult">{message}</span>
                 <p id="gamesList">{gamesList}</p>
+                <AllGameSearch/>
             </div>;
 
 
@@ -335,6 +336,8 @@ function GameSearchUI()
                 <br/>
                 <AllGameSearch/>
                 <p id="gameList">{gameList}</p><br /><br />
+
+                <AllGameSearch/>
             </div>;
     }
 

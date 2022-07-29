@@ -208,7 +208,7 @@ function GameUI(props)
         {/* {dynamicGame} */}
         
         Name: {name}<br/>
-        PLatforms: {platforms} <br/>
+        Platforms: {platforms} <br/>
         Genres: {genres} <br/>
         Description: {description}<br/>
         <Button variant="primary" onClick={handleShow}>

@@ -1,5 +1,8 @@
 import React from 'react';
 import jwt_decode from "jwt-decode";
+import { Button } from 'react-bootstrap';
+
+
 
 function LoggedInName()
 {
@@ -22,6 +25,8 @@ function LoggedInName()
         window.location.href = currentPath;
 
     };   
+
+    
     
     if(userInfo)
     {
@@ -30,9 +35,9 @@ function LoggedInName()
         dynamicLogged = 
 
         <div id="loggedInDiv">
-          <span id="userName">Logged In As {decoded.user[0].userName}</span><br />
-          <button type="button" id="logoutButton" class="buttons" 
-            onClick={doLogout}> Log Out </button>
+          {/* <h4 id="userName">{decoded.user[0].userName}</h4><br /> */}
+         
+            <Button variant="secondary" id="logoutButton" onClick={doLogout}>Log Out</Button>
         </div>
 
 
