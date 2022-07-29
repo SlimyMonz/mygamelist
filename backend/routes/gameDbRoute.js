@@ -12,6 +12,29 @@ const _ = require('underscore');
 app.use(express.json({limit: '50mb'}));
 app.use(express.urlencoded({limit: '50mb'}));
 
+//Returns an array of all unique genres in the Games collection
+gameDbRoute_router.get('/getAllGenres', authenticate_token, async (req, res) =>{
+  //outgoing: An array of all unique genres in the Games collectio
+  try
+  {
+    jwt.verify(req.token, initial_key, async (err, authData) =>{
+      if(err){
+        res.sendStatus(403)
+      }else{
+  
+        const db = client.db("MyGameListDB");
+        const result = await db.collection('Games').distinct('genres');
+
+        res.status(200).send(result);
+      }
+    }) 
+  }
+  catch(e)
+  {
+    res.status(404).send(e);
+  }
+})
+
 //Add game/games to list of user games
 gameDbRoute_router.post('/addUserGames', authenticate_token, async (req, res) =>{
   //incoming: The User's _id, an array of game _id's

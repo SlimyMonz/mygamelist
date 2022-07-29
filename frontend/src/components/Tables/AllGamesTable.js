@@ -64,7 +64,7 @@ class AllGamesTable extends Component
 
     AddGameCell = React.memo(({rowData, dataKey, ...props}) => 
     {
-      console.log("rendering " + rowData.name);
+      //console.log("rendering " + rowData.name);
       return(
         <Cell {...props} className="link-group">
             <FaPlus onClick={() => this.handleActionAdd(rowData)}/> 
