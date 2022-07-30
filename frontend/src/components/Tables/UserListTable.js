@@ -48,7 +48,7 @@ const UserListTable = (props) =>
                 try
                 {    
                 let build = buildPath('api/games/deleteGame');
-                alert(build);
+                //alert(build);
                 //alert(ud);
                 console.log("user id is: " + userId);
                 console.log("game id is: " + gameId);
@@ -128,7 +128,7 @@ const UserListTable = (props) =>
                         console.log("are we waiting");
                         if(dataLoaded)
                         {
-                                alert(rowData._id);
+                                //alert(rowData._id);
                                 console.log("old array: ");
                                 console.log(gameData);
                                 //const indexOfObject = props.data.findIndex(id => {return id._id == rowData._id});
@@ -147,7 +147,7 @@ const UserListTable = (props) =>
                         }
                         else
                         {
-                                alert(rowData._id);
+                                //alert(rowData._id);
                                 console.log("old array: ");
                                 console.log(props.data);
                                 //const indexOfObject = props.data.findIndex(id => {return id._id == rowData._id});
