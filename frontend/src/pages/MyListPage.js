@@ -35,7 +35,7 @@ const MyListPage = () =>
     return(
         <div>
             <MainLogin/>
-            <BackImage heading="MyList" text=''/>
+            {/* <BackImage heading=" My List " text='Here are all the games on your list!'/> */}
             <MyListUi loggedIn={ud}/>
           
         </div>
