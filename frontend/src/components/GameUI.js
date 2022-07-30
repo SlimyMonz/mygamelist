@@ -8,6 +8,8 @@ import AllGameSearch from './AllGameSearch';
 import { findLastIndex } from 'underscore';
 import jwt_decode from "jwt-decode";
 import AddGameModalPage from './Modals/AddGameModalPage';
+import './GameUIStyles.css';
+
 
 function GameUI(props)
 {
@@ -200,13 +202,33 @@ function GameUI(props)
         <div>
         {/* <Button variant="dark" class="buttons"
                         onClick={()=> goBack()}>Back</Button> */}
+            <div className='content'>
+                <div className='text-wrapper'>
+                    <img className='pic' src={image} alt="game cover img"/>
+                    
+                    <p><h2>Name: {name}</h2><br/>
+                        Platforms: {platforms} <br/><br/>
+                        Genres: {genres} <br/><br/></p>
+                        
+                    <div className='info'><p className='description'>Description: {description}<br/></p></div>
+                    <Button className='btn btn-home' variant="primary" onClick={handleShow}>
+                                    Rate Game
+                    </Button>
+                {show && dynamicModal}
+               
+
+                
+                        
+            
+                </div>
+            </div>
+        
+        {/* <br/>
         <br/>
         <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
+        <br/> */}
         {/* {dynamicGame} */}
+{/*         
         
         Name: {name}<br/>
         Platforms: {platforms} <br/>
@@ -217,7 +239,7 @@ function GameUI(props)
                             </Button>
                 {show && dynamicModal}
         Image: 
-        <br/> <img src={image} alt="game cover img"/><br/>
+        <br/> <img src={image} alt="game cover img"/><br/> */}
         
         </div>
     );
