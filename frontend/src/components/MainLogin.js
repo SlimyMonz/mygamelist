@@ -35,6 +35,7 @@ function MainLogin()
     const[showToast, setToast] = useState(false)
     const handleClick = () => setClick(!click)
     const[color, setColor] = useState(false)
+    const[toastMsg, setmsg] = useState('')
 
         const changeColor =() => {
             if(window.scrollY>= 100){
@@ -57,7 +58,18 @@ function MainLogin()
         {
 
             //alert(location.state.email);
-            setToast(true);
+            if(location.state.message === "login")
+            {
+                setmsg("Log in to go to your personal list!");
+                setToast(true);
+            }
+            else
+            {
+                console.log("helloooo tokennnn");
+                setmsg("Unauthorized Token! Log out and back in!");
+                setToast(true);
+            }
+            
         }
 
     }, [rendered]);
@@ -102,9 +114,14 @@ function MainLogin()
                     {click ? (<FaTimes size={20} style={{color: '#fff'}} />) : (<FaBars size={20} style={{color: '#fff'}} />)}
                     
                 </div>
+                <Toast onClose={() => setToast(false)} show={showToast} delay={5000} autohide>
+                    <Toast.Header>
+                    <strong className="me-auto">Alert!</strong>
+                    <small></small>
+                    </Toast.Header>
+                    <Toast.Body>{toastMsg}</Toast.Body>
+                </Toast>
             </div>
-
-        
         </div>
         
         
@@ -158,12 +175,12 @@ function MainLogin()
                     {click ? (<FaTimes size={20} style={{color: '#fff'}} />) : (<FaBars size={20} style={{color: '#fff'}} />)}
                     
                 </div>
-                <Toast onClose={() => setToast(false)} show={showToast} delay={4000} autohide>
+                <Toast onClose={() => setToast(false)} show={showToast} delay={5000} autohide>
                     <Toast.Header>
-                    <strong className="me-auto">Bootstrap</strong>
-                    <small>11 mins ago</small>
+                    <strong className="me-auto">Alert!</strong>
+                    <small></small>
                     </Toast.Header>
-                    <Toast.Body>Log in to go to your personal list!</Toast.Body>
+                    <Toast.Body>{toastMsg}</Toast.Body>
                 </Toast>
             </div>
 
