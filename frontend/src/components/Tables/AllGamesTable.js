@@ -68,7 +68,7 @@ class AllGamesTable extends Component
       console.log("rendering " + rowData.name);
       return(
         <Cell {...props} className="link-group">
-            <FaPlus onClick={() => this.handleActionAdd(rowData)}/> 
+            <FaPlus className='add' onClick={() => this.handleActionAdd(rowData)}/> 
         </Cell>
       )
     });
@@ -84,7 +84,8 @@ class AllGamesTable extends Component
             borderRadius: 10,
             marginTop: 10,
             overflow: 'hidden',
-            display: 'inline-block'
+            display: 'inline-block',
+            cursor: 'pointer'
           }}
         >
           <img src={rowData.image} onClick={() => this.handleActionImage(rowData)} width="40" />
@@ -309,4 +310,4 @@ class AllGamesTable extends Component
 
 }
 
-export default AllGamesTable;
+export default React.memo(AllGamesTable);

@@ -35,6 +35,7 @@ function MainLogin()
     const[showToast, setToast] = useState(false)
     const handleClick = () => setClick(!click)
     const[color, setColor] = useState(false)
+    const[toastMsg, setmsg] = useState('')
 
         const changeColor =() => {
             if(window.scrollY>= 100){
@@ -57,6 +58,14 @@ function MainLogin()
         {
 
             //alert(location.state.email);
+            if(location.state.message === "login")
+            {
+                setmsg("Log in to go to your personal list!");
+            }
+            else
+            {
+                setmsg("Aunauthorized Token! Log out and back in!");
+            }
             setToast(true);
         }
 
@@ -163,7 +172,7 @@ function MainLogin()
                     <strong className="me-auto">Bootstrap</strong>
                     <small>11 mins ago</small>
                     </Toast.Header>
-                    <Toast.Body>Log in to go to your personal list!</Toast.Body>
+                    <Toast.Body>{toastMsg}</Toast.Body>
                 </Toast>
             </div>
 
