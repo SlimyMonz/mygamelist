@@ -293,7 +293,7 @@ const UserListTable = (props) =>
                 {showModal && variable}
 
                 {dataLoaded? <Table 
-                height={401}
+                height={550}
                 autoHeight= {false}
                 fillHeight= {false}
                 wordWrap="break-word"
@@ -335,7 +335,7 @@ const UserListTable = (props) =>
                 </Table>
                 :
                 <Table 
-                height={401}
+                height={550}
                 autoHeight= {false}
                 fillHeight= {false}
                 wordWrap="break-word"
