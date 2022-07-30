@@ -8,6 +8,9 @@ import AllGameSearch from './AllGameSearch';
 import { findLastIndex } from 'underscore';
 import jwt_decode from "jwt-decode";
 import UserListTable from './Tables/UserListTable';
+import './MyListUIStyles.css';
+import retroVideo from '../retroVid.mp4'
+import gamelogo from '../gamelogo.png';
 
 
 function MyListUi(props)
@@ -183,18 +186,40 @@ function MyListUi(props)
 
 
     return(
-        <div>
-        {/* <Button variant="dark" class="buttons"
-                        onClick={()=> goBack()}>Back</Button> */}
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <UserListTable data={gameData} load={dataLoaded}/>
+        <div className='vid'>
+            <video autoPlay loop muted id='video'>
+                <source src={retroVideo} type='video/mp4'/>
+
+            </video>
+
+            <div className='content'>
+                
+                <div className='text-wrapper'>
+                    <div className='imglogo'>
+                        <h1>My List</h1>
+                        <p></p>
+                    </div>
+                        
+                    <UserListTable data={gameData} load={dataLoaded}/>
+
+                    
+                </div>
+            </div>
+            
+
+        </div>
+    //     <div>
+    //     {/* <Button variant="dark" class="buttons"
+    //                     onClick={()=> goBack()}>Back</Button> */}
+    //     <br/>
+    //     <br/>
+    //     <br/>
+    //     <br/>
+    //     <br/>
+    //     <br/>
+    //     <UserListTable data={gameData} load={dataLoaded}/>
         
-       </div>
+    //    </div>
     );
 
 }
