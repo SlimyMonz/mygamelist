@@ -211,13 +211,13 @@ function MyListUi(props)
                 
                 <div className='text-wrapper'>
                     <div className='imglogo'>
+                        {/* <h1>My List {'('} {gameData.length} games {')'}</h1> */}
                         <h1>My List</h1>
                         <p></p>
                     </div>
                         
                     <UserListTable data={gameData} load={dataLoaded}/>
 
-                    
                 </div>
             </div>
         </div>

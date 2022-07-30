@@ -61,13 +61,15 @@ function MainLogin()
             if(location.state.message === "login")
             {
                 setmsg("Log in to go to your personal list!");
+                setToast(true);
             }
             else
             {
                 console.log("helloooo tokennnn");
-                setmsg("Aunauthorized Token! Log out and back in!");
+                setmsg("Unauthorized Token! Log out and back in!");
+                setToast(true);
             }
-            setToast(true);
+            
         }
 
     }, [rendered]);
@@ -112,10 +114,10 @@ function MainLogin()
                     {click ? (<FaTimes size={20} style={{color: '#fff'}} />) : (<FaBars size={20} style={{color: '#fff'}} />)}
                     
                 </div>
-                <Toast onClose={() => setToast(false)} show={showToast} delay={4000} autohide>
+                <Toast onClose={() => setToast(false)} show={showToast} delay={5000} autohide>
                     <Toast.Header>
-                    <strong className="me-auto">Bootstrap</strong>
-                    <small>11 mins ago</small>
+                    <strong className="me-auto">Alert!</strong>
+                    <small></small>
                     </Toast.Header>
                     <Toast.Body>{toastMsg}</Toast.Body>
                 </Toast>
@@ -173,10 +175,10 @@ function MainLogin()
                     {click ? (<FaTimes size={20} style={{color: '#fff'}} />) : (<FaBars size={20} style={{color: '#fff'}} />)}
                     
                 </div>
-                <Toast onClose={() => setToast(false)} show={showToast} delay={4000} autohide>
+                <Toast onClose={() => setToast(false)} show={showToast} delay={5000} autohide>
                     <Toast.Header>
-                    <strong className="me-auto">Bootstrap</strong>
-                    <small>11 mins ago</small>
+                    <strong className="me-auto">Alert!</strong>
+                    <small></small>
                     </Toast.Header>
                     <Toast.Body>{toastMsg}</Toast.Body>
                 </Toast>

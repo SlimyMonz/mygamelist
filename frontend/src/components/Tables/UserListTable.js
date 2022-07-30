@@ -4,9 +4,11 @@ import 'rsuite-table/dist/css/rsuite-table.css';
 import GameShowModal from '../Modals/GameShowModal';
 import {useLocation, useNavigate} from 'react-router-dom';
 import { FaTrashAlt, FaPlus } from "react-icons/fa";
+import { GiBroadsword } from "react-icons/gi";
 import './UserListTableStyles.css';
 import e from 'cors';
 import jwt_decode from "jwt-decode";
+import AddGameModal from '../Modals/AddGameModal';
 
 
 let rendered = false;
@@ -18,6 +20,10 @@ const UserListTable = (props) =>
         const [gameData, setData] = useState(props.data);
         const [renderSave, setRender] = useState(<div>a</div>);
         const [dataLoaded, setLoad] = useState(false);
+        const [showModal, setShow] = useState(false);
+        const [variable, setVar] = useState(<div></div>);
+        
+
         useEffect(() => 
         {
            console.log("data: " + props.data.name + props.load);  
@@ -89,26 +95,60 @@ const UserListTable = (props) =>
                 }    
         
         }
+        const handleBoolean = (data, rating) =>{
 
+                //alert("boolean proof: " + data.name + " more proof: " + rating);
+                setShow(false);
+                if(dataLoaded)
+                {
+                        //alert(rowData._id);
+                        console.log("old array: ");
+                        console.log(gameData);
+                        //const indexOfObject = props.data.findIndex(id => {return id._id == rowData._id});
+                        //alert(indexOfObject);
+                        //alert(gameData.indexOf(rowData));
+                        //console.log(gameData[gameData.indexOf(rowData)]);
+
+                        
+                        let newArry = gameData;
+                        newArry.find(object => object._id === data._id).personalRating = rating;
+                        let sortedGames = newArry.sort((first, second)=>second.personalRating-first.personalRating);
+                        console.log("new array: ");
+                        console.log(sortedGames);
+                        setData(sortedGames);
+                        setLoad(true);
+                }
+                else
+                {
+                        //alert(rowData._id);
+                        console.log("old array: ");
+                        console.log(props.data);
+                        //const indexOfObject = props.data.findIndex(id => {return id._id == rowData._id});
+                        //alert(indexOfObject);
+                        //alert(props.data.indexOf(rowData));
+                        //console.log(props.data[props.data.indexOf(rowData)]);
+
+                        let newArry = props.data;
+                        newArry.find(object => object._id === data._id).personalRating = rating;
+                        let sortedGames = newArry.sort((first, second)=>second.personalRating-first.personalRating);
+
+                        console.log("new array: ");
+                        console.log(newArry);
+                        console.log(sortedGames);
+
+                        setData(sortedGames);
+                        setLoad(true);
+                }      
+        };
         const handleActionImage = (rowData) =>
         {
                 console.log(rowData.name);
                 //setData(props.data);
                 //setLoad(true);
-           
-
-
-
+        
                 navigate('/games/' + rowData.name);
         }
-        const sortRating = (rowData) =>
-        {
-                let rating = props.data.sort((first, second)=>second.personalRating-first.personalRating);
-                setData(rating);
-                
 
-                //navigate('/games/' + rowData.name);
-        }
         const handleActionDelete = async (rowData, dataKey) =>
         {
                 let userId;
@@ -171,7 +211,40 @@ const UserListTable = (props) =>
                         let text = "canceled";
                         return;
                 }  
-        }
+        };
+
+        const handleActionEdit = (rowData) => 
+        {
+                console.log(showModal);
+                let ud = localStorage.getItem('user');
+                let loggedIn = false;
+                if(ud)
+                {
+                        loggedIn = true;
+                }
+                else
+                {
+                        loggedIn = false;
+                }
+                
+                
+                if(!showModal)
+                {
+                        setShow(true)
+                        
+                        setVar(<div><AddGameModal
+                                show={true}
+                                rowData={rowData}
+                                handleBoolean={handleBoolean}
+                                loggedIn={loggedIn}
+                                /></div>
+                        )
+                }
+                else
+                {
+                        
+                }
+        };
 
 
         const ImageCell = React.memo(({ rowData, dataKey, ...props }) => (
@@ -193,7 +266,7 @@ const UserListTable = (props) =>
                 </div>
                 </Cell>
         ));
-        //this.handleActionImage(rowData)
+       
         const DeleteGameCell = React.memo(({rowData, dataKey, ...props}) => 
         {
           console.log("rendering " + rowData.name);
@@ -203,10 +276,22 @@ const UserListTable = (props) =>
             </Cell>
           )
         });
-        //this.handleActionAdd(rowData)
+
+        const EditGameCell = React.memo(({rowData, dataKey, ...props}) => 
+        {
+          console.log("rendering " + rowData.name);
+          return(
+            <Cell {...props} className="link-group">
+                <GiBroadsword className='edit' onClick={() => handleActionEdit(rowData)}/> 
+            </Cell>
+          )
+        });
+        
 
         return(
             <div>
+                {showModal && variable}
+
                 {dataLoaded? <Table 
                 height={401}
                 autoHeight= {false}
@@ -217,7 +302,7 @@ const UserListTable = (props) =>
                 cellBordered
                 data={gameData}>
                         <Column width={80}  flexGrow= {1} align="center" verticalAlign='middle'>
-                                <HeaderCell>2ndGame Page</HeaderCell>
+                                <HeaderCell>Game Page</HeaderCell>
                                 <ImageCell dataKey="image" />
                         </Column>
 
@@ -237,6 +322,11 @@ const UserListTable = (props) =>
                         </Column>
 
                         <Column width={80} flexGrow = {0} align="center" verticalAlign='middle'>
+                                <HeaderCell>Edit</HeaderCell>
+                                <EditGameCell dataKey='_id'/>
+                        </Column>  
+
+                        <Column width={80} flexGrow = {0} align="center" verticalAlign='middle'>
                                 <HeaderCell>Delete</HeaderCell>
                                 <DeleteGameCell dataKey="_id"/>
                         </Column> 
@@ -254,7 +344,7 @@ const UserListTable = (props) =>
                 cellBordered
                 data={props.data}>
                         <Column width={80}  flexGrow= {1} align="center" verticalAlign='middle'>
-                        <HeaderCell>1stGame Page</HeaderCell>
+                        <HeaderCell>Game Page</HeaderCell>
                         <ImageCell dataKey="image" />
                         </Column>
 
@@ -272,6 +362,11 @@ const UserListTable = (props) =>
                         <HeaderCell>Rating</HeaderCell>
                         <Cell dataKey='personalRating'/>
                         </Column>
+
+                        <Column width={80} flexGrow = {0} align="center" verticalAlign='middle'>
+                                <HeaderCell>Edit</HeaderCell>
+                                <EditGameCell dataKey='_id'/>
+                        </Column>     
 
                         <Column width={80} flexGrow = {0} align="center" verticalAlign='middle'>
                                 <HeaderCell>Delete</HeaderCell>

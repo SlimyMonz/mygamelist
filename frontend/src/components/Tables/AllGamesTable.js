@@ -133,7 +133,7 @@ class AllGamesTable extends Component
     handleRowClick = (rowData, e) => 
     {
         //alert(rowData.name);
-        console.log("bayyyyy");
+        //console.log("bayyyyy");
         //when double clicking on a row
         if(e.detail === 2)
         {
