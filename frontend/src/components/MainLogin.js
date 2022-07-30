@@ -64,6 +64,7 @@ function MainLogin()
             }
             else
             {
+                console.log("helloooo tokennnn");
                 setmsg("Aunauthorized Token! Log out and back in!");
             }
             setToast(true);
@@ -111,9 +112,14 @@ function MainLogin()
                     {click ? (<FaTimes size={20} style={{color: '#fff'}} />) : (<FaBars size={20} style={{color: '#fff'}} />)}
                     
                 </div>
+                <Toast onClose={() => setToast(false)} show={showToast} delay={4000} autohide>
+                    <Toast.Header>
+                    <strong className="me-auto">Bootstrap</strong>
+                    <small>11 mins ago</small>
+                    </Toast.Header>
+                    <Toast.Body>{toastMsg}</Toast.Body>
+                </Toast>
             </div>
-
-        
         </div>
         
         
