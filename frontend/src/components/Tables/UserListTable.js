@@ -69,7 +69,7 @@ const UserListTable = (props) =>
         return(
             <div>
                 {dataLoaded? <Table 
-                height={401}
+                height={600}
                 autoHeight= {false}
                 fillHeight= {false}
                 wordWrap="break-word"
@@ -101,7 +101,7 @@ const UserListTable = (props) =>
                 </Table>
                 :
                 <Table 
-                height={401}
+                height={600}
                 autoHeight= {false}
                 fillHeight= {false}
                 wordWrap="break-word"

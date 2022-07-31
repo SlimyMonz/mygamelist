@@ -33,7 +33,7 @@ const MyListPage = () =>
 
     
     return(
-        <div>
+        <div >
             <MainLogin/>
             {/* <BackImage heading=" My List " text='Here are all the games on your list!'/> */}
             <MyListUi loggedIn={ud}/>

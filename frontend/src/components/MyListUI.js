@@ -10,7 +10,8 @@ import jwt_decode from "jwt-decode";
 import UserListTable from './Tables/UserListTable';
 import './MyListUIStyles.css';
 import retroVideo from '../retroVid.mp4'
-import gamelogo from '../gamelogo.png';
+import background from '../backgroundimg.png'
+
 
 
 function MyListUi(props)
@@ -186,21 +187,23 @@ function MyListUi(props)
 
 
     return(
-        <div className='vid'>
-            <video autoPlay loop muted id='video'>
+        <div className='vid' style={{ backgroundImage: `url(${background})` }}>
+            {/* <video autoPlay loop muted id='video'>
                 <source src={retroVideo} type='video/mp4'/>
 
-            </video>
+            </video> */}
+            
 
             <div className='content'>
                 
                 <div className='text-wrapper'>
                     <div className='imglogo'>
                         <h1>My List</h1>
-                        <p></p>
-                    </div>
                         
-                    <UserListTable data={gameData} load={dataLoaded}/>
+                    </div>
+                    <div className='listtable'> 
+                        <UserListTable data={gameData} load={dataLoaded}/>
+                    </div> 
 
                     
                 </div>
