@@ -1,15 +1,29 @@
 .reg-div{
-    
-    border-radius: 45px;
+    border-radius: 35px;
+    background-color: rgba(255,255,255,0.5);
+   
 }
 
 .steamSearch{
+    display:flex;
+    padding-top: 15px;
+    padding-bottom: 15px;
     margin: auto;
-    padding-top:15px;
-    padding-bottom:15px;
+    border-radius: 35px;
+    background:transparent;
     width: 50%;
 }
 
-.form-container{
-    border-radius:45px;
+.form-container1{
+   
+    border-radius: 35px;
+    background-color: rgba(255,255,255,0.5);
+}
+
+.steamsearchButton{
+    padding-left: 10px;
+    padding-top:25px;
+}
+.steamSearchBox{
+    width:80%
 }

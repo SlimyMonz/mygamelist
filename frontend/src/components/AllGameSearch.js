@@ -33,6 +33,14 @@ class AllGameSearch extends Component
             XSeriesCheck: false,
             PS5Check: false,
             SwitchCheck: false,
+            VitaCheck:false,
+            Xbox360Check:false,
+            VRCheck:false,
+            PS3Check:false,
+            MobileCheck:false,
+            StadiaCheck: false,
+            
+            
 
            //genres
             RPGCheck: false,
@@ -285,7 +293,7 @@ class AllGameSearch extends Component
             if(this.state.RPGCheck)
             {
 
-                genreArray.push("Role Playing Game");
+                genreArray.push("Role-playing (RPG)"); //matches
 
             }
             if(this.state.FPSCheck)
@@ -300,12 +308,12 @@ class AllGameSearch extends Component
             }
             if(this.state.IndieCheck)
             {
-                genreArray.push("Indie");
+                genreArray.push("Indie");   //matches
 
             }
             if(this.state.AdventureCheck )
             {
-                genreArray.push("Adventure");
+                genreArray.push("Adventure");   //matches
                 
             }
             if(this.state.CasualCheck)
@@ -318,23 +326,23 @@ class AllGameSearch extends Component
             } 
             if(this.state.PuzzleCheck) 
             {
-                genreArray.push("Puzzle");
+                genreArray.push("Puzzle"); //matches
             } 
             if(this.state.RacingCheck)
             {
-                genreArray.push("Racing");
+                genreArray.push("Racing");  //matches
             }
             if(this.state.SimulationCheck)
             {
-                genreArray.push("Simulation");
+                genreArray.push("Simulator"); //matches
             } 
             if(this.state.SportsCheck)
             {
-                genreArray.push("Sports");
+                genreArray.push("Sport");   //matches
             } 
             if(this.state.StrategyCheck)
             {
-                genreArray.push("Strategy");
+                genreArray.push("Strategy");    //matches
             }
             if(this.state.TableTopCheck)
             {
@@ -350,7 +358,7 @@ class AllGameSearch extends Component
             } 
             if(this.state.ArcadeCheck)
             {
-                genreArray.push("Arcade");
+                genreArray.push("Arcade");  //matches
             }
             if(this.state.AutoBattlerCheck)
             {
@@ -382,7 +390,7 @@ class AllGameSearch extends Component
             } 
             if(this.state.BoardGameCheck)
             {
-                genreArray.push("Board Game");
+                genreArray.push("Card & Board Game");
             }
             if(this.state.BowlingCheck)
             {
@@ -394,7 +402,7 @@ class AllGameSearch extends Component
             }
             if(this.state.CardGameCheck)
             {
-                genreArray.push("Card Game");
+                genreArray.push("Card & Board Game");
             } 
             if(this.state.CharacterActionGameCheck) 
             {
@@ -438,7 +446,7 @@ class AllGameSearch extends Component
             }
             if(this.state.FightingCheck )
             {
-                genreArray.push("Fighting");
+                genreArray.push("Fighting");    //matches
             }
             if(this.state.FootballCheck )
             {
@@ -514,11 +522,11 @@ class AllGameSearch extends Component
             } 
             if(this.state.PinballCheck )
             {
-                genreArray.push("Pinball");
+                genreArray.push("Pinball"); //matches
             }
             if(this.state.PlatformerCheck)
             {
-                genreArray.push("Platformer");
+                genreArray.push("Platform");    //matches
             }
             if(this.state.PointClickCheck )
             {
@@ -534,7 +542,7 @@ class AllGameSearch extends Component
             }  
             if(this.state.RTSCheck )
             {
-                genreArray.push("RTS");
+                genreArray.push("Real Time Strategy (RTS)"); //matches
             }
             if(this.state.SandboxCheck)
             {
@@ -542,7 +550,7 @@ class AllGameSearch extends Component
             } 
             if(this.state.ShooterCheck )
             {
-                genreArray.push("Shooter");
+                genreArray.push("Shooter"); //matches
             }
             if(this.state.SkateboardingCheck)
             {
@@ -589,15 +597,15 @@ class AllGameSearch extends Component
             } 
             if(this.state.TriviaCheck )
             {
-                genreArray.push("Trivia");
+                genreArray.push("Quiz/Trivia"); //matches
             }
             if(this.state.TurnBasedStrategyCheck)
             {
-                genreArray.push("Turn Based Strategy");
+                genreArray.push("Turn-based strategy (TBS)"); //matches
             } 
             if(this.state.VisualNovelCheck )
             {
-                genreArray.push("Visual Novel");
+                genreArray.push("Visual Novel");    //matches
             }
             if(this.state.WalkingSimulatorCheck)
             {
@@ -611,13 +619,7 @@ class AllGameSearch extends Component
             {
                 genreArray.push("Wrestling");
             }
-
-            //need to add:  Indie, Adventure, Casual, Experimental, Puzzle, Racing, Simulation, Sports, Strategy, TableTop
-            //Action RPG, Action-Adventure, Arcade, Auto Battler,Automobile Sim, Base Building, Baseball, Basketball, Battle Royale, BMX,
-            //Board Game, Bowling, Building, Card Game, Character Action Game, Chess, Clicker, Cycling, Diplomacy, eSports, Experimental, Exploration, Farming Sim, Character Action Game, Fighting, Football, God Game,
-            // Golf, Hacking, Hidden Object, Hockey, Idler, Interactive Fiction, Management, Match 3, Medical sim, Mini Golf, Mining, MMORPG, Motocross, Open World, Outbreak Sim, Party Based RPG, Pinball, Platformer, Point & Click, Rhythm, Roguelike, RTS,
-            //Sandbox, Shooter, Skateboarding, Skating, Skiing,  Snowboarding, Soccer, Space Sim, Stealth, Strategy RPG, Survival, Tennis, Tower Defense, Trivia, Turn-Based Strategy, Visual Novel, Walking Simulator, Word Game, Wrestling
-
+  
 
             
             genre = [...genreArray];
@@ -628,14 +630,21 @@ class AllGameSearch extends Component
         {
             genre = undefined;
         }
+        
+        
+        
         //platforms check
-        if(this.state.PCCheck || this.state.PS4Check || this.state.PS5Check || this.state.XOneCheck || this.state.XSeriesCheck || this.state.SwitchCheck)
+        if(this.state.PCCheck || this.state.PS4Check || this.state.PS5Check || this.state.XOneCheck || this.state.XSeriesCheck || this.state.SwitchCheck || this.state.VitaCheck || this.state.VRCheck || this.state.Xbox360Check || this.state.MobileCheck || this.state.PS3Check || this.state.StadiaCheck)
         {
             let platformArray = [];
             if(this.state.PCCheck)
             {
 
-                platformArray.push("PC");
+                platformArray.push("PC (Microsoft Windows)");
+                
+                platformArray.push("Linux");
+                platformArray.push("Mac");
+
             
             }
             if(this.state.PS4Check)
@@ -661,6 +670,41 @@ class AllGameSearch extends Component
             if(this.state.SwitchCheck)
             {
                 platformArray.push("Nintendo Switch");
+            }
+            if(this.state.SwitchCheck)
+            {
+                platformArray.push("Nintendo Switch");
+            }
+            if(this.state.VitaCheck)
+            {
+                platformArray.push("PlayStation Vita");
+            } 
+            if(this.state.VRCheck)
+            {
+                platformArray.push("Windows Mixed Reality");
+                platformArray.push("SteamVR");
+                platformArray.push("Daydream");
+                platformArray.push("PlayStation VR");
+                platformArray.push("Oculus Quest");
+                platformArray.push("Oculus Rift");
+                platformArray.push("Gear VR");
+            } 
+            if(this.state.Xbox360Check)
+            {
+                platformArray.push("Xbox 360");
+            }  
+            if(this.state.MobileCheck)
+            {
+                platformArray.push("Android");
+                platformArray.push("iOS");
+            } 
+            if(this.state.PS3Check)
+            {
+                platformArray.push("PlayStation 3");
+            }
+            if(this.state.StadiaCheck)
+            {
+                platformArray.push("Google Stadia");
             }
             platform = [...platformArray];
             //alert("this is platform, not platarray " + platform);
@@ -798,13 +842,14 @@ class AllGameSearch extends Component
 
                         <Container className="checkBoxes">
                             <Row xxl={4}>
-                                <Col>Platform</Col>
-                                <Col>Genre</Col>
+                                {/* <Col>Platform</Col> */}
+                                {/* <Col>Genre</Col> */}
                                 
                             </Row>
 
                             <Row xxl={4}>
                                 <Col xs lg="9"> 
+                                <label>Platform</label>
                                     <div className='checkboxPlat' id="checkboxPlatforms">
                                         <Form.Group className="mb-3 w-50" controlId="formPlatformCheckbox">
 
@@ -833,10 +878,37 @@ class AllGameSearch extends Component
                                                         onChange ={e => {this.setState({SwitchCheck: e.target.checked});}}
                                                         checked={this.state.SwitchCheck}
                                             />
+                                            <Form.Check type="checkbox" id = "VitaCheck" label="PlayStation Vita"
+                                                        onChange ={e => {this.setState({VitaCheck: e.target.checked});}}
+                                                        checked={this.state.VitaCheck}
+                                            />
+                                           <Form.Check type="checkbox" id = "Xbox360Check" label="Xbox 360"
+                                                        onChange ={e => {this.setState({Xbox360Check: e.target.checked});}}
+                                                        checked={this.state.Xbox360Check}
+                                            />
+                                            <Form.Check type="checkbox" id = "VRCheck" label="Virtual Reality"
+                                                        onChange ={e => {this.setState({VRCheck: e.target.checked});}}
+                                                        checked={this.state.VRCheck}
+                                            />
+                                            <Form.Check type="checkbox" id = "PS3Check" label="PlayStation 3"
+                                                        onChange ={e => {this.setState({PS3Check: e.target.checked});}}
+                                                        checked={this.state.PS3Check}
+                                            />
+                                            <Form.Check type="checkbox" id = "MobileCheck" label="Mobile"
+                                                        onChange ={e => {this.setState({MobileCheck: e.target.checked});}}
+                                                        checked={this.state.MobileCheck}
+                                            />
+                                            <Form.Check type="checkbox" id = "StadiaCheck" label="Google Stadia"
+                                                        onChange ={e => {this.setState({StadiaCheck: e.target.checked});}}
+                                                        checked={this.state.StadiaCheck}
+                                            />
+     
+   
                                         </Form.Group>
                                     </div>
                                 </Col>
                                 <Col xs lg="9"> 
+                                <label>Genre</label>
                                     <div className='checkboxGen' id="checkboxGenres">
                                         <Form.Group className="mb-3 w-50" controlId="formGenreCheckbox">
                                             <Form.Check type="checkbox" id = "RPGCheck" label="RPG"
@@ -876,7 +948,7 @@ class AllGameSearch extends Component
                                                         onChange ={e => {this.setState({RacingCheck: e.target.checked});}}
                                                         checked={this.state.RacingCheck}
                                             />
-                                            <Form.Check type="checkbox" id = "SimulationCheck" label="Simulation"
+                                            <Form.Check type="checkbox" id = "SimulationCheck" label="Simulator"
                                                         onChange ={e => {this.setState({SimulationCheck: e.target.checked});}}
                                                         checked={this.state.SimulationCheck}
                                             />
@@ -1083,7 +1155,7 @@ class AllGameSearch extends Component
                                                         onChange ={e => {this.setState({RoguelikeCheck: e.target.checked});}}
                                                         checked={this.state.RoguelikeCheck}
                                             />
-                                            <Form.Check type="checkbox" id = "RTSCheck" label="RTS"
+                                            <Form.Check type="checkbox" id = "RTSCheck" label="Real Time Strategy"
                                                         onChange ={e => {this.setState({RTSCheck: e.target.checked});}}
                                                         checked={this.state.RTSCheck}
                                             />
@@ -1139,7 +1211,7 @@ class AllGameSearch extends Component
                                                         onChange ={e => {this.setState({TowerDefenseCheck: e.target.checked});}}
                                                         checked={this.state.TowerDefenseCheck}
                                             />
-                                            <Form.Check type="checkbox" id = "TriviaCheck" label="Trivia"
+                                            <Form.Check type="checkbox" id = "TriviaCheck" label="Quiz/Trivia"
                                                         onChange ={e => {this.setState({TriviaCheck: e.target.checked});}}
                                                         checked={this.state.TriviaCheck}
                                             />
@@ -1168,7 +1240,8 @@ class AllGameSearch extends Component
                                     </div>
                                 </Col>
                             </Row>
-                                    {this.state.message}
+                                    {/* need to make this into a pop up modal to display message */}
+                                    {this.state.message} 
                                     <div id="gameFormat">{this.state.gameListString} </div>
                                     
                         </Container>

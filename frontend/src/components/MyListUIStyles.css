@@ -1,13 +1,7 @@
-#video{
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: -1; 
- }
+
  
  /*this group of styling affects the video being displayed*/
- .vid{
+ .vidList{
      height: 120vh;
      width: 100%;
      object-fit: contain;
@@ -16,7 +10,7 @@
 
  }
  
- .vid .contentList{
+ .vidList .contentList{
      text-align: center;
      position: absolute;
      margin: auto;
@@ -26,14 +20,14 @@
      
  }
  
- .vid .contentList h1{
+ .vidList .contentList h1{
      font-size: 4rem;
      font-weight: 700;
      color: #fff;
      
  }
  
- .vid p{
+ .vidList p{
      font-size: 1.8rem;
      font-weight: 600;
      text-transform: uppercase;
@@ -41,7 +35,7 @@
      color: #fff;
  }
  
- .vid .btn-home{
+ /* .vid .btn-home{
      margin: 1rem .2rem;
      background: #FFb7FF;
      font-weight: 500;
@@ -50,7 +44,7 @@
  .vid .btn-home:hover{
   
      background: #CAFF8A;
- }
+ } */
  
  .text-wrapperList{
      background: rgba(0,0,0,0.8);
