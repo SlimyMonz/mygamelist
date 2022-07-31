@@ -3,6 +3,7 @@ import { Table, Column, HeaderCell, Cell } from 'rsuite-table';
 import 'rsuite-table/dist/css/rsuite-table.css';
 import GameShowModal from '../Modals/GameShowModal';
 import {useLocation, useNavigate} from 'react-router-dom';
+
 import { FaTrashAlt, FaPlus } from "react-icons/fa";
 import { GiBroadsword } from "react-icons/gi";
 import './UserListTableStyles.css';
@@ -293,7 +294,7 @@ const UserListTable = (props) =>
                 {showModal && variable}
 
                 {dataLoaded? <Table 
-                height={401}
+                height={600}
                 autoHeight= {false}
                 fillHeight= {false}
                 wordWrap="break-word"
@@ -335,7 +336,7 @@ const UserListTable = (props) =>
                 </Table>
                 :
                 <Table 
-                height={401}
+                height={600}
                 autoHeight= {false}
                 fillHeight= {false}
                 wordWrap="break-word"

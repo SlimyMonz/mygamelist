@@ -2,11 +2,13 @@
 
 *{
     color:#000;
+    font-weight: 500;
 }
 
 .form-container{
     border-radius: 35px;
-    background-color: rgba(255,255,255,0.8);
+    background-color: rgba(255,255,255,0.5);
+    padding-bottom:5rem;
     
 }
 
@@ -29,12 +31,25 @@
     width: 50%;
 }
 .checkboxPlat{
+    padding-top:5px;
+    padding-left:10px;
     padding-right: 15px;
     margin:auto;
+    width:100%;
+    background:rgba(0,0,0,0.1);
+    border:#000 solid 1px;
+    border-radius:5px;
+    
 }
 
 .checkboxGen{
+    padding-top:5px;
+    padding-left:10px;
     margin: auto;
+    width:100%;
+    background:rgba(0,0,0,0.1);
+    border:#000 solid 1px;
+    border-radius:5px;
 }
 
 .searchButton{
