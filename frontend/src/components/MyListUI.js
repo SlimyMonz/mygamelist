@@ -202,7 +202,7 @@ function MyListUi(props)
 
 
     return(
-        <div className='vid' style={{ backgroundImage: `url(${background})` }}>
+        <div className='vidList' style={{ backgroundImage: `url(${background})` }}>
             {/* <video autoPlay loop muted id='video'>
                 <source src={retroVideo} type='video/mp4'/>
 
