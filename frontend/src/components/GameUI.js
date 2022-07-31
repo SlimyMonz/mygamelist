@@ -120,25 +120,45 @@ function GameUI(props)
             //we have a game already
             if(isActive)
                 {
-                    console.log(location.state.data[0]);
-                    console.log(location.state.data.name);
-                    console.log(location.state.data.platforms);
-                    console.log(location.state.data.genre);
-                    console.log(location.state.data.image);
-                    console.log(location.state.data.description);
+                    //we got here from the mylist page
+                    if(location.state.data === undefined)
+                    {
+                        console.log(location.state.dataList);
+                        console.log(location.state.dataList.name);
+                        console.log(location.state.dataList.platforms.join(', '));
+                        console.log(location.state.dataList.genres.join(', '));
+                        console.log(location.state.dataList.image);
+                        console.log(location.state.dataList.description);
+                        
                     
-                    // setDynamicGame(<div>name: {location.state.data.name}<br/>
-                    //                     platforms: {location.state.data.platforms}<br/>
-                    //                     genre: {location.state.data.genre}<br/>
-                    //                     img: <br/><img src={location.state.data.image} alt="game cover img"/><br/>
-                    //                 </div>)
 
-                    setName(location.state.data.name);
-                    setPlat(location.state.data.platforms);
-                    setGenres(location.state.data.genre);
-                    setImage(location.state.data.image);
-                    setDes(location.state.data.description);
-                    setData(location.state.data);
+                        setName(location.state.dataList.name);
+                        setPlat(location.state.dataList.platforms.join(', '));
+                        setGenres(location.state.dataList.genres.join(', '));
+                        setImage(location.state.dataList.image);
+                        setDes(location.state.dataList.description);
+                        setData(location.state.dataList);
+                    }
+                    else //we got here from the search page/individual game modal
+                    {
+                        
+                        console.log(location.state.data);
+                        console.log(location.state.data.name);
+                        console.log(location.state.data.platforms);
+                        console.log(location.state.data.genre);
+                        console.log(location.state.data.image);
+                        console.log(location.state.data.description);
+                        
+                    
+
+                        setName(location.state.data.name);
+                        setPlat(location.state.data.platforms);
+                        setGenres(location.state.data.genre);
+                        setImage(location.state.data.image);
+                        setDes(location.state.data.description);
+                        setData(location.state.data);
+                    }
+                    
                     
                 }
             

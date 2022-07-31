@@ -6,6 +6,8 @@ import RegisterModal from './Modals/RegisterModal';
 import AllGameSearch from './AllGameSearch';
 import jwt_decode from "jwt-decode";
 import './GameSearchUIStyles.css'
+import Toast from 'react-bootstrap/Toast';
+import ToastContainer from 'react-bootstrap/ToastContainer';
 
 
 
@@ -22,6 +24,9 @@ function GameSearchUI()
     const [gameList,setGameList] = useState('');
     const [gamesList,setGamesList] = useState('');
 
+    const [toastShow,setToast] = useState(false);
+    const [toastMsg,setMsg] = useState('');
+    
 
     let ud = localStorage.getItem('user');
     
@@ -98,7 +103,9 @@ function GameSearchUI()
 
             if (response.status === 404)
             {
-                alert('Games failed to add to Games database');
+                //alert('Games failed to add to Games database');
+                setMsg("Games failed to add to Games database");
+                setToast(true);
                 return;
             }
 
@@ -159,18 +166,24 @@ function GameSearchUI()
                 //No games to import or add to database
                 else if (newGameData.length === 0 && gameinDb.length === 0) 
                 {
-                    alert('No games to add');
+                    //alert('No games to add');
+                    setMsg("No games to add");
+                    setToast(true);
                     return;
                 }
             })();
                 
-            alert('Steam games added to list');
+            //alert('Steam games added to list');
+            setMsg("Your Steam games have been added to your personal list!");
+            setToast(true);
             return;
         }
         catch(e)
         {
-            alert(e.toString());
-            setResults(e.toString());
+            //alert(e.toString());
+            //setResults(e.toString());
+            setMsg("Invalid ID!");
+            setToast(true);
         }
     };
 
@@ -226,6 +239,10 @@ function GameSearchUI()
         {
             alert(e.toString());
         }
+    }
+    const handleClose = () =>
+    {
+        setToast(false);
     }
 
     /*  Will loop and call the Steam getGameInfo API. Has been replaced with the igdb
@@ -298,7 +315,7 @@ function GameSearchUI()
                                 <input className="form-control" type="text" id="requestSteamIDText" placeholder="Enter your Steam ID" ref={(c) => steamId = c}/>
                             </div>
                             <div className='steamsearchButton'>
-                                <Button variant="primary" id="requestSteamIDBtn" onClick={{getGamesList}}>Get Games</Button>
+                                <Button variant="primary" id="requestSteamIDBtn" onClick={getGamesList}>Get Games</Button>
                             </div>
                 </div>
                     
@@ -325,6 +342,15 @@ function GameSearchUI()
 
     return(
         <div>
+            <ToastContainer className="p-3" position='middle-start'>
+                    <Toast onClose={() => {handleClose()}} show={toastShow} delay={5000} autohide>
+                        <Toast.Header>
+                        <strong className="me-auto">Alert!</strong>
+                        <small></small>
+                        </Toast.Header>
+                        <Toast.Body>{toastMsg}</Toast.Body>
+                    </Toast>
+                </ToastContainer>
             {dynamic_game_search}
         </div>
     );

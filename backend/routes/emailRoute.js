@@ -52,7 +52,7 @@ email_router.post('/passwordReset', async (req, res) =>
         const db = client.db("MyGameListDB");
         const getUserInfo = await db.collection('Users').find({email:email}).toArray();
 
-        console.log("we got past da mongo");
+        //console.log("we got past da mongo");
 
         if (getUserInfo.length > 1)
         {
@@ -66,9 +66,9 @@ email_router.post('/passwordReset', async (req, res) =>
         let id = getUserInfo[0]._id;
         let username = getUserInfo[0].userName;
 
-        console.log("we got past da checko");
-        console.log(id);
-        console.log(username);
+        //console.log("we got past da checko");
+        //console.log(id);
+        //console.log(username);
 
         const msg = {
             from: 'mygamelistapp@gmail.com',

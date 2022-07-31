@@ -750,7 +750,7 @@ class AllGameSearch extends Component
  
             if (response.status === 404)
             {
-                alert('No game found');
+                //alert('No game found');
                 return;
             }
 
@@ -765,10 +765,10 @@ class AllGameSearch extends Component
             {
                 //console.log(searchList[i].platforms);
                 //console.log(searchList[i].platforms[0]);
-                resultText += searchList[i].name;
-                resultText += " \n platforms: "+ searchList[i].platforms + "\n";
-                resultText += " genre: "+ searchList[i].genres + "\n";
-                resultText += " release: "+ searchList[i].release + "\n";
+                // resultText += searchList[i].name;
+                // resultText += " \n platforms: "+ searchList[i].platforms + "\n";
+                // resultText += " genre: "+ searchList[i].genres + "\n";
+                // resultText += " release: "+ searchList[i].release + "\n";
 
                 //platform string conversion
                 //platformArray.join(', ');
@@ -798,7 +798,7 @@ class AllGameSearch extends Component
            
             if(this._isMounted) //clean up memory leak?
             {
-                this.setMessage('Game(s) have been retrieved\n');
+                //this.setMessage('Game(s) have been retrieved\n');
                 //this.setState({gameListString: resultText});
                 this.setState({gameList: resultGames});
                 

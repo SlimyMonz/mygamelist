@@ -7,6 +7,8 @@ import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import jwt_decode from "jwt-decode";
 import './LoginModalStyles.css';
 import { Link } from 'react-router-dom';
+import Toast from 'react-bootstrap/Toast';
+import ToastContainer from 'react-bootstrap/ToastContainer';
 
 
 class LoginModal extends Component 
@@ -26,6 +28,8 @@ class LoginModal extends Component
             success: false,
             resetShow: false,
             email: '',
+            toastShow: false,
+            toastMsg: ""
         }
     }
 
@@ -61,7 +65,15 @@ class LoginModal extends Component
             {
                 
                 //alert(await response.text());
-                this.setMessage('User/Password combination incorrect');
+                if (response.status === 401)
+                {
+                    this.setMessage('Your account is not verified');
+                }
+                else
+                {
+                    this.setMessage('Invalid User/Password combination');
+                }
+                
                 return;
             }
 
@@ -71,7 +83,7 @@ class LoginModal extends Component
             //alert(res.token);
             if(!res.token)
             {
-                this.setMessage('User/Password combination incorrect');
+                //this.setMessage('User/Password combination incorrect');
                 //alert("local storage is: " + localStorage.getItem('user_data'));
             }
             else
@@ -128,7 +140,9 @@ class LoginModal extends Component
             if (emailRes.status === 404)
             {
                 //alert("404");
-                alert(await emailRes.text());
+                //alert(await emailRes.text());
+                this.setState({toastMsg: "We're sorry but your email was not found"});
+                this.setState({toastShow: true});
                 return;
             }
 
@@ -141,7 +155,9 @@ class LoginModal extends Component
             }
             if (emailRes.status === 200)
             {
-                alert(await emailRes.text());
+                this.setState({toastMsg: "We've sent a password reset email to " + this.state.email});
+                this.setState({toastShow: true});
+                //alert(await emailRes.text());
                 return;
             }
 
@@ -178,7 +194,7 @@ class LoginModal extends Component
             //const currentPath = window.location.pathname;
             //window.location.href = currentPath; 
             //alert(window.location.href);
-            //window.location.href = '/games';
+            window.location.href = '/games';
         }
         else
         {
@@ -312,6 +328,15 @@ class LoginModal extends Component
                         <Button variant="primary" onClick={() => {this.handleReset();}}>Submit</Button>
                     </Modal.Footer>
                 </Modal>
+                <ToastContainer className="p-3" position='middle-start'>
+                    <Toast onClose={() => this.setState({toastShow: false})} show={this.state.toastShow} delay={5000} autohide>
+                        <Toast.Header>
+                        <strong className="me-auto">Alert!</strong>
+                        <small></small>
+                        </Toast.Header>
+                        <Toast.Body>{this.state.toastMsg}</Toast.Body>
+                    </Toast>
+                </ToastContainer>
             </div>
         )
     };

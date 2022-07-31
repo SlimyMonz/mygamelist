@@ -3,6 +3,8 @@ import {Modal, Button} from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Validate from './Validate';
+import Toast from 'react-bootstrap/Toast';
+import ToastContainer from 'react-bootstrap/ToastContainer';
 
 class RegisterModal extends Component
 {
@@ -32,7 +34,9 @@ class RegisterModal extends Component
             dynamicFailureFname: false,
             dynamicFailureLname: false,
             dynamicFailureUsername: false,
-            buttonDisabled: false
+            buttonDisabled: false,
+            toastShow: false,
+            toastMsg: ""
         }
     }
 
@@ -92,13 +96,21 @@ class RegisterModal extends Component
                 if (emailRes.status === 404)
                 {
                     alert(await emailRes.text());
+                    
                 }
     
                 //let res = JSON.parse(await response.text());
     
                 //alert(res.id);
                 //alert("res status: " + res.status);
-                this.setMessage('');
+                if (emailRes.status === 200)
+                {
+                
+                    this.setState({toastMsg: "You've regisered! An email has been sent to verify your account!"});
+                    this.setState({toastShow: true});
+                    
+                }
+                
                 this.state.success = true;
             }
 
@@ -145,7 +157,7 @@ class RegisterModal extends Component
         if(this.state.success)
         {
             //todo: turn this into a toast?
-            alert("you registered!");
+            //alert("you registered!");
             this.state.success = false;
             this.props.onClick({msg: 'Modal Sumbitted'}); //dis hides da modal
             this.setState(
@@ -402,6 +414,15 @@ class RegisterModal extends Component
                         <Button variant="primary" disabled={this.state.buttonDisabled} onClick={() => {this.onSubmit();}}>Submit</Button>
                     </Modal.Footer>
                 </Modal>
+                <ToastContainer className="p-3" position='middle-start'>
+                    <Toast onClose={() => this.setState({toastShow: false})} show={this.state.toastShow} delay={5000} autohide>
+                        <Toast.Header>
+                        <strong className="me-auto">Alert!</strong>
+                        <small></small>
+                        </Toast.Header>
+                        <Toast.Body>{this.state.toastMsg}</Toast.Body>
+                    </Toast>
+                </ToastContainer>
             </div>
         );
     }
