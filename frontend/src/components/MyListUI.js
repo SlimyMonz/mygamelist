@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useLayoutEffect } from 'react';
 import {Navigate, useLocation, useNavigate} from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import ModalComponent from './Modals/ModalComponent';
@@ -19,12 +19,14 @@ function MyListUi(props)
     //console.log(props.loggedIn);
     
     const rendered = false;
-    // let navigate = useNavigate();
+    let navigate = useNavigate();
+   
     // //let dynamicGame;
     // const [dynamicGame,setDynamicGame] = useState(<div></div>);
     
     const [gameData, setData] = useState([]);
     const [dataLoaded, setLoad] = useState(false);
+    const [list, setList] = useState(<div></div>);
     // const [platforms, setPlat] = useState('');
     // const [genres, setGenres] = useState('');
     // const [image, setImage] = useState('');
@@ -85,7 +87,7 @@ function MyListUi(props)
                         //console.log(txt);
                         let games = JSON.parse(txt);
                         
-                        let allGames = []
+                    
                         console.log(games);
                         console.log(games[0]);
                         console.log(games[0]._id);
@@ -97,32 +99,45 @@ function MyListUi(props)
                         console.log(games[0].platforms);
                         console.log(games[0].genres);
         
+                        let sortedGames = games.sort((first, second)=>second.personalRating-first.personalRating);
+                        let allGames = [];
+                
+                        console.log("hello" + sortedGames);
                         if(isActive)
                         {
+                            
                             // for( var i=0; i< games.length; i++ )
                             // {
-                            //     allGames.push(games[i]);
+                                
+                            //     allGames.push(sortedGames[i]);
+                            //     console.log("helooo for sure again");
                             //     console.log(allGames[i].platforms);
+                                
 
                             //     //this doesn't work if not all of our games have a platform/genre array
-                            //     allGames[i].platforms = games[i].platforms.join(', ');
-                            //     allGames[i].genre = games[i].genres.join(', ');
+                            //     allGames[i].platforms = sortedGames[i].platforms.join(', ');
+                            //     allGames[i].genre = sortedGames[i].genres.join(', ');
+                            //     allGames[i].index = i;
 
                             //     console.log(allGames[i].name);
                             //     console.log(allGames[i].platforms);
                             //     console.log(allGames[i].genres);
                             //     console.log(allGames[i]._id);
+                            //     console.log("index babeeee " + allGames[i].index);
                             // }
-                            setData(games);
+                            setData(sortedGames);
+                            //setList(<UserListTable data={gameData} load={dataLoaded}/>);
                             setLoad(true);
+
             
                         }
                     }
                     catch(e)
                     {
-                        alert("error!");
-                        alert(e.toString());
-                        window.location.href = '/games';
+                        //alert("error!");
+                        //alert(e.toString());
+                        console.log("does this happen tokennnn");
+                        navigate("/", {state: { message: "token" }});
                     }
                 })();   
             }
@@ -138,7 +153,7 @@ function MyListUi(props)
             isActive = false;
         };
 
-    }, [rendered]);
+    }, [setData]);
 
     const app_name = 'my-game-list-front'
 
@@ -198,6 +213,7 @@ function MyListUi(props)
                 
                 <div className='text-wrapperList'>
                     <div className='imglogo'>
+                        {/* <h1>My List {'('} {gameData.length} games {')'}</h1> */}
                         <h1>My List</h1>
                         
                     </div>
@@ -205,13 +221,14 @@ function MyListUi(props)
                         <UserListTable data={gameData} load={dataLoaded}/>
                     </div> 
 
-                    
                 </div>
             </div>
-            
-
         </div>
-    //     <div>
+    );
+
+}
+
+//     <div>
     //     {/* <Button variant="dark" class="buttons"
     //                     onClick={()=> goBack()}>Back</Button> */}
     //     <br/>
@@ -221,10 +238,14 @@ function MyListUi(props)
     //     <br/>
     //     <br/>
     //     <UserListTable data={gameData} load={dataLoaded}/>
+     /* {!dataLoaded ? 
+        <div></div>
+        :
+        <div>{list}</div>
+        } */
         
     //    </div>
-    );
-
-}
+ 
 
 export default MyListUi
+

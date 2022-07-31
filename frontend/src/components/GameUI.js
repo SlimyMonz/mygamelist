@@ -82,7 +82,7 @@ function GameUI(props)
                 }
                 let txt = await response.text();
                 let searchList = JSON.parse(txt);
-                console.log(typeof(searchList[0])); 
+                console.log(searchList[0]); 
                 console.log(searchList[0].name);
                 console.log(searchList[0].image);
                 console.log(searchList[0].description);
@@ -120,12 +120,13 @@ function GameUI(props)
             //we have a game already
             if(isActive)
                 {
+                    console.log(location.state.data[0]);
                     console.log(location.state.data.name);
                     console.log(location.state.data.platforms);
                     console.log(location.state.data.genre);
                     console.log(location.state.data.image);
                     console.log(location.state.data.description);
-                    console.log(typeof(location.state.data));
+                    
                     // setDynamicGame(<div>name: {location.state.data.name}<br/>
                     //                     platforms: {location.state.data.platforms}<br/>
                     //                     genre: {location.state.data.genre}<br/>

@@ -26,7 +26,7 @@ const MyListPage = () =>
         }
         else
         {
-            navigate("/", {state: { email: "hello, I'm an email" }});
+            navigate("/", {state: { message: "login" }});
         }
 
     }, [rendered]);

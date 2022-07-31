@@ -69,7 +69,7 @@ class GameShowModal extends Component
             <div>
                  <Modal show={this.state.show} onHide={() => {this.handleClose()}} className='gameModal-outer'>
                     <Modal.Header closeButton>
-                        <Modal.Title >
+                        <Modal.Title className='modal-title'>
                             {this.props.rowData.name}
                         </Modal.Title>
                     </Modal.Header>

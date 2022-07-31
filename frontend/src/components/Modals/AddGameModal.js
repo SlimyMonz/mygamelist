@@ -357,7 +357,7 @@ class AddGameModal extends Component
         this.setState({
             show: false
         });
-        this.props.handleBoolean();
+        this.props.handleBoolean(data, stringRating);
         //alert(data.id);
         //window.location.href = '/games/' + data.name;
         //this.props.router.navigate('/games/' + data.name, {state: {data: data}});
