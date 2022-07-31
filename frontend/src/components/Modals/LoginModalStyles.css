@@ -1,6 +1,9 @@
 .pw{
-   color:red;
-    font-size: 0.9rem;
+   /*color:red;*/
+    color:rgb(5, 28, 5);
+    font-size: 1rem;
     margin:auto;
     padding-top:0;
+    cursor: pointer;
+    text-decoration: underline;
 }

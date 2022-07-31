@@ -22,7 +22,10 @@ class LoginModal extends Component
             userName: '',
             password: '',
             message: '',
-            success: false
+            messageReset: '',
+            success: false,
+            resetShow: false,
+            email: '',
         }
     }
 
@@ -104,6 +107,59 @@ class LoginModal extends Component
             alert(e.toString());
         }    
     };
+    doReset = async () => 
+    {
+        //event.preventDefault();
+        //alert("user: " + this.state.userName + " pass: " + this.state.password);
+        let obj = {email:this.state.email};
+        let emailBody = JSON.stringify(obj);
+
+        try
+        {    
+            let build = this.buildPath('api/email/passwordReset');
+            //alert(build);
+            //alert(this.state.email);
+
+            const emailRes = await fetch(this.buildPath('api/email/passwordReset'),
+                {method:'POST',body:emailBody,headers:{'Content-Type': 'application/json'}});
+
+                //alert("past the fetch");
+                
+            if (emailRes.status === 404)
+            {
+                //alert("404");
+                alert(await emailRes.text());
+                return;
+            }
+
+            if (emailRes.status !== 200 )
+            {
+                
+                //alert(await response.text());
+                //alert("not 200");
+                return;
+            }
+            if (emailRes.status === 200)
+            {
+                alert(await emailRes.text());
+                return;
+            }
+
+        
+            //let res = JSON.parse(await emailRes.text());
+
+            
+        }
+        catch(e)
+        {
+            alert(e.toString());
+            return;
+        }    
+        //alert("why u refreshing");
+    };
+
+
+    
 
     setMessage = (msg) =>{
         this.setState({ message: msg})
@@ -122,7 +178,7 @@ class LoginModal extends Component
             //const currentPath = window.location.pathname;
             //window.location.href = currentPath; 
             //alert(window.location.href);
-            window.location.href = '/games';
+            //window.location.href = '/games';
         }
         else
         {
@@ -144,6 +200,12 @@ class LoginModal extends Component
         this.setMessage('');
 
     }
+    onHideReset = () =>{
+        
+        this.setState({email: ''});
+        this.setState({resetShow: false});
+
+    }
 
     onkeyPress = (e) =>{
 
@@ -152,6 +214,32 @@ class LoginModal extends Component
            this.onSubmit();
         }
 
+    }
+    onkeyPressReset = (e) =>{
+
+        //e.preventDefault();
+        if(e.keyCode === 13) 
+        {
+           this.handleReset();
+           e.preventDefault();
+        }
+        
+
+    }
+    handleReset = async () =>{
+        //alert("start");
+        console.log(this.state.email);
+        //call password reset api
+        await this.doReset();
+        //alert("did we reset yet?");
+        this.onHideReset();
+        //this.setState({resetShow: false});
+    }
+    handleResetShow = () =>{
+        //alert("hello");
+        this.onHide();
+        this.setState({resetShow: true});
+        console.log("does this happen");
     }
 
     render()
@@ -186,13 +274,42 @@ class LoginModal extends Component
                                 </FloatingLabel>
                             </Form.Group>
                         </Form>
-                        <a href="/passwordReset" class="tooltip-test" title="Tooltip" className='pw'>Forgot Password?</a>  
+                        Forgot Password? <a class="tooltip-test" onClick={() => {this.handleResetShow();}} title="Clicky" className='pw'>Reset Here</a>  
                         
                     </Modal.Body>
                     <Modal.Footer>
                         {/* <FloatingLabel className='alert'>Forgot Password?</FloatingLabel> */}
                         <Button variant="secondary" onClick={() => {this.onHide();}}>Close</Button>
                         <Button variant="primary" onClick={() => {this.onSubmit();}}>Submit</Button>
+                    </Modal.Footer>
+                </Modal>
+
+                {/* password reset modal */}
+                <Modal show={this.state.resetShow} onHide={() => {this.onHideReset();console.log("ayy");}}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>
+                            PasswordReset
+                        </Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <Form>
+                            <Form.Group className ="mb-3" controlid="emailInput">
+                                <FloatingLabel label = "Email">
+                                    <Form.Control type = "text" placeholder="email" value ={this.state.email}
+                                                onChange ={e => this.setState({ email: e.target.value})}
+                                                onKeyDown={this.onkeyPressReset}
+                                    />
+                                    <Form.Text id="passwordHelp" muted> {/*to do: aria-describedby for assisted technologies */}
+                                        {this.state.messageReset}
+                                    </Form.Text>
+                                </FloatingLabel>
+                            </Form.Group>
+                        </Form>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        {/* <FloatingLabel className='alert'>Forgot Password?</FloatingLabel> */}
+                        <Button variant="secondary" onClick={() => {this.onHideReset();}}>Close</Button>
+                        <Button variant="primary" onClick={() => {this.handleReset();}}>Submit</Button>
                     </Modal.Footer>
                 </Modal>
             </div>

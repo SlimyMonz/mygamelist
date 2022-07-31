@@ -47,9 +47,12 @@ email_router.post('/passwordReset', async (req, res) =>
     try
     {     
         let email = req.body.email;
+        console.log(req.body.email)
 
         const db = client.db("MyGameListDB");
         const getUserInfo = await db.collection('Users').find({email:email}).toArray();
+
+        console.log("we got past da mongo");
 
         if (getUserInfo.length > 1)
         {
@@ -62,6 +65,10 @@ email_router.post('/passwordReset', async (req, res) =>
 
         let id = getUserInfo[0]._id;
         let username = getUserInfo[0].userName;
+
+        console.log("we got past da checko");
+        console.log(id);
+        console.log(username);
 
         const msg = {
             from: 'mygamelistapp@gmail.com',
@@ -79,16 +86,19 @@ email_router.post('/passwordReset', async (req, res) =>
         {
             if(error) 
             {
+                //console.log("error?");
                 return res.status(404).send('Email not found');
             }
             else
             {
+                //console.log("yes?")
                 return res.status(200).send('Email sent to: ' + email);
             }
         });
     }
     catch
     {
+        //console.log("actual error");
         res.status(404).send('Error sending email');
     }
 })
