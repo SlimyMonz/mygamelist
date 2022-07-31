@@ -36,6 +36,8 @@
     text-transform: uppercase;
     margin-bottom: 1.6rem;
     color: #fff;
+    align-items: center;
+    text-align: center;
 }
 
 .vid .btn-home{
