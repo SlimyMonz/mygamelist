@@ -36,3 +36,15 @@
 .checkboxGen{
     margin: auto;
 }
+
+.searchButton{
+    padding-left: 10px;
+}
+.GameSearch{
+    display:flex;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+.searchbox{
+    padding-top:10px;
+}

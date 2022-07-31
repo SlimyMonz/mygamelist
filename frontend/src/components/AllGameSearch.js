@@ -783,11 +783,17 @@ class AllGameSearch extends Component
             <div className="form-container">
                 <form>
                     <div className='gameSearchBox'>
-                        <label for="Name"></label>
-                        <input className="form-control" type="text" id="Name" placeholder="Name" value ={this.state.gameName} autoFocus
-                                                            onChange ={e => this.setState({ gameName: e.target.value})}
-                                                            onKeyDown={this.onkeyPress}/>
-                        <Button variant="primary" id="AllGamesSearch" onClick={() => this.onSubmit()}>Search</Button>
+                        <div className='GameSearch'>
+                            {/* <div className='searchbox'> */}
+                                <label for="Name"></label>
+                                <input className="form-control" type="text" id="Name" placeholder="Name" value ={this.state.gameName} autoFocus
+                                                                onChange ={e => this.setState({ gameName: e.target.value})}
+                                                                onKeyDown={this.onkeyPress}/>
+                            {/* </div> */}
+                            <div className='searchButton'>
+                                <Button variant="primary" id="AllGamesSearch" onClick={() => this.onSubmit()}>Search</Button>
+                            </div>
+                        </div>
 
 
                         <Container className="checkBoxes">

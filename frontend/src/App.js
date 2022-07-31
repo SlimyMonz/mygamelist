@@ -11,6 +11,7 @@ import MainPage from './pages/MainPage';
 import AboutPage from './pages/About';
 import GamePage from './pages/GamePage';
 import MyListPage from './pages/MyListPage';
+import PasswordResetPage from './pages/PasswordResetPage';
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
           <Route path="/games" index element={<GamesPage />} />
           <Route path="/mylist" index element={<MyListPage />} />
           <Route path="/games/:gameName" element={<GamePage />}/>
+          <Route path="/passwordReset" element={<PasswordResetPage />}/>
         </Routes>
       </BrowserRouter>
       

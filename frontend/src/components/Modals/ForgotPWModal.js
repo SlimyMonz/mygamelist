@@ -5,11 +5,12 @@ import {Modal, Button} from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import jwt_decode from "jwt-decode";
-import './LoginModalStyles.css';
-import { Link } from 'react-router-dom';
+
+//forgot password modal that comes up after hitting forgot password in the login modal
+//forgotPW API requires userid and the new password
 
 
-class LoginModal extends Component 
+class ForgotPWModal extends Component 
 {
 
     constructor(props)
@@ -36,29 +37,29 @@ class LoginModal extends Component
         }
         else
         {        
-            return 'http://localhost:5000/' + route;
+            return 'http://localhost:4000/' + route; //change this to 5000
         }
         
     }
 
-    doLogin = async () => 
+    doReset = async () => 
     {
         //event.preventDefault();
         //alert("user: " + this.state.userName + " pass: " + this.state.password);
-        let obj = {userName:this.state.userName, password:this.state.password};
+        let obj = {userName:this.state.userName};
         let js = JSON.stringify(obj);
 
         try
         {    
             //let build = this.buildPath('api/login');
-            const response = await fetch(this.buildPath('api/users/login'),
+            const response = await fetch(this.buildPath('api/users/passwordReset'),
             {method:'POST',body:js,headers:{'Content-Type': 'application/json'}});
 
             if (response.status !== 200 )
             {
                 
                 //alert(await response.text());
-                this.setMessage('User/Password combination incorrect');
+                this.setMessage("We couldn't process your request.");
                 return;
             }
 
@@ -95,7 +96,7 @@ class LoginModal extends Component
                 //alert("hello: " + gimmieMoar.id + " " + gimmieMoar.firstName);
                 //fine for string but need to convert locastorage.getitem using stringify or parse
 
-                this.setMessage('');
+                this.setMessage('Password Reset');
                 this.state.success = true;
             }
         }
@@ -113,7 +114,7 @@ class LoginModal extends Component
         //console.log(this.state.userName + " " + this.state.password);
         
  
-        await this.doLogin();
+        await this.doReset();
 
         if(this.state.success)
         {
@@ -122,7 +123,7 @@ class LoginModal extends Component
             //const currentPath = window.location.pathname;
             //window.location.href = currentPath; 
             //alert(window.location.href);
-            window.location.href = '/games';
+            window.location.href = '/';
         }
         else
         {
@@ -175,7 +176,7 @@ class LoginModal extends Component
                                 </FloatingLabel>
                             </Form.Group>
                             <Form.Group className ="mb-3" controlid="bottomInput">
-                                <FloatingLabel label = "Password">
+                                <FloatingLabel label = "New Password">
                                     <Form.Control type = "password" placeholder="password" value ={this.state.password}
                                                 onChange ={e => this.setState({ password: e.target.value})}
                                                 onKeyDown={this.onkeyPress}
@@ -186,13 +187,13 @@ class LoginModal extends Component
                                 </FloatingLabel>
                             </Form.Group>
                         </Form>
-                        <a href="/passwordReset" class="tooltip-test" title="Tooltip" className='pw'>Forgot Password?</a>  
                         
                     </Modal.Body>
                     <Modal.Footer>
                         {/* <FloatingLabel className='alert'>Forgot Password?</FloatingLabel> */}
                         <Button variant="secondary" onClick={() => {this.onHide();}}>Close</Button>
                         <Button variant="primary" onClick={() => {this.onSubmit();}}>Submit</Button>
+                        {/* should display a message that confirms if the password was reset */}
                     </Modal.Footer>
                 </Modal>
             </div>
@@ -200,4 +201,4 @@ class LoginModal extends Component
     };
 }
 
-export default LoginModal;
+export default ForgotPWModal;
