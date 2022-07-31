@@ -3,6 +3,7 @@ import { Table, Column, HeaderCell, Cell } from 'rsuite-table';
 import 'rsuite-table/dist/css/rsuite-table.css';
 import GameShowModal from '../Modals/GameShowModal';
 import {useLocation, useNavigate} from 'react-router-dom';
+
 import { FaTrashAlt, FaPlus } from "react-icons/fa";
 import { GiBroadsword } from "react-icons/gi";
 import './UserListTableStyles.css';

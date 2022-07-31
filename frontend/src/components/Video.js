@@ -2,7 +2,6 @@ import React from 'react'
 import './VideoStyles.css'
 import {Link} from 'react-router-dom'
 
-import controllerVideo from '../controllerVid.mp4'
 import retroVideo from '../retroVid.mp4'
 
 
