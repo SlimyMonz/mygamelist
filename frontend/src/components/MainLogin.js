@@ -14,6 +14,7 @@ import {Link} from 'react-router-dom'
 import '../components/MainLogin.css';
 import {useLocation, useNavigate} from 'react-router-dom';
 import Toast from 'react-bootstrap/Toast';
+import ToastContainer from 'react-bootstrap/ToastContainer';
 
 
 function MainLogin()
@@ -58,16 +59,21 @@ function MainLogin()
         {
 
             //alert(location.state.email);
+            
             if(location.state.message === "login")
             {
                 setmsg("Log in to go to your personal list!");
                 setToast(true);
             }
-            else
+            else if (location.state.message === "token")
             {
                 console.log("helloooo tokennnn");
                 setmsg("Unauthorized Token! Log out and back in!");
                 setToast(true);
+            }
+            else
+            {
+                //alert("solved");
             }
             
         }
@@ -111,16 +117,18 @@ function MainLogin()
                 
                     
                 <div className='hamburger' onClick={handleClick}>
-                    {click ? (<FaTimes size={20} style={{color: '#fff'}} />) : (<FaBars size={20} style={{color: '#fff'}} />)}
+                    {click ? (<FaTimes size={20} style={{fill: '#fff'}} />) : (<FaBars size={20} style={{fill: '#fff'}} />)}
                     
                 </div>
-                <Toast onClose={() => setToast(false)} show={showToast} delay={5000} autohide>
-                    <Toast.Header>
-                    <strong className="me-auto">Alert!</strong>
-                    <small></small>
-                    </Toast.Header>
-                    <Toast.Body>{toastMsg}</Toast.Body>
-                </Toast>
+                <ToastContainer className="p-3" position='middle-start'>
+                    <Toast onClose={() => setToast(false)} show={showToast} delay={5000} autohide>
+                        <Toast.Header>
+                        <strong className="me-auto">Alert!</strong>
+                        <small></small>
+                        </Toast.Header>
+                        <Toast.Body>{toastMsg}</Toast.Body>
+                    </Toast>
+                </ToastContainer>
             </div>
         </div>
         
@@ -172,17 +180,19 @@ function MainLogin()
                 
                     
                 <div className='hamburger' onClick={handleClick}>
-                    {click ? (<FaTimes size={20} style={{color: '#fff'}} />) : (<FaBars size={20} style={{color: '#fff'}} />)}
-                    
+                    {click ? (<FaTimes size={20} style={{fill: '#fff'}} />) : (<FaBars size={20} style={{fill: '#fff'}} />)}
                 </div>
-                <Toast onClose={() => setToast(false)} show={showToast} delay={5000} autohide>
-                    <Toast.Header>
-                    <strong className="me-auto">Alert!</strong>
-                    <small></small>
-                    </Toast.Header>
-                    <Toast.Body>{toastMsg}</Toast.Body>
-                </Toast>
+                <ToastContainer className="p-3" position='middle-start'>
+                    <Toast  onClose={() => setToast(false)} show={showToast} delay={5000} autohide>
+                        <Toast.Header>
+                        <strong className="me-auto">Alert!</strong>
+                        <small></small>
+                        </Toast.Header>
+                        <Toast.Body>{toastMsg}</Toast.Body>
+                    </Toast>
+                </ToastContainer>
             </div>
+            
 
                     
                 

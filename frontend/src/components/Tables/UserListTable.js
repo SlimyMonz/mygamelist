@@ -146,8 +146,8 @@ const UserListTable = (props) =>
                 console.log(rowData.name);
                 //setData(props.data);
                 //setLoad(true);
-        
-                navigate('/games/' + rowData.name);
+                console.log(rowData);
+                navigate('/games/' + rowData.name, {state: {dataList: rowData}});
         }
 
         const handleActionDelete = async (rowData, dataKey) =>
@@ -177,6 +177,7 @@ const UserListTable = (props) =>
                                 //alert(gameData.indexOf(rowData));
                                 //console.log(gameData[gameData.indexOf(rowData)]);
 
+                                
                                 let newArry = gameData.filter(object => { return object._id !== rowData._id});
                                 console.log("new array: ");
                                 console.log(newArry);
@@ -301,6 +302,7 @@ const UserListTable = (props) =>
                 align = 'right'
                 bordered
                 cellBordered
+                virtualized
                 data={gameData}>
                         <Column width={80}  flexGrow= {1} align="center" verticalAlign='middle'>
                                 <HeaderCell>Game Page</HeaderCell>
@@ -343,6 +345,7 @@ const UserListTable = (props) =>
                 align = 'right'
                 bordered
                 cellBordered
+                virtualized
                 data={props.data}>
                         <Column width={80}  flexGrow= {1} align="center" verticalAlign='middle'>
                         <HeaderCell>Game Page</HeaderCell>

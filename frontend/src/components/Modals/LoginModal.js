@@ -7,6 +7,8 @@ import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import jwt_decode from "jwt-decode";
 import './LoginModalStyles.css';
 import { Link } from 'react-router-dom';
+import Toast from 'react-bootstrap/Toast';
+import ToastContainer from 'react-bootstrap/ToastContainer';
 
 
 class LoginModal extends Component 
@@ -22,7 +24,12 @@ class LoginModal extends Component
             userName: '',
             password: '',
             message: '',
-            success: false
+            messageReset: '',
+            success: false,
+            resetShow: false,
+            email: '',
+            toastShow: false,
+            toastMsg: ""
         }
     }
 
@@ -58,7 +65,15 @@ class LoginModal extends Component
             {
                 
                 //alert(await response.text());
-                this.setMessage('User/Password combination incorrect');
+                if (response.status === 401)
+                {
+                    this.setMessage('Your account is not verified');
+                }
+                else
+                {
+                    this.setMessage('Invalid User/Password combination');
+                }
+                
                 return;
             }
 
@@ -68,7 +83,7 @@ class LoginModal extends Component
             //alert(res.token);
             if(!res.token)
             {
-                this.setMessage('User/Password combination incorrect');
+                //this.setMessage('User/Password combination incorrect');
                 //alert("local storage is: " + localStorage.getItem('user_data'));
             }
             else
@@ -104,6 +119,63 @@ class LoginModal extends Component
             alert(e.toString());
         }    
     };
+    doReset = async () => 
+    {
+        //event.preventDefault();
+        //alert("user: " + this.state.userName + " pass: " + this.state.password);
+        let obj = {email:this.state.email};
+        let emailBody = JSON.stringify(obj);
+
+        try
+        {    
+            let build = this.buildPath('api/email/passwordReset');
+            //alert(build);
+            //alert(this.state.email);
+
+            const emailRes = await fetch(this.buildPath('api/email/passwordReset'),
+                {method:'POST',body:emailBody,headers:{'Content-Type': 'application/json'}});
+
+                //alert("past the fetch");
+                
+            if (emailRes.status === 404)
+            {
+                //alert("404");
+                //alert(await emailRes.text());
+                this.setState({toastMsg: "We're sorry but your email was not found"});
+                this.setState({toastShow: true});
+                return;
+            }
+
+            if (emailRes.status !== 200 )
+            {
+                
+                //alert(await response.text());
+                //alert("not 200");
+                return;
+            }
+            if (emailRes.status === 200)
+            {
+                this.setState({toastMsg: "We've sent a password reset email to " + this.state.email});
+                this.setState({toastShow: true});
+                //alert(await emailRes.text());
+                return;
+            }
+
+        
+            //let res = JSON.parse(await emailRes.text());
+
+            
+        }
+        catch(e)
+        {
+            alert(e.toString());
+            return;
+        }    
+        //alert("why u refreshing");
+    };
+
+
+    
 
     setMessage = (msg) =>{
         this.setState({ message: msg})
@@ -144,6 +216,12 @@ class LoginModal extends Component
         this.setMessage('');
 
     }
+    onHideReset = () =>{
+        
+        this.setState({email: ''});
+        this.setState({resetShow: false});
+
+    }
 
     onkeyPress = (e) =>{
 
@@ -152,6 +230,32 @@ class LoginModal extends Component
            this.onSubmit();
         }
 
+    }
+    onkeyPressReset = (e) =>{
+
+        //e.preventDefault();
+        if(e.keyCode === 13) 
+        {
+           this.handleReset();
+           e.preventDefault();
+        }
+        
+
+    }
+    handleReset = async () =>{
+        //alert("start");
+        console.log(this.state.email);
+        //call password reset api
+        await this.doReset();
+        //alert("did we reset yet?");
+        this.onHideReset();
+        //this.setState({resetShow: false});
+    }
+    handleResetShow = () =>{
+        //alert("hello");
+        this.onHide();
+        this.setState({resetShow: true});
+        console.log("does this happen");
     }
 
     render()
@@ -186,7 +290,7 @@ class LoginModal extends Component
                                 </FloatingLabel>
                             </Form.Group>
                         </Form>
-                        <a href="/passwordReset" class="tooltip-test" title="Tooltip" className='pw'>Forgot Password?</a>  
+                        Forgot Password? <a class="tooltip-test" onClick={() => {this.handleResetShow();}} title="Clicky" className='pw'>Reset Here</a>  
                         
                     </Modal.Body>
                     <Modal.Footer>
@@ -195,6 +299,44 @@ class LoginModal extends Component
                         <Button variant="primary" onClick={() => {this.onSubmit();}}>Submit</Button>
                     </Modal.Footer>
                 </Modal>
+
+                {/* password reset modal */}
+                <Modal show={this.state.resetShow} onHide={() => {this.onHideReset();console.log("ayy");}}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>
+                            PasswordReset
+                        </Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <Form>
+                            <Form.Group className ="mb-3" controlid="emailInput">
+                                <FloatingLabel label = "Email">
+                                    <Form.Control type = "text" placeholder="email" value ={this.state.email}
+                                                onChange ={e => this.setState({ email: e.target.value})}
+                                                onKeyDown={this.onkeyPressReset}
+                                    />
+                                    <Form.Text id="passwordHelp" muted> {/*to do: aria-describedby for assisted technologies */}
+                                        {this.state.messageReset}
+                                    </Form.Text>
+                                </FloatingLabel>
+                            </Form.Group>
+                        </Form>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        {/* <FloatingLabel className='alert'>Forgot Password?</FloatingLabel> */}
+                        <Button variant="secondary" onClick={() => {this.onHideReset();}}>Close</Button>
+                        <Button variant="primary" onClick={() => {this.handleReset();}}>Submit</Button>
+                    </Modal.Footer>
+                </Modal>
+                <ToastContainer className="p-3" position='middle-start'>
+                    <Toast onClose={() => this.setState({toastShow: false})} show={this.state.toastShow} delay={5000} autohide>
+                        <Toast.Header>
+                        <strong className="me-auto">Alert!</strong>
+                        <small></small>
+                        </Toast.Header>
+                        <Toast.Body>{this.state.toastMsg}</Toast.Body>
+                    </Toast>
+                </ToastContainer>
             </div>
         )
     };
