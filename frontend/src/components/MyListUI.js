@@ -194,9 +194,9 @@ function MyListUi(props)
             </video> */}
             
 
-            <div className='content'>
+            <div className='contentList'>
                 
-                <div className='text-wrapper'>
+                <div className='text-wrapperList'>
                     <div className='imglogo'>
                         <h1>My List</h1>
                         
