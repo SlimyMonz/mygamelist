@@ -95,7 +95,7 @@ class RegisterModal extends Component
                 
                 if (emailRes.status === 404)
                 {
-                    alert(await emailRes.text());
+                    //alert(await emailRes.text());
                     
                 }
     
