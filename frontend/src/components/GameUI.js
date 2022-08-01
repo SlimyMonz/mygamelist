@@ -9,6 +9,7 @@ import { findLastIndex } from 'underscore';
 import jwt_decode from "jwt-decode";
 import AddGameModalPage from './Modals/AddGameModalPage';
 import './GameUIStyles.css';
+import Accordion from 'react-bootstrap/Accordion';
 
 
 function GameUI(props)
@@ -231,6 +232,7 @@ function GameUI(props)
                         Platforms: {platforms} <br/><br/>
                         Genres: {genres} <br/><br/></p>
                         
+                    
                     <div className='info'><p className='description'>Description: {description}<br/></p></div>
                     <Button className='btn btn-home' variant="primary" onClick={handleShow}>
                                     Rate Game

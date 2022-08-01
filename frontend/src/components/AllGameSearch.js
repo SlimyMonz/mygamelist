@@ -8,6 +8,7 @@ import AllGamesTable from './Tables/AllGamesTable';
 import './AllGameSearchStyles.css';
 import GameSearchUI from './GameSearchUI';
 
+
 class AllGameSearch extends Component 
 {
     _isMounted = false;
@@ -286,7 +287,7 @@ class AllGameSearch extends Component
             this.state.WalkingSimulatorCheck || 
             this.state.WordGameCheck ||
             this.state.WrestlingCheck
-)
+        )
 
         {
             let genreArray = [];
@@ -298,12 +299,12 @@ class AllGameSearch extends Component
             }
             if(this.state.FPSCheck)
             {
-                genreArray.push("First Person Shooter");
+                //genreArray.push("First Person Shooter");
                 
             }
             if(this.state.ActionCheck)
             {
-                genreArray.push("Action");
+                //genreArray.push("Action");
                 
             }
             if(this.state.IndieCheck)
@@ -318,11 +319,11 @@ class AllGameSearch extends Component
             }
             if(this.state.CasualCheck)
             {
-                genreArray.push("Casual");
+                //genreArray.push("Casual");
             }  
             if(this.state.ExperimentalCheck)
             {
-                genreArray.push("Experimental");
+                //genreArray.push("Experimental");
             } 
             if(this.state.PuzzleCheck) 
             {
@@ -346,15 +347,15 @@ class AllGameSearch extends Component
             }
             if(this.state.TableTopCheck)
             {
-                genreArray.push("Table Top");
+                //genreArray.push("Table Top");
             } 
             if(this.state.ActionRPGCheck)
             {
-                genreArray.push("Action Role Playing Game");
+                //genreArray.push("Action Role Playing Game");
             } 
             if(this.state.ActionAdventureCheck)
             {
-                genreArray.push("Action Adventure");
+                //genreArray.push("Action Adventure");
             } 
             if(this.state.ArcadeCheck)
             {
@@ -362,87 +363,87 @@ class AllGameSearch extends Component
             }
             if(this.state.AutoBattlerCheck)
             {
-                genreArray.push("Auto Battler");
+                //genreArray.push("Auto Battler");
             }
             if(this.state.AutomobileSimCheck)
             {
-                genreArray.push("Automobile Sim");
+                //genreArray.push("Automobile Sim");
             }
             if(this.state.BaseBuildingCheck)
             {
-                genreArray.push("Base Building");
+                //genreArray.push("Base Building");
             }
             if(this.state.BaseballCheck)
             {
-                genreArray.push("Baseball");
+                //genreArray.push("Baseball");
             }
             if(this.state.BasketballCheck)
             {
-                genreArray.push("Basketball");
+                //genreArray.push("Basketball");
             } 
             if(this.state.BattleRoyaleCheck)
             {
-                genreArray.push("Battle Royale");
+                //genreArray.push("Battle Royale");
             }
             if(this.state.BMXCheck)
             {
-                genreArray.push("BMX");
+                //genreArray.push("BMX");
             } 
             if(this.state.BoardGameCheck)
             {
-                genreArray.push("Card & Board Game");
+                //genreArray.push("Card & Board Game");
             }
             if(this.state.BowlingCheck)
             {
-                genreArray.push("Bowling");
+                //genreArray.push("Bowling");
             } 
             if(this.state.BuildingCheck)
             {
-                genreArray.push("Building");
+                //genreArray.push("Building");
             }
             if(this.state.CardGameCheck)
             {
-                genreArray.push("Card & Board Game");
+                //genreArray.push("Card & Board Game");
             } 
             if(this.state.CharacterActionGameCheck) 
             {
-                genreArray.push("Character Action Game");
+                //genreArray.push("Character Action Game");
             }
             if(this.state.ChessCheck)
             {
-                genreArray.push("Chess");
+                //genreArray.push("Chess");
             }
             if(this.state.ClickerCheck) 
             {
-                genreArray.push("Clicker");
+                //genreArray.push("Clicker");
             }
             if(this.state.CyclingCheck )
             {
-                genreArray.push("Cycling");
+                //genreArray.push("Cycling");
             }
             if(this.state.DiplomacyCheck)
             {
-                genreArray.push("Diplomacy");
+                //genreArray.push("Diplomacy");
             } 
             if(this.state.eSportsCheck  )
             {
-                genreArray.push("eSports");
+                //genreArray.push("eSports");
             }
             if(this.state.ExperimentalCheck) 
             {
-                genreArray.push("Experimental");
+                //genreArray.push("Experimental");
             }
             if(this.state.ExplorationCheck )
             {
-                genreArray.push("Exploration");
+                //genreArray.push("Exploration");
             }
             if(this.state.FarmingSimCheck )
             {
-                genreArray.push("Farming");
+                //genreArray.push("Farming");
             }
             if(this.state.CharacterActionGameCheck) 
             {
-                genreArray.push("Character Action Game");
+                //genreArray.push("Character Action Game");
             }
             if(this.state.FightingCheck )
             {
@@ -450,75 +451,75 @@ class AllGameSearch extends Component
             }
             if(this.state.FootballCheck )
             {
-                genreArray.push("Football");
+                //genreArray.push("Football");
             }
             if(this.state.GodGameCheck )
             {
-                genreArray.push("God Game");
+                //genreArray.push("God Game");
             }
             if(this.state.GolfCheck )
             {
-                genreArray.push("Golf");
+                //genreArray.push("Golf");
             }
             if(this.state.HackingCheck)
             {
-                genreArray.push("Hacking");
+                //genreArray.push("Hacking");
             } 
             if(this.state.HiddenObjectCheck)
             {
-                genreArray.push("Hidden Object");
+                //genreArray.push("Hidden Object");
             } 
             if(this.state.HockeyCheck )
             {
-                genreArray.push("Hockey");
+                //genreArray.push("Hockey");
             }
             if(this.state.IdlerCheck )
             {
-                genreArray.push("Idler");
+                //genreArray.push("Idler");
             }
             if(this.state.InteractiveFictionCheck)
             {
-                genreArray.push("Interactive Fiction");
+                //genreArray.push("Interactive Fiction");
             } 
             if(this.state.ManagementCheck )
             {
-                genreArray.push("Management");
+                //genreArray.push("Management");
             }
             if(this.state.Match3Check )
             {
-                genreArray.push("Match 3");
+                //genreArray.push("Match 3");
             }
             if(this.state.MedicalSimCheck) 
             {
-                genreArray.push("Medical Sim");
+                //genreArray.push("Medical Sim");
             }
             if(this.state.MiniGolfCheck )
             {
-                genreArray.push("Mini Golf");
+                //genreArray.push("Mini Golf");
             }
             if(this.state.MiningCheck )
             {
-                genreArray.push("Mining");
+                //genreArray.push("Mining");
             }
             if(this.state.MMORPGCheck )
             {
-                genreArray.push("MMORPG");
+                //genreArray.push("MMORPG");
             }
             if(this.state.MotocrossCheck)
             {
-                genreArray.push("Motocross");
+                //genreArray.push("Motocross");
             } 
             if(this.state.OpenWorldCheck )
             {
-                genreArray.push("Open World");
+               //genreArray.push("Open World");
             }
             if(this.state.OutbreakSimCheck)
             {
-                genreArray.push("Outbreak Sim");
+                //genreArray.push("Outbreak Sim");
             } 
             if(this.state.PartyBasedRPGCheck)
             {
-                genreArray.push("Party based RPG");
+                //genreArray.push("Party based RPG");
             } 
             if(this.state.PinballCheck )
             {
@@ -530,15 +531,15 @@ class AllGameSearch extends Component
             }
             if(this.state.PointClickCheck )
             {
-                genreArray.push("Point & Click");
+                //genreArray.push("Point & Click");
             }
             if(this.state.RhythmCheck  )
             {
-                genreArray.push("Rhythm");
+                //genreArray.push("Rhythm");
             }
             if(this.state.RoguelikeCheck)
             {
-                genreArray.push("Roguelike");
+                //genreArray.push("Roguelike");
             }  
             if(this.state.RTSCheck )
             {
@@ -546,7 +547,7 @@ class AllGameSearch extends Component
             }
             if(this.state.SandboxCheck)
             {
-                genreArray.push("Sandbox");
+                //genreArray.push("Sandbox");
             } 
             if(this.state.ShooterCheck )
             {
@@ -554,46 +555,46 @@ class AllGameSearch extends Component
             }
             if(this.state.SkateboardingCheck)
             {
-                genreArray.push("Skateboard");
+                //genreArray.push("Skateboard");
             } 
             if(this.state.SkatingCheck )
             {
-                genreArray.push("Skating");
+                //genreArray.push("Skating");
             }
             if(this.state.SkiingCheck )
             {
-                genreArray.push("Skiing");
+                //genreArray.push("Skiing");
             }
             if(this.state.SnowboardingCheck)
             {
-                genreArray.push("Snowboarding");
+                //genreArray.push("Snowboarding");
             } 
             if(this.state.SoccerCheck )
             {
-                genreArray.push("Soccer");
+                //genreArray.push("Soccer");
             }
             if(this.state.SpaceSimCheck){
-                genreArray.push("Space Sim");
+                //genreArray.push("Space Sim");
             } 
             if(this.state.StealthCheck )
             {
-                genreArray.push("Stealth");
+                //genreArray.push("Stealth");
             }
             if(this.state.StrategyRPGCheck)
             {
-                genreArray.push("Strategy RPG");
+                //genreArray.push("Strategy RPG");
             } 
             if(this.state.SurvivalCheck )
             {
-                genreArray.push("Survival");
+                //genreArray.push("Survival");
             }
             if(this.state.TennisCheck )
             {
-                genreArray.push("Tennis");
+                //genreArray.push("Tennis");
             }
             if(this.state.TowerDefenseCheck)
             {
-                genreArray.push("Tower Defense");
+                //genreArray.push("Tower Defense");
             } 
             if(this.state.TriviaCheck )
             {
@@ -609,15 +610,15 @@ class AllGameSearch extends Component
             }
             if(this.state.WalkingSimulatorCheck)
             {
-                genreArray.push("Walking Simulator");
+                //genreArray.push("Walking Simulator");
             } 
             if(this.state.WordGameCheck )
             {
-                genreArray.push("Word Game");
+                //genreArray.push("Word Game");
             }
             if(this.state.WrestlingCheck)
             {
-                genreArray.push("Wrestling");
+                //genreArray.push("Wrestling");
             }
   
 
@@ -915,14 +916,14 @@ class AllGameSearch extends Component
                                                         onChange ={e => {this.setState({RPGCheck: e.target.checked});}}
                                                         checked={this.state.RPGCheck}
                                             />
-                                            <Form.Check type="checkbox" id = "FPSCheck" label="FPS"
+                                            {/* <Form.Check type="checkbox" id = "FPSCheck" label="FPS"
                                                         onChange ={e => {this.setState({FPSCheck: e.target.checked});}}
                                                         checked={this.state.FPSCheck}
                                             />
                                             <Form.Check type="checkbox" id = "ActionCheck" label="Action"
                                                         onChange ={e => {this.setState({ActionCheck: e.target.checked});}}
                                                         checked={this.state.ActionCheck}
-                                            />
+                                            /> */}
 
                                             <Form.Check type="checkbox" id = "IndieCheck" label="Indie"
                                                         onChange ={e => {this.setState({IndieCheck: e.target.checked});}}
@@ -932,14 +933,14 @@ class AllGameSearch extends Component
                                                         onChange ={e => {this.setState({AdventureCheck: e.target.checked});}}
                                                         checked={this.state.AdventureCheck}
                                             />
-                                            <Form.Check type="checkbox" id = "CasualCheck" label="Casual"
+                                            {/* <Form.Check type="checkbox" id = "CasualCheck" label="Casual"
                                                         onChange ={e => {this.setState({CasualCheck: e.target.checked});}}
                                                         checked={this.state.CasualCheck}
                                             />
                                             <Form.Check type="checkbox" id = "ExperimentalCheck" label="Experimental"
                                                         onChange ={e => {this.setState({ExperimentalCheck: e.target.checked});}}
                                                         checked={this.state.ExperimentalCheck}
-                                            />
+                                            /> */}
                                             <Form.Check type="checkbox" id = "PuzzleCheck" label="Puzzle"
                                                         onChange ={e => {this.setState({PuzzleCheck: e.target.checked});}}
                                                         checked={this.state.PuzzleCheck}
@@ -960,7 +961,7 @@ class AllGameSearch extends Component
                                                         onChange ={e => {this.setState({StrategyCheck: e.target.checked});}}
                                                         checked={this.state.StrategyCheck}
                                             />
-                                            <Form.Check type="checkbox" id = "TableTopCheck" label="Table Top"
+                                            {/* <Form.Check type="checkbox" id = "TableTopCheck" label="Table Top"
                                                         onChange ={e => {this.setState({TableTopCheck: e.target.checked});}}
                                                         checked={this.state.TableTopCheck}
                                             />
@@ -971,12 +972,12 @@ class AllGameSearch extends Component
                                             <Form.Check type="checkbox" id = "ActionAdventureCheck" label="Action Adventure"
                                                         onChange ={e => {this.setState({ActionAdventureCheck: e.target.checked});}}
                                                         checked={this.state.ActionAdventureCheck}
-                                            />
+                                            /> */}
                                             <Form.Check type="checkbox" id = "ArcadeCheck" label="Arcade"
                                                         onChange ={e => {this.setState({ArcadeCheck: e.target.checked});}}
                                                         checked={this.state.ArcadeCheck}
                                             />
-                                            <Form.Check type="checkbox" id = "AutoBattlerCheck" label="Auto Battler"
+                                            {/* <Form.Check type="checkbox" id = "AutoBattlerCheck" label="Auto Battler"
                                                         onChange ={e => {this.setState({AutoBattlerCheck: e.target.checked});}}
                                                         checked={this.state.AutoBattlerCheck}
                                             />
@@ -1058,12 +1059,12 @@ class AllGameSearch extends Component
                                             <Form.Check type="checkbox" id = "CharacterActionGameCheck" label="Character Action Game"
                                                         onChange ={e => {this.setState({CharacterActionGameCheck: e.target.checked});}}
                                                         checked={this.state.CharacterActionGameCheck}
-                                            />
+                                            /> */}
                                             <Form.Check type="checkbox" id = "FightingCheck" label="Fighting"
                                                         onChange ={e => {this.setState({FightingCheck: e.target.checked});}}
                                                         checked={this.state.FightingCheck}
                                             />
-                                            <Form.Check type="checkbox" id = "FootballCheck" label="Football"
+                                            {/* <Form.Check type="checkbox" id = "FootballCheck" label="Football"
                                                         onChange ={e => {this.setState({FootballCheck: e.target.checked});}}
                                                         checked={this.state.FootballCheck}
                                             />
@@ -1134,7 +1135,7 @@ class AllGameSearch extends Component
                                             <Form.Check type="checkbox" id = "PartyBasedRPGCheck" label="Party Based RPG"
                                                         onChange ={e => {this.setState({PartyBasedRPGCheck: e.target.checked});}}
                                                         checked={this.state.PartyBasedRPGCheck}
-                                            />
+                                            /> */}
                                             <Form.Check type="checkbox" id = "PinballCheck" label="Pinball"
                                                         onChange ={e => {this.setState({PinballCheck: e.target.checked});}}
                                                         checked={this.state.PinballCheck}
@@ -1143,7 +1144,7 @@ class AllGameSearch extends Component
                                                         onChange ={e => {this.setState({PlatformerCheck: e.target.checked});}}
                                                         checked={this.state.PlatformerCheck}
                                             />
-                                            <Form.Check type="checkbox" id = "PointClickCheck" label="Point and Click"
+                                            {/* <Form.Check type="checkbox" id = "PointClickCheck" label="Point and Click"
                                                         onChange ={e => {this.setState({PointClickCheck: e.target.checked});}}
                                                         checked={this.state.PointClickCheck}
                                             />
@@ -1154,20 +1155,20 @@ class AllGameSearch extends Component
                                             <Form.Check type="checkbox" id = "RoguelikeCheck" label="Roguelike"
                                                         onChange ={e => {this.setState({RoguelikeCheck: e.target.checked});}}
                                                         checked={this.state.RoguelikeCheck}
-                                            />
+                                            /> */}
                                             <Form.Check type="checkbox" id = "RTSCheck" label="Real Time Strategy"
                                                         onChange ={e => {this.setState({RTSCheck: e.target.checked});}}
                                                         checked={this.state.RTSCheck}
                                             />
-                                            <Form.Check type="checkbox" id = "SandboxCheck" label="Sandbox"
+                                            {/* <Form.Check type="checkbox" id = "SandboxCheck" label="Sandbox"
                                                         onChange ={e => {this.setState({SandboxCheck: e.target.checked});}}
                                                         checked={this.state.SandboxCheck}
-                                            />
+                                            /> */}
                                             <Form.Check type="checkbox" id = "ShooterCheck" label="Shooter"
                                                         onChange ={e => {this.setState({ShooterCheck: e.target.checked});}}
                                                         checked={this.state.ShooterCheck}
                                             />
-                                            <Form.Check type="checkbox" id = "SkateboardingCheck" label="Skateboarding"
+                                            {/* <Form.Check type="checkbox" id = "SkateboardingCheck" label="Skateboarding"
                                                         onChange ={e => {this.setState({SkateboardingCheck: e.target.checked});}}
                                                         checked={this.state.SkateboardingCheck}
                                             />
@@ -1210,7 +1211,7 @@ class AllGameSearch extends Component
                                             <Form.Check type="checkbox" id = "TowerDefenseCheck" label="Tower Defense"
                                                         onChange ={e => {this.setState({TowerDefenseCheck: e.target.checked});}}
                                                         checked={this.state.TowerDefenseCheck}
-                                            />
+                                            /> */}
                                             <Form.Check type="checkbox" id = "TriviaCheck" label="Quiz/Trivia"
                                                         onChange ={e => {this.setState({TriviaCheck: e.target.checked});}}
                                                         checked={this.state.TriviaCheck}
@@ -1223,7 +1224,7 @@ class AllGameSearch extends Component
                                                         onChange ={e => {this.setState({VisualNovelCheck: e.target.checked});}}
                                                         checked={this.state.VisualNovelCheck}
                                             />
-                                            <Form.Check type="checkbox" id = "WalkingSimulatorCheck" label="Walking Simulator"
+                                            {/* <Form.Check type="checkbox" id = "WalkingSimulatorCheck" label="Walking Simulator"
                                                         onChange ={e => {this.setState({WalkingSimulatorCheck: e.target.checked});}}
                                                         checked={this.state.WalkingSimulatorCheck}
                                             />
@@ -1234,7 +1235,7 @@ class AllGameSearch extends Component
                                             <Form.Check type="checkbox" id = "WrestlingCheck" label="Wrestling"
                                                         onChange ={e => {this.setState({WrestlingCheck: e.target.checked});}}
                                                         checked={this.state.WrestlingCheck}
-                                            />
+                                            /> */}
                                             
                                         </Form.Group>
                                     </div>
