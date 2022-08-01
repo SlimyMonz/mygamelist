@@ -1,0 +1,30 @@
+.gameModal-outer{
+/* background-color: rgba(0,0,0, 0.8); */
+display: table;
+    margin: 0 auto;
+}
+.gameModal-inner{
+    display: table;
+    margin: 0 auto;
+    
+}
+.gameinfo{
+    display: table;
+  margin: 0 auto;
+ 
+}
+.gamepic{
+    display: table;
+    margin: 0 auto;
+}
+
+.modal-footer{
+    display: table;
+    margin: 0 auto;
+    
+}
+.modal-title{
+    /* display: table;
+    margin: 0 auto; */
+    text-align: center;
+}

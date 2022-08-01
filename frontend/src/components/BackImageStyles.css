@@ -1,0 +1,43 @@
+.back-img{
+    background: rgba(0,0,0, .3);
+    height: 50vh;
+    width: 100%;
+    position: relative;
+}
+
+.back-img:before{
+    content: '';
+    background: url('../backgroundimg.png') no-repeat center center/cover;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+
+}
+
+.back-img .heading{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.back-img h1{
+    font-size: 2.4rem;
+    font-weight: 700;
+}
+
+.back-img p {
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+@media screen and (max-width: 640px){
+    .back-img h1{
+        font-size: 2rem;
+    }
+}

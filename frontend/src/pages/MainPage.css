@@ -1,0 +1,23 @@
+.consolepics{
+    padding-top: 15px;
+    height: 200px;
+}
+
+.consoleText{
+    padding-top: 20px;
+    color: #000;
+}
+
+body{ 
+    /* makes the background black */
+     background-color: rgba(0,0,0,0.8);
+ }  
+
+.columns{
+    padding-top: 30px;
+}
+
+.mb-2{
+    border-radius:15px;
+}
+

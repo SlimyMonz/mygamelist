@@ -1,37 +1,43 @@
 import React from 'react';
+import jwt_decode from "jwt-decode";
+import { Button } from 'react-bootstrap';
+
+
 
 function LoggedInName()
 {
 	
-    let _ud = localStorage.getItem('user_data');
-    let ud = JSON.parse(_ud);
+    let userInfo = localStorage.getItem('user');
+   //let decoded = jwt_decode(localStorage.getItem('user'));
+    //alert("we can get: " + JSON.stringify(decoded, null, 4));
+    //alert("we can even get: " + JSON.stringify(decoded.user[0].userName, null, 4));
+    //alert(decoded.user[0]._id);
     
     let dynamicLogged;
 
-    //to do: use states to not have to re-render everything on logout
+    //to do: use states to not have to re-render everything on logout?
     const doLogout = event => 
     {
       const currentPath = window.location.pathname;
 	    event.preventDefault();
 
-        localStorage.removeItem("user_data")
+        localStorage.removeItem("user")
         window.location.href = currentPath;
 
     };   
+
     
-    if(ud)
+    
+    if(userInfo)
     {
 
-        let userId = ud.id;
-        let firstName = ud.firstName;
-        let lastName = ud.lastName;
-        //alert("what now: ");
+        let decoded = jwt_decode(localStorage.getItem('user'));
         dynamicLogged = 
 
         <div id="loggedInDiv">
-          <span id="userName">Logged In As {firstName} {lastName}</span><br />
-          <button type="button" id="logoutButton" class="buttons" 
-            onClick={doLogout}> Log Out </button>
+          {/* <h4 id="userName">{decoded.user[0].userName}</h4><br /> */}
+         
+            <Button variant="secondary" id="logoutButton" onClick={doLogout}>Log Out</Button>
         </div>
 
 

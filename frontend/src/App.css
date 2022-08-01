@@ -4,8 +4,57 @@
 
 *{
     font-family: 'Raleway', sans-serif;
-    
+    /* color: rgb(24, 7, 171); */
+    /* background-color: #CAFF8A; */
+    /* box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+      */
 }
+
+body{
+  background: #000;
+}
+
+/* ul{
+  list-style-type: none;
+} */
+
+a{
+  text-decoration: none;
+}
+
+/* this turns the text white if its a p tag or h1 tag */
+h1, p, a, h4{
+  color: #fff;
+}
+
+.btn{
+  padding: 12px 32px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  /* background: transparent; */
+  background-color:#826AED;
+  color: #fff;
+  border:3px solid #fff;
+  cursor: pointer;
+}
+
+.btn-light{
+  background: #826AED;
+  
+
+}
+
+.btn:hover{
+  background: #FFB7FF; 
+}
+.btn-light:hover{
+  background: #FFB7FF; 
+}
+
+
 .App {
   text-align: center;
 }
@@ -45,10 +94,12 @@
   }
 }
 
-#title
+
+
+#checkboxPlatforms, #checkboxGenres
 {
-  color:red;
-  text-align: center;
+  height: 100px;
+  overflow-y: scroll;
 }
 
 
@@ -71,6 +122,22 @@
 #inner-title{
   display:inline-block;
 }
+
+#title
+{
+  color:red;
+  text-align: center;
+}
+#gameFormat
+{
+  white-space: pre-wrap;
+}
+#allGamesTable
+{
+  padding-top: 5%;
+}
+
+
 
 h1{
 

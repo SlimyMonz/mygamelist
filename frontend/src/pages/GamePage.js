@@ -1,17 +1,31 @@
-import React from 'react';
-import PageTitle from '../components/PageTitle';
-import LoggedInName from '../components/LoggedInName';
+import React, {Component} from 'react';
+import {Modal, Button} from 'react-bootstrap';
+import Form from 'react-bootstrap/Form';
+import FloatingLabel from 'react-bootstrap/FloatingLabel';
+import { useParams } from 'react-router-dom';
 import GameUI from '../components/GameUI';
+import MainLogin from '../components/MainLogin';
+import BackImage from '../components/BackImage';
+import background from '../backgroundimg.png';
 
-const GamePage = () =>
+const GamePage = (props) =>
+
 {
+
+    let {gameName} = useParams();
+    //alert(gameName);
+
     return(
         <div>
-            <PageTitle />
-            <LoggedInName />
-            <GameUI />
+            
+            
+            <MainLogin/>
+            {/* <BackImage heading={gameName} text="Here's some more info!"/> */}
+            <GameUI gameName={gameName}/>
         </div>
     );
+
+
 }
 
 export default GamePage;
