@@ -11,8 +11,10 @@ import UserListTable from './Tables/UserListTable';
 import './MyListUIStyles.css';
 import retroVideo from '../retroVid.mp4'
 import background from '../backgroundimg.png'
+import games from 'rawger/src/games';
 
 
+var gamesCheck = [];
 
 function MyListUi(props)
 {
@@ -86,6 +88,7 @@ function MyListUi(props)
                         let txt = await response.text();
                         //console.log(txt);
                         let games = JSON.parse(txt);
+                        gamesCheck = games;
                         
                     
                         console.log(games);
@@ -137,7 +140,14 @@ function MyListUi(props)
                         //alert("error!");
                         //alert(e.toString());
                         console.log("does this happen tokennnn");
-                        navigate("/", {state: { message: "token" }});
+                        if(gamesCheck.length === 0)
+                        {
+
+                        }
+                        else{
+                            navigate("/", {state: { message: "token" }});
+                        }
+                        
                     }
                 })();   
             }

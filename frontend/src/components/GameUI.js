@@ -11,6 +11,7 @@ import AddGameModalPage from './Modals/AddGameModalPage';
 import './GameUIStyles.css';
 import background from '../backgroundimg.png';
 
+
 function GameUI(props)
 {
     //alert(props.gameName);
@@ -235,6 +236,7 @@ function GameUI(props)
         //                             Rate Game
         //             </Button>
         //         {show && dynamicModal}
+
                
 
                 

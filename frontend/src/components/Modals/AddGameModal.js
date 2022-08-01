@@ -82,12 +82,12 @@ class AddGameModal extends Component
             if (response.status === 401)
             {
                 console.log("did it wait fail?");
-                alert(await response.text());
+                //alert(await response.text());
                 return;
             }
 
             console.log("did it wait?");
-            alert(await response.text());
+            //alert(await response.text());
             return response;
             //let res = JSON.parse(await response.text());
 

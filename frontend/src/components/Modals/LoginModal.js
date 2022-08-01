@@ -304,7 +304,7 @@ class LoginModal extends Component
                 <Modal show={this.state.resetShow} onHide={() => {this.onHideReset();console.log("ayy");}}>
                     <Modal.Header closeButton>
                         <Modal.Title>
-                            PasswordReset
+                            Enter your email 
                         </Modal.Title>
                     </Modal.Header>
                     <Modal.Body>

@@ -13,6 +13,8 @@ import Footer from '../components/Footer';
 import xboxX from '../xboxXpic.png';
 import ps5 from '../ps5Pic.png';
 import pc from '../pcpic.png';
+import Toast from 'react-bootstrap/Toast';
+import ToastContainer from 'react-bootstrap/ToastContainer';
 //import {withRouter} from 'react-router-dom';
 
 //this is the main page of the site
@@ -31,6 +33,8 @@ const MainPage = () =>
     let renderCheck = false;
 
     const [stuff, setStuff] = useState('hellooooooo');
+    const [toastShow, setToast] = useState(false);
+    const [toastMsg, setMsg] = useState('');
 
     useEffect(() => 
     {
@@ -50,7 +54,9 @@ const MainPage = () =>
             )
             .then(response => response.json()
             .then(json => {
-              alert(json.message);
+              //alert(json.message);
+              setMsg("Email has been verified. Congrats!");
+              setToast(true);
             }));
             console.log("renderrrrr worked");
           }
@@ -106,6 +112,15 @@ const MainPage = () =>
        
         {/* MainLogin contains  the navbar (logo and login/register buttons)*/}
         <MainLogin />
+        <ToastContainer className="p-3" position='middle-start'>
+                    <Toast onClose={() => setToast(false)} show={toastShow} delay={5000} autohide>
+                        <Toast.Header>
+                        <strong className="me-auto">Alert!</strong>
+                        <small></small>
+                        </Toast.Header>
+                        <Toast.Body>{toastMsg}</Toast.Body>
+                    </Toast>
+                </ToastContainer>
         <Video />
         
           {/* <Container className="gamePics"> */}
