@@ -9,7 +9,7 @@ import { findLastIndex } from 'underscore';
 import jwt_decode from "jwt-decode";
 import AddGameModalPage from './Modals/AddGameModalPage';
 import './GameUIStyles.css';
-import Accordion from 'react-bootstrap/Accordion';
+import background from '../backgroundimg.png';
 
 
 function GameUI(props)
@@ -221,50 +221,59 @@ function GameUI(props)
     //alert(location.state.data.id); //we check to see if state is null to determine if we got here from a modal or manually
 
     return(
-        <div>
-        {/* <Button variant="dark" class="buttons"
-                        onClick={()=> goBack()}>Back</Button> */}
-            <div className='content'>
-                <div className='text-wrapper'>
-                    <img className='pic' src={image} alt="game cover img"/>
+        // <div>
+       
+        //     <div className='content'>
+        //         <div className='text-wrapper'>
+        //             <img className='pic' src={image} alt="game cover img"/>
                     
-                    <p><h2>Name: {name}</h2><br/>
-                        Platforms: {platforms} <br/><br/>
-                        Genres: {genres} <br/><br/></p>
+        //             <p><h2>Name: {name}</h2><br/>
+        //                 Platforms: {platforms} <br/><br/>
+        //                 Genres: {genres} <br/><br/></p>
                         
-                    
-                    <div className='info'><p className='description'>Description: {description}<br/></p></div>
-                    <Button className='btn btn-home' variant="primary" onClick={handleShow}>
-                                    Rate Game
-                    </Button>
-                {show && dynamicModal}
+        //             <div className='info'><p className='description'>Description: {description}<br/></p></div>
+        //             <Button className='btn btn-home' variant="primary" onClick={handleShow}>
+        //                             Rate Game
+        //             </Button>
+        //         {show && dynamicModal}
+
                
 
                 
                         
             
+        //         </div>
+        //     </div>
+        
+        // </div>
+        <div className='vidGame' style={{ backgroundImage: `url(${background})` }}>
+        
+            
+
+            <div className='contentGame'>
+                
+                <div className='text-wrapperGame'>
+                    
+                    <div className='header-wrapper'>
+                        <h1>{name}</h1><br/>
+                        <img className='picGame' src={image} alt="game cover img"/>
+                    </div>
+                    <p><br/>
+                         Platforms: {platforms} <br/><br/>
+                        Genres: {genres} <br/><br/></p>
+                        
+                     <div className='info'><p className='description'>Description:<br/> {description}<br/></p></div>
+                    <Button className='btn btn-home' variant="primary" onClick={handleShow}>
+                                     Rate Game
+                     </Button>
+                 {show && dynamicModal}
+               
+
                 </div>
             </div>
-        
-        {/* <br/>
-        <br/>
-        <br/>
-        <br/> */}
-        {/* {dynamicGame} */}
-{/*         
-        
-        Name: {name}<br/>
-        Platforms: {platforms} <br/>
-        Genres: {genres} <br/>
-        Description: {description}<br/>
-        <Button variant="primary" onClick={handleShow}>
-                                    Rate Game
-                            </Button>
-                {show && dynamicModal}
-        Image: 
-        <br/> <img src={image} alt="game cover img"/><br/> */}
-        
         </div>
+
+        
     );
 
 }
