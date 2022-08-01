@@ -7,7 +7,7 @@ const About = () => {
     return (
         <div>
             <MainLogin/>
-            <BackImage heading='Our Mission' text='For gamers. By gamers.'/>
+            <BackImage heading='About Us' text='For gamers. By gamers.'/>
             <AboutComp/>
             <Footer/>
         </div>

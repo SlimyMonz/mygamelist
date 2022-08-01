@@ -665,16 +665,16 @@ class AllGameSearch extends Component
             }
             if(this.state.XSeriesCheck)
             {
-                platformArray.push("Xbox Series X");
+                platformArray.push("Xbox Series X|S");
             }
             if(this.state.SwitchCheck)
             {
                 platformArray.push("Nintendo Switch");
             }
-            if(this.state.SwitchCheck)
-            {
-                platformArray.push("Nintendo Switch");
-            }
+            // if(this.state.SwitchCheck)
+            // {
+            //     platformArray.push("Nintendo Switch");
+            // }
             if(this.state.VitaCheck)
             {
                 platformArray.push("PlayStation Vita");
@@ -841,14 +841,14 @@ class AllGameSearch extends Component
 
 
                         <Container className="checkBoxes">
-                            <Row xxl={4}>
+                            {/* <Row xxl={4}> */}
                                 {/* <Col>Platform</Col> */}
                                 {/* <Col>Genre</Col> */}
                                 
-                            </Row>
+                            {/* </Row> */}
 
-                            <Row xxl={4}>
-                                <Col xs lg="9"> 
+                            <Row xxl={2}>
+                                <Col > 
                                 <label>Platform</label>
                                     <div className='checkboxPlat' id="checkboxPlatforms">
                                         <Form.Group className="mb-3 w-50" controlId="formPlatformCheckbox">
@@ -907,7 +907,7 @@ class AllGameSearch extends Component
                                         </Form.Group>
                                     </div>
                                 </Col>
-                                <Col xs lg="9"> 
+                                <Col > 
                                 <label>Genre</label>
                                     <div className='checkboxGen' id="checkboxGenres">
                                         <Form.Group className="mb-3 w-50" controlId="formGenreCheckbox">

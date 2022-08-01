@@ -4,11 +4,14 @@
     /* color:#000; */
     font-weight: 500;
 }
+form{
+    bottom:0;
+}
 
 .form-container{
-    border-radius: 35px;
-    background-color: rgba(255,255,255,0.5);
-    padding-bottom:5rem;
+    /* border-radius: 35px; */
+    /* background-color: rgba(255,255,255,0.5); */
+    padding-bottom:3rem;
     
 }
 
@@ -27,6 +30,7 @@
 
 .gameSearchBox{
     margin: auto;
+    bottom:0;
     
     width: 50%;
 }
@@ -36,9 +40,10 @@
     padding-right: 15px;
     margin:auto;
     width:100%;
-    background:rgba(0,0,0,0.1);
+    /* background:rgba(255,255,255,0.5); */
     border:#000 solid 1px;
     border-radius:5px;
+    
     
 }
 
@@ -47,7 +52,7 @@
     padding-left:10px;
     margin: auto;
     width:100%;
-    background:rgba(0,0,0,0.1);
+    /* background:rgba(255,255,255,0.5); */
     border:#000 solid 1px;
     border-radius:5px;
 }
