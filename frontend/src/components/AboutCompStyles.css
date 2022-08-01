@@ -12,6 +12,7 @@
     width: 80%;
     margin: auto;
     display: grid;
+    border-radius:35px;
     /* grid-gap: 40px;
     grid-template-columns: repeat(3, 1fr); */
 }
@@ -19,6 +20,9 @@
 .card-container .card{
     border: 1px solid #eee;
     color: #eee;
+    border-radius:35px;
+    text-align: center;
+    padding: 1rem;
 
 }
 
@@ -35,6 +39,7 @@
     font-size:1.4rem;
     padding: 1rem;
     color: #000;
+    text-align: center;
     
 }
 
@@ -50,6 +55,7 @@
     font-weight: 600;
     padding: 1rem;
     color: #000;
+    text-align: center;
 
 }
 

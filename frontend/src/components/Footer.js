@@ -9,7 +9,7 @@ const Footer = () => {
                 <div className='left'>
                     <div className='email'>
                         <FaRegEnvelope size={20} style={{color: '#ffffff', marginRight: '2rem' }}/>
-                        <div>
+                        <div className='emailtext'>
                             <h4>Need Help? Email Us</h4>
                             <p>mglcustomersupport@gmail.com</p> 
                         </div>
@@ -18,13 +18,15 @@ const Footer = () => {
                 </div>
 
                 <div className='right'>
+                    <div className='socialtext'>
                     <h4>Social</h4>
                     <p>Give us a follow and stay updated! @mglsocial</p>
+                    </div>
                     <div className='socials'>
-                        <FaTwitter size={20} style={{color: '#ffffff', marginRight: '2rem' }}/>
-                        <FaFacebookSquare size={20} style={{color: '#ffffff', marginRight: '2rem' }}/>
-                        <FaInstagram size={20} style={{color: '#ffffff', marginRight: '2rem' }}/>
-                        <FaMailBulk size={20} style={{color: '#ffffff', marginRight: '2rem' }}/>
+                        <FaTwitter size={15} style={{color: '#ffffff',marginRight: '2rem' }}/>
+                        <FaFacebookSquare size={20} style={{marginRight: '2rem' }}/>
+                        <FaInstagram size={20} style={{marginRight: '2rem' }}/>
+            
                     </div>
                 </div>
             </div>
